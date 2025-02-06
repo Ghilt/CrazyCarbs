@@ -1,0 +1,1 @@
+show_debug_message("camera details: x" + string(camera_get_view_x(cam)) + " y: " + string(camera_get_view_y(cam)))
