@@ -1,12 +1,14 @@
 cam = view_get_camera(view_current)
 ratio = camera_get_view_width(cam) / camera_get_view_height(cam)
 
-scrollSpeed = 1
+scrollSpeed = 0.5
 
-minHeight = 100
-maxHeight = 10000
-minWidth = 100 * ratio
-maxWidth = 10000 * ratio
+minHeight = 200
+minWidth = 200 * ratio
+
+
+// debug log: show_debug_message("value : " + string())
+
 
 function zoomIt(directionIn) {
     var currentCameraX = camera_get_view_x(cam)
@@ -24,12 +26,23 @@ function zoomIt(directionIn) {
         heightChange *= -1
     } 
     
-    var newWidth = clamp(currentCameraWidth + widthChange, minWidth, maxWidth)
-    var newHeight = clamp(currentCameraHeight + heightChange, minHeight, maxHeight)
     
-    var newX = clamp(currentCameraX - zoomTargetXPercent * widthChange , 0, maxWidth)
-    var newY = clamp(currentCameraY - zoomTargetYPercent * heightChange, 0, maxHeight)
+    // max over clamp here to exit out with 'or' to avoid aspect ratio mattering
+    var newWidth = max(currentCameraWidth + widthChange, minWidth)
+    var newHeight = max(currentCameraHeight + heightChange, minHeight)
     
+    var noZoomHAppened = int64(newWidth) == int64(currentCameraWidth)
+    
+    if (noZoomHAppened || newWidth > room_width || newHeight > room_height) {
+        return;
+    }
+    
+    var cameraPosMaxX = room_width - newWidth
+    var cameraPosMaxY = room_height - newHeight
+    
+    var newX = clamp(currentCameraX - zoomTargetXPercent * widthChange , 0, cameraPosMaxX)
+    var newY = clamp(currentCameraY - zoomTargetYPercent * heightChange, 0, cameraPosMaxY)
+     
     camera_set_view_size(cam, newWidth, newHeight)
     camera_set_view_pos(cam, newX, newY)
 }
