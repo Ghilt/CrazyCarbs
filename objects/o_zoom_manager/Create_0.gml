@@ -1,6 +1,9 @@
 cam = view_get_camera(view_current)
 ratio = camera_get_view_width(cam) / camera_get_view_height(cam)
 
+baseWidth = camera_get_view_width(cam)
+baseHeight = camera_get_view_height(cam)
+
 scrollSpeed = 0.5
 
 minHeight = 200
@@ -10,6 +13,10 @@ previousMouseX = mouse_x
 previousMouseY = mouse_y
 
 // debug log: show_debug_message("value : " + string())
+
+function getZoomPercentage(){
+    return baseWidth / camera_get_view_width(cam);
+}
 
 
 function zoomIt(directionIn) {
