@@ -6,6 +6,8 @@ scrollSpeed = 0.5
 minHeight = 200
 minWidth = 200 * ratio
 
+previousMouseX = mouse_x
+previousMouseY = mouse_y
 
 // debug log: show_debug_message("value : " + string())
 
@@ -26,11 +28,9 @@ function zoomIt(directionIn) {
         heightChange *= -1
     } 
     
-    
-    // max over clamp here to exit out with 'or' to avoid aspect ratio mattering
+    // max over clamp here to exit out with '||' below to avoid aspect ratio mattering
     var newWidth = max(currentCameraWidth + widthChange, minWidth)
     var newHeight = max(currentCameraHeight + heightChange, minHeight)
-    
     var noZoomHAppened = int64(newWidth) == int64(currentCameraWidth)
     
     if (noZoomHAppened || newWidth > room_width || newHeight > room_height) {
@@ -45,4 +45,5 @@ function zoomIt(directionIn) {
      
     camera_set_view_size(cam, newWidth, newHeight)
     camera_set_view_pos(cam, newX, newY)
+    
 }
