@@ -18,6 +18,11 @@ function getZoomPercentage(){
     return baseWidth / camera_get_view_width(cam);
 }
 
+function convertToGuiSpace(pX, pY) {
+    var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam)
+    var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)
+    return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
+}
 
 function zoomIt(directionIn) {
     var currentCameraX = camera_get_view_x(cam)
@@ -38,9 +43,9 @@ function zoomIt(directionIn) {
     // max over clamp here to exit out with '||' below to avoid aspect ratio mattering
     var newWidth = max(currentCameraWidth + widthChange, minWidth)
     var newHeight = max(currentCameraHeight + heightChange, minHeight)
-    var noZoomHAppened = int64(newWidth) == int64(currentCameraWidth)
+    var noZoomHappened = int64(newWidth) == int64(currentCameraWidth)
     
-    if (noZoomHAppened || newWidth > room_width || newHeight > room_height) {
+    if (noZoomHappened || newWidth > room_width || newHeight > room_height) {
         return;
     }
     

@@ -1,7 +1,7 @@
 if (debugGrid) {
     
-    for (var i = 0; i < array_length(influenceGrid); i++) {
-        draw_circle(x + influenceGrid[i].x * buildingSize , y + influenceGrid[i].y * buildingSize , 5, false)
+    for (var i = 0; i < array_length(influenceGridAbs); i++) {
+        draw_circle(influenceGridAbs[i].x, influenceGridAbs[i].y, 5, false)
     }
     //draw_circle
     
