@@ -15,6 +15,7 @@
     {"$GMFolder":"","%Name":"Fonts","folderPath":"folders/Fonts.yy","name":"Fonts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Notes","folderPath":"folders/Notes.yy","name":"Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"gui","folderPath":"folders/Objects/gui.yy","name":"gui","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Particle Systems","folderPath":"folders/Particle Systems.yy","name":"Particle Systems","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Paths","folderPath":"folders/Paths.yy","name":"Paths","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Rooms","folderPath":"folders/Rooms.yy","name":"Rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -36,9 +37,15 @@
   "name":"CrazyCarbs",
   "resources":[
     {"id":{"name":"Easy_and_Wonderfully_Tileset","path":"extensions/Easy_and_Wonderfully_Tileset/Easy_and_Wonderfully_Tileset.yy",},},
+    {"id":{"name":"o_gui_frame","path":"objects/o_gui_frame/o_gui_frame.yy",},},
+    {"id":{"name":"o_gui_parent","path":"objects/o_gui_parent/o_gui_parent.yy",},},
+    {"id":{"name":"o_placable_instance","path":"objects/o_placable_instance/o_placable_instance.yy",},},
     {"id":{"name":"o_zoom_manager","path":"objects/o_zoom_manager/o_zoom_manager.yy",},},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"worldRoom","path":"rooms/worldRoom/worldRoom.yy",},},
+    {"id":{"name":"macros","path":"scripts/macros/macros.yy",},},
+    {"id":{"name":"s_gui_frame","path":"sprites/s_gui_frame/s_gui_frame.yy",},},
     {"id":{"name":"s_ocean","path":"sprites/s_ocean/s_ocean.yy",},},
+    {"id":{"name":"s_ui_placeable_placeholder","path":"sprites/s_ui_placeable_placeholder/s_ui_placeable_placeholder.yy",},},
     {"id":{"name":"Sprite2","path":"sprites/Sprite2/Sprite2.yy",},},
     {"id":{"name":"tileSet","path":"sprites/tileSet/tileSet.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
@@ -46,7 +53,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"worldRoom","path":"rooms/worldRoom/worldRoom.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

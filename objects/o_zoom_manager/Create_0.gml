@@ -17,8 +17,8 @@ function zoomIt(directionIn) {
     var currentCameraY = camera_get_view_y(cam)
     var currentCameraWidth = camera_get_view_width(cam)
     var currentCameraHeight = camera_get_view_height(cam)
-    var zoomTargetXPercent = device_mouse_x_to_gui(0) / display_get_gui_width()
-    var zoomTargetYPercent = device_mouse_y_to_gui(0) / display_get_gui_height()
+    var zoomTargetXPercent = mouseGuiX / display_get_gui_width()
+    var zoomTargetYPercent = mouseGuiY / display_get_gui_height()
      
     var widthChange = scrollSpeed * currentCameraWidth * 0.3
     var heightChange = scrollSpeed * currentCameraHeight * 0.3 

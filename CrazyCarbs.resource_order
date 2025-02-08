@@ -5,6 +5,7 @@
     {"name":"Fonts","order":7,"path":"folders/Fonts.yy",},
     {"name":"Notes","order":13,"path":"folders/Notes.yy",},
     {"name":"Objects","order":9,"path":"folders/Objects.yy",},
+    {"name":"gui","order":4,"path":"folders/Objects/gui.yy",},
     {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
     {"name":"Paths","order":4,"path":"folders/Paths.yy",},
     {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
@@ -18,6 +19,10 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
-    {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
+    {"name":"o_gui_frame","order":1,"path":"objects/o_gui_frame/o_gui_frame.yy",},
+    {"name":"o_placable_instance","order":2,"path":"objects/o_placable_instance/o_placable_instance.yy",},
+    {"name":"s_gui_frame","order":2,"path":"sprites/s_gui_frame/s_gui_frame.yy",},
+    {"name":"s_ui_placeable_placeholder","order":4,"path":"sprites/s_ui_placeable_placeholder/s_ui_placeable_placeholder.yy",},
+    {"name":"Sprite2","order":3,"path":"sprites/Sprite2/Sprite2.yy",},
   ],
 }
