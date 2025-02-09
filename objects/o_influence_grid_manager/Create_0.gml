@@ -10,7 +10,7 @@ influenceGrid = [
 { x : 0, y : 1 },
 { x : 1, y : 1 },
 { x : 2, y : 2 },
-{ x : 6, y : 6 }
+{ x : -6, y : 6 }
 ]
 
 
@@ -29,7 +29,7 @@ function getClosestBuildableSpot(pX, pY) {
     var bestX = 0
     var bestY = 0
     
-    for (var i = 0; i < array_length(influenceGrid); i++) {
+    for (var i = 0; i < array_length(influenceGridAbs); i++) {
         
         var distance = point_distance(pX, pY, influenceGridAbs[i].x, influenceGridAbs[i].y)
         
@@ -40,8 +40,6 @@ function getClosestBuildableSpot(pX, pY) {
         }
 
     }
-    
-    // show_debug_message("best distance : " + string(bestDistance))
     
     return {distance: bestDistance, x: bestX, y: bestY}
 }

@@ -1,4 +1,4 @@
-if (device_mouse_check_button(0, mb_left)) {
+if (device_mouse_check_button(0, mb_left) ) {
     time = max(time, 0)
     time++;
 }
@@ -11,15 +11,17 @@ else {
 
 switch (carry) {
     case Carry.None:
-        if (position_meeting(mouseGuiX, mouseGuiY, event_object) && time == 1) {
+        if (position_meeting(mouseGuiX, mouseGuiY, self) && time == 1) {
             carry = Carry.ClickCarry;
-        } else {
+        } else if (action == Action.None) {
             // return to inventory
             x = lerp(x, originX, smoothCarry * 0.2)
             y = lerp(y, originY, smoothCarry * 0.2)
             
             image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
             image_yscale = lerp(image_yscale, 1, smoothScale * 0.2)
+        } else {
+            
         }
     break;
 
@@ -38,21 +40,23 @@ switch (carry) {
 }
 
 
-var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x - sprite_width / 2, mouse_y - sprite_height / 2)
+var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x - originalWidth / 2, mouse_y - originalHeight / 2)
 
 
  if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
     
     if (closestPos.distance < buildSnappingRange) {
+        // Lets build it!
         var inGuiSpace = o_zoom_manager.convertToGuiSpace(closestPos.x, closestPos.y)
         
         x = lerp(x, inGuiSpace.x, smoothCarry)
         y = lerp(y, inGuiSpace.y, smoothCarry)
+        action = Action.Build
     } else {
         x = lerp(x, mouseGuiX - sprite_width / 2, smoothCarry)
         y = lerp(y, mouseGuiY - sprite_height / 2, smoothCarry)
+        action = Action.None
     }
-    
     
     image_xscale = lerp(image_xscale, o_zoom_manager.getZoomPercentage(), smoothScale)
     image_yscale = lerp(image_yscale, o_zoom_manager.getZoomPercentage(), smoothScale)

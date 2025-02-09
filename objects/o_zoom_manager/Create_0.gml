@@ -12,7 +12,6 @@ minWidth = 200 * ratio
 previousMouseX = mouse_x
 previousMouseY = mouse_y
 
-// debug log: show_debug_message("value : " + string())
 
 function getZoomPercentage(){
     return baseWidth / camera_get_view_width(cam);
@@ -23,6 +22,13 @@ function convertToGuiSpace(pX, pY) {
     var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)
     return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
 }
+
+function convertToGuiSpaceDistance(pX, pY) {
+    var gX = pX / camera_get_view_width(cam)
+    var gY = pY / camera_get_view_height(cam)
+    return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
+}
+
 
 function zoomIt(directionIn) {
     var currentCameraX = camera_get_view_x(cam)
