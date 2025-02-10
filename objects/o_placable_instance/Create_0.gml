@@ -19,3 +19,8 @@ originX = x
 originY = y
 originalWidth = sprite_width // might be better to get this info from sprite_get_info(index).original_width
 originalHeight = sprite_height
+
+function placeInstance(pos) {
+    o_influence_grid_manager.buildAt(pos)
+    instance_destroy(self)
+}
