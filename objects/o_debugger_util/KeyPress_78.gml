@@ -1,0 +1,1 @@
+ppp("hi test ", o_inventory_manager.inventory[0])
