@@ -7,8 +7,9 @@ baseHeight = camera_get_view_height(cam)
 
 scrollSpeed = 0.5
 
-minHeight = 200
+// minimum zoom level. Stop at 200 pixels
 minWidth = 200 * ratio
+minHeight = 200
 
 previousMouseX = mouse_x
 previousMouseY = mouse_y
@@ -25,7 +26,7 @@ function getZoomPercentage(){
 }
 
 function convertToGuiSpace(pX, pY) {
-    var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam) // replace with . ?????
+    var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam)
     var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)
     return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
 }

@@ -1,16 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"o_inventory_manager",
+  "%Name":"o_gui_progress_era_button",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_inventory_manager",
+  "name":"o_gui_progress_era_button",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"gui",
+    "path":"folders/Objects/gui.yy",
   },
   "parentObjectId":{
     "name":"o_gui_parent",
@@ -33,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_gui_progress_button",
+    "path":"sprites/s_gui_progress_button/s_gui_progress_button.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

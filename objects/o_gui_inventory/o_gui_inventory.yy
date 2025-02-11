@@ -1,16 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"o_inventory_manager",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"o_gui_inventory",
+  "eventList":[],
   "managed":true,
-  "name":"o_inventory_manager",
+  "name":"o_gui_inventory",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"gui",
+    "path":"folders/Objects/gui.yy",
   },
   "parentObjectId":{
     "name":"o_gui_parent",
@@ -33,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_gui_inventory",
+    "path":"sprites/s_gui_inventory/s_gui_inventory.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
