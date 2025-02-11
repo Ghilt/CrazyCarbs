@@ -1,3 +1,8 @@
+if (!o_game_phase_manager.isBuildPhase()) {
+    returnToInventoryPosition()
+    return;
+}
+
 if (device_mouse_check_button(0, mb_left) ) {
     time = max(time, 0)
     time++;
@@ -13,15 +18,11 @@ var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x - orig
 
 switch (carry) {
     case Carry.None:
-        if (position_meeting(mouseGuiX, mouseGuiY, self) && time == 1) {
+        if (position_meeting(mouseGuiX, mouseGuiY, id) && time == 1) {
             carry = Carry.ClickCarry
         } else if (action == Action.None) {
             // return to inventory
-            x = lerp(x, originX, smoothCarry * 0.2)
-            y = lerp(y, originY, smoothCarry * 0.2)
-            
-            image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
-            image_yscale = lerp(image_yscale, 1, smoothScale * 0.2)
+            returnToInventoryPosition()
         } else {
             placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. IT will still work
         }
@@ -49,6 +50,7 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
         y = lerp(y, inGuiSpace.y, smoothCarry)
         action = Action.Build
     } else {
+        // Follow mouse
         x = lerp(x, mouseGuiX - sprite_width / 2, smoothCarry)
         y = lerp(y, mouseGuiY - sprite_height / 2, smoothCarry)
         action = Action.None

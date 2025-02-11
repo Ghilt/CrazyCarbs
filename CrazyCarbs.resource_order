@@ -18,6 +18,7 @@
     {"name":"o_debug_shop","order":3,"path":"objects/o_debug_shop/o_debug_shop.yy",},
     {"name":"o_debugger_util","order":4,"path":"objects/o_debugger_util/o_debugger_util.yy",},
     {"name":"o_game_initializer","order":7,"path":"objects/o_game_initializer/o_game_initializer.yy",},
+    {"name":"o_game_phase_manager","order":8,"path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},
     {"name":"o_gp_initPort","order":2,"path":"objects/o_gp_initPort/o_gp_initPort.yy",},
     {"name":"o_gui_frame","order":1,"path":"objects/o_gui_frame/o_gui_frame.yy",},
     {"name":"o_gui_inventory","order":5,"path":"objects/o_gui_inventory/o_gui_inventory.yy",},

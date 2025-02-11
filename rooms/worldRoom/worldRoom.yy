@@ -19,6 +19,7 @@
     {"name":"inst_26F8FA75","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_4750FC9A","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_3B94A657","path":"rooms/worldRoom/worldRoom.yy",},
+    {"name":"inst_75FE691B","path":"rooms/worldRoom/worldRoom.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -38,6 +39,7 @@
         {"$GMRInstance":"v1","%Name":"inst_26F8FA75","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_26F8FA75","objectId":{"name":"o_debug_shop","path":"objects/o_debug_shop/o_debug_shop.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":832.0,"y":384.0,},
         {"$GMRInstance":"v1","%Name":"inst_4750FC9A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4750FC9A","objectId":{"name":"o_debugger_util","path":"objects/o_debugger_util/o_debugger_util.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":832.0,"y":352.0,},
         {"$GMRInstance":"v1","%Name":"inst_3B94A657","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3B94A657","objectId":{"name":"o_game_initializer","path":"objects/o_game_initializer/o_game_initializer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":832.0,"y":320.0,},
+        {"$GMRInstance":"v1","%Name":"inst_75FE691B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_75FE691B","objectId":{"name":"o_game_phase_manager","path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":832.0,"y":288.0,},
       ],"layers":[],"name":"Gui","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_land","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_land","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":625,"SerialiseWidth":625,"TileCompressedData":[
           -5,109,1,241,-9,3,-2,109,1,241,-4,3,2,136,137,-3,3,-3,241,-3,3,-3,241,-3,3,-6,241,-3,3,-83,241,-360,

@@ -37,6 +37,7 @@
     {"id":{"name":"o_debug_shop","path":"objects/o_debug_shop/o_debug_shop.yy",},},
     {"id":{"name":"o_debugger_util","path":"objects/o_debugger_util/o_debugger_util.yy",},},
     {"id":{"name":"o_game_initializer","path":"objects/o_game_initializer/o_game_initializer.yy",},},
+    {"id":{"name":"o_game_phase_manager","path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},},
     {"id":{"name":"o_gp_initPort","path":"objects/o_gp_initPort/o_gp_initPort.yy",},},
     {"id":{"name":"o_gui_frame","path":"objects/o_gui_frame/o_gui_frame.yy",},},
     {"id":{"name":"o_gui_inventory","path":"objects/o_gui_inventory/o_gui_inventory.yy",},},

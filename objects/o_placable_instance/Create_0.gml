@@ -36,3 +36,11 @@ function placeInstance(pos) {
     o_influence_grid_manager.buildAt(pos, type)
     o_inventory_manager.removeItem(id)
 }
+
+function returnToInventoryPosition() {
+    x = lerp(x, originX, smoothCarry * 0.2)
+    y = lerp(y, originY, smoothCarry * 0.2)
+    
+    image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
+    image_yscale = lerp(image_yscale, 1, smoothScale * 0.2)
+}
