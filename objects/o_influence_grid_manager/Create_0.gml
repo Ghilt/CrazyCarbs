@@ -1,6 +1,7 @@
 debugGrid = true
 buildingSize = 64
 
+// represents where structures of your city state can be built
 influenceGrid = initialInfluenceGrid()
 
 
@@ -19,7 +20,13 @@ function initialInfluenceGrid(){
     
     var _convert = function (_element, _index)
     {
-        return { rX: x, rY: y, x: x + _element.x * buildingSize, y: y + _element.y * buildingSize}
+        return { 
+            rX: x, 
+            rY: y, 
+            x: x + _element.x * buildingSize, 
+            y: y + _element.y * buildingSize, 
+            occupiedBy: false
+        }
     }
     
     return array_map(grid, _convert)
@@ -37,6 +44,10 @@ function getClosestBuildableSpot(pX, pY) {
     
     for (var i = 0; i < array_length(influenceGrid); i++) {
         
+        if (influenceGrid[i].occupiedBy) {
+            continue;
+        }
+        
         var distance = point_distance(pX, pY, influenceGrid[i].x, influenceGrid[i].y)
         
         if (distance < bestDistance) {
@@ -50,7 +61,7 @@ function getClosestBuildableSpot(pX, pY) {
     return { distance: bestDistance, x: bestX, y: bestY }
 }
 
-function buildAt(pos) { 
+function buildAt(pos, type) { 
     
     with { influenceGrid, pos } // https://yal.cc/gamemaker-diy-closures/
         
@@ -61,10 +72,8 @@ function buildAt(pos) {
            }
         )
     ]
-    var newBuilding = instance_create_layer(loc.x, loc.y, "Instances", o_building_parent)
+    var newBuilding = instance_create_layer(loc.x, loc.y, "Instances", ds_map_find_value(global.buildings, type).building)
     
     loc.occupiedBy = newBuilding
-    
-    ppp("Built at", pos)
 
 }

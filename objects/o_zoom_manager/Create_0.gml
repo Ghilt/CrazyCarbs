@@ -1,3 +1,4 @@
+
 cam = view_get_camera(view_current)
 ratio = camera_get_view_width(cam) / camera_get_view_height(cam)
 
@@ -12,13 +13,19 @@ minWidth = 200 * ratio
 previousMouseX = mouse_x
 previousMouseY = mouse_y
 
+ppp("Using view: ", view_current, ratio, baseWidth, baseHeight)
+
+
+function getViewportCameraSizeDifferenceRatio(){ // only needed if viewPort and camera are different sizes
+    return view_get_wport(view_current) / baseWidth;
+}
 
 function getZoomPercentage(){
     return baseWidth / camera_get_view_width(cam);
 }
 
 function convertToGuiSpace(pX, pY) {
-    var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam)
+    var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam) // replace with . ?????
     var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)
     return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
 }

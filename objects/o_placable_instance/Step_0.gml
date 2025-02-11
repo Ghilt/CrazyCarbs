@@ -54,6 +54,9 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
         action = Action.None
     }
     
-    image_xscale = lerp(image_xscale, o_zoom_manager.getZoomPercentage(), smoothScale)
-    image_yscale = lerp(image_yscale, o_zoom_manager.getZoomPercentage(), smoothScale)
+    var zoomPercent = o_zoom_manager.getZoomPercentage()
+    var cameraViewPortDiff = o_zoom_manager.getViewportCameraSizeDifferenceRatio()
+    
+    image_xscale = lerp(image_xscale, zoomPercent * cameraViewPortDiff, smoothScale)
+    image_yscale = lerp(image_yscale, zoomPercent * cameraViewPortDiff, smoothScale)
 } 

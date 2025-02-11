@@ -22,7 +22,7 @@ originY = y
 
 #endregion
 
-type = irandom_range(0,1)
+type = irandom_range(0,1) // randomize a structure for now
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
 
@@ -33,6 +33,6 @@ originalHeight = sprite_height
 
 
 function placeInstance(pos) {
-    o_influence_grid_manager.buildAt(pos)
+    o_influence_grid_manager.buildAt(pos, type)
     o_inventory_manager.removeItem(id)
 }
