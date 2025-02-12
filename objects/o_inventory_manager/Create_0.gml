@@ -1,10 +1,10 @@
 
-var inventoryHeight = 128
-itemSize = 64
+itemSize = sprite_get_height(object_get_sprite(o_placable_instance))
+var inventoryHeight = sprite_get_height(object_get_sprite(o_gui_inventory)) - itemSize
 
 inventory = []
 
-inventoryX = guiXMid - (guiWidth * 0.25)  // maybe use flexpanel
+inventoryX = guiXMid - (guiWidth * 0.25)
 inventoryY = guiYBot - inventoryHeight
 
 addItem(Building.GOLD_MINE)
@@ -33,6 +33,6 @@ function removeItem(item) {
 
 function compactify(){
     for (var i = 0; i < array_length(inventory); i++) {
-        inventory[i].originX = inventoryX + i * itemSize
+        inventory[i].buildPos.x = inventoryX + i * itemSize
     }
 }

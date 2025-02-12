@@ -5,7 +5,7 @@ enum Carry {
 }
 
 enum Action {
-    None, Build // Sell
+    None, Build // Sell the thing
 }
 
 #region Logistical variables - Helps managing the movement of the item in the gui
@@ -17,18 +17,17 @@ time = 0
 pickupFrameThreshold = 8
 buildSnappingRange = 60
 
-originX = x
-originY = y
+originalWidth = sprite_width
+originalHeight = sprite_height
+
+buildPos = { x, y }
+battlePos = {x : x, y: y + 64}
 
 #endregion
 
-type = irandom_range(0,1) // randomize a structure for now
+type = irandom_range(0, 1) // randomize a structure for now
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
-
-originalWidth = sprite_width // might be better to get this info from sprite_get_info(index).original_width
-originalHeight = sprite_height
-
 
 
 
@@ -38,8 +37,7 @@ function placeInstance(pos) {
 }
 
 function returnToInventoryPosition() {
-    x = lerp(x, originX, smoothCarry * 0.2)
-    y = lerp(y, originY, smoothCarry * 0.2)
+    o_gui_manager.uiScooch(id)
     
     image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
     image_yscale = lerp(image_yscale, 1, smoothScale * 0.2)

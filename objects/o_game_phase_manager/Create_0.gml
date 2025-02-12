@@ -14,4 +14,5 @@ function isBuildPhase() {
 
 function goToBattleState() {
     state = GameState.BATTLE
+    
 }

@@ -1,18 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"o_gui_frame",
-  "eventList":[],
+  "%Name":"o_gui_manager",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"o_gui_frame",
+  "name":"o_gui_manager",
   "overriddenProperties":[],
   "parent":{
     "name":"gui",
     "path":"folders/Objects/gui.yy",
   },
-  "parentObjectId":{
-    "name":"o_gui_parent",
-    "path":"objects/o_gui_parent/o_gui_parent.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"s_gui_frame",
-    "path":"sprites/s_gui_frame/s_gui_frame.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
