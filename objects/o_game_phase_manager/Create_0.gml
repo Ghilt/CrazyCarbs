@@ -12,6 +12,10 @@ function isBuildPhase() {
     return state == GameState.BUILD
 }
 
+function isBattlePhase() {
+    return state == GameState.BATTLE
+}
+
 function goToBattleState() {
     state = GameState.BATTLE
     

@@ -8,8 +8,8 @@
   "name":"o_game_initializer",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"managers",
+    "path":"folders/Objects/managers.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -29,7 +29,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_debug_manager_game_initializer",
+    "path":"sprites/s_debug_manager_game_initializer/s_debug_manager_game_initializer.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

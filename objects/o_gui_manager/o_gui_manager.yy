@@ -9,8 +9,8 @@
   "name":"o_gui_manager",
   "overriddenProperties":[],
   "parent":{
-    "name":"gui",
-    "path":"folders/Objects/gui.yy",
+    "name":"managers",
+    "path":"folders/Objects/managers.yy",
   },
   "parentObjectId":null,
   "persistent":false,

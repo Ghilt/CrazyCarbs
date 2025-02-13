@@ -1,12 +1,12 @@
 {
   "$GMObject":"",
-  "%Name":"o_influence_grid_manager",
+  "%Name":"o_resource_manager",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_influence_grid_manager",
+  "name":"o_resource_manager",
   "overriddenProperties":[],
   "parent":{
     "name":"managers",
@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_debug_manager_resource",
+    "path":"sprites/s_debug_manager_resource/s_debug_manager_resource.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

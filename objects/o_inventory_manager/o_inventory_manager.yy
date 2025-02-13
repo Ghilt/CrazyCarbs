@@ -9,8 +9,8 @@
   "name":"o_inventory_manager",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"managers",
+    "path":"folders/Objects/managers.yy",
   },
   "parentObjectId":{
     "name":"o_gui_parent",

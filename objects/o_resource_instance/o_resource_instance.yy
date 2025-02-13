@@ -1,18 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"o_influence_grid_manager",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"o_resource_instance",
+  "eventList":[],
   "managed":true,
-  "name":"o_influence_grid_manager",
+  "name":"o_resource_instance",
   "overriddenProperties":[],
   "parent":{
-    "name":"managers",
-    "path":"folders/Objects/managers.yy",
+    "name":"gui",
+    "path":"folders/Objects/gui.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_gui_parent",
+    "path":"objects/o_gui_parent/o_gui_parent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_ui_resource_placeholder",
+    "path":"sprites/s_ui_resource_placeholder/s_ui_resource_placeholder.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
