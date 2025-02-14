@@ -61,6 +61,8 @@ function getClosestBuildableSpot(pX, pY) {
     return { distance: bestDistance, x: bestX, y: bestY }
 }
 
+
+// Type is a type defined in ItemScripts.Building
 function buildAt(pos, type) { 
     
     with { influenceGrid, pos } // https://yal.cc/gamemaker-diy-closures/

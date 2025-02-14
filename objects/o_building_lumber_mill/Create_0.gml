@@ -1,2 +1,5 @@
-current_frame = 0;
-interval = game_get_speed(gamespeed_fps);
+event_inherited()
+
+childResourceSprite = s_resource_lumber
+childResource = Resource.LUMBER
+childProductionRate = 1

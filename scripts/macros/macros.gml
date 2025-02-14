@@ -7,6 +7,7 @@
 #macro guiYBot view_get_hport(view_current)
 #macro guiYMid guiYBot / 2
 
+#macro one_second game_get_speed(gamespeed_fps)
 
 
 function ppp(){
