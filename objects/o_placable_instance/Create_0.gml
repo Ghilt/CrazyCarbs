@@ -31,12 +31,12 @@ sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).build
 
 
 
-function placeInstance(pos) {
+placeInstance = function(pos) {
     o_influence_grid_manager.buildAt(pos, type)
     o_inventory_manager.removeItem(id)
 }
 
-function returnToInventoryPosition() {
+returnToInventoryPosition = function () {
     o_gui_manager.uiScooch(id)
     
     image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)

@@ -1,6 +1,5 @@
 #macro mouseGuiX device_mouse_x_to_gui(0) 
 #macro mouseGuiY device_mouse_y_to_gui(0) 
-#macro dprint show_debug_message("Dprint : " + string(303))
 
 #macro guiWidth view_get_wport(view_current)
 #macro guiXMid guiWidth / 2
@@ -15,7 +14,7 @@ function ppp(){
 
     for (var i = 0; i < argument_count; i ++)
     {
-        _str += string(argument[i]);
+        _str += " | "+ string(argument[i]);
     }
 
     show_debug_message(_str);

@@ -17,28 +17,28 @@ previousMouseY = mouse_y
 ppp("Using view: ", view_current, ratio, baseWidth, baseHeight)
 
 
-function getViewportCameraSizeDifferenceRatio(){ // only needed if viewPort and camera are different sizes
+getViewportCameraSizeDifferenceRatio = function(){ // only needed if viewPort and camera are different sizes
     return view_get_wport(view_current) / baseWidth;
 }
 
-function getZoomPercentage(){
+getZoomPercentage = function(){
     return baseWidth / camera_get_view_width(cam);
 }
 
-function convertToGuiSpace(pX, pY) {
+convertToGuiSpace = function(pX, pY) {
     var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam)
     var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)
     return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
 }
 
-function convertToGuiSpaceDistance(pX, pY) {
+convertToGuiSpaceDistance = function(pX, pY) {
     var gX = pX / camera_get_view_width(cam)
     var gY = pY / camera_get_view_height(cam)
     return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
 }
 
 
-function zoomIt(directionIn) {
+zoomIt = function(directionIn) {
     var currentCameraX = camera_get_view_x(cam)
     var currentCameraY = camera_get_view_y(cam)
     var currentCameraWidth = camera_get_view_width(cam)

@@ -18,7 +18,6 @@
   "ResourceOrderSettings":[
     {"name":"o_building_gold_mine","order":2,"path":"objects/o_building_gold_mine/o_building_gold_mine.yy",},
     {"name":"o_building_lumber_mill","order":1,"path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},
-    {"name":"o_debug_shop","order":3,"path":"objects/o_debug_shop/o_debug_shop.yy",},
     {"name":"o_debugger_util","order":4,"path":"objects/o_debugger_util/o_debugger_util.yy",},
     {"name":"o_game_phase_manager","order":1,"path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},
     {"name":"o_gp_initPort","order":2,"path":"objects/o_gp_initPort/o_gp_initPort.yy",},

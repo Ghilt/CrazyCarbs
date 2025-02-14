@@ -6,14 +6,15 @@ enum Resource
 }
 
 resourceArea = object_get_sprite(o_gui_resource_area)
-instance_create_layer(guiXMid - sprite_get_width(resourceArea) / 2, 0, "Gui", o_gui_resource_area)
+var resourceAreaWidth = sprite_get_width(resourceArea)
 
+instance_create_layer(guiXMid - resourceAreaWidth / 2, 0, "Gui", o_gui_resource_area)
 
-resourceAreaResourceStartX = guiXMid - resourceArea.sprite_width/2 + 64
+resourceAreaResourceStartX = guiXMid - resourceAreaWidth / 2 + 64
 resourceAreaResourceStartY = 8
 storageSize = 45
 storageRowSize = 15
-overproductionDump = { x: guiXMid + resourceArea.sprite_width/2 + 64, y: resourceAreaResourceStartY + 67 }
+overproductionDump = { x: guiXMid + resourceAreaWidth + 64, y: resourceAreaResourceStartY + 67 }
 
 
 // Indexes tied to enum above
@@ -23,7 +24,7 @@ resourceInstances = []
 
 
 
-function generateResource(type, amount, resourceInstance) {
+generateResource = function(type, amount, resourceInstance) {
     resourceInstance.depth = 0
     resources[type] += amount
 

@@ -1,11 +1,7 @@
 debugGrid = true
 buildingSize = 64
 
-// represents where structures of your city state can be built
-influenceGrid = initialInfluenceGrid()
-
-
-function initialInfluenceGrid(){
+initialInfluenceGrid = function(){
     var grid = [
     { x : -2, y : -2 },
     { x : -1, y : -2 },
@@ -32,12 +28,15 @@ function initialInfluenceGrid(){
     return array_map(grid, _convert)
 }
 
-function updateInfluenceGrid(newGrid) {
+// represents where structures of your city state can be built
+influenceGrid = initialInfluenceGrid()
+
+updateInfluenceGrid = function(newGrid) {
     influenceGrid = newGrid
 }
 
 
-function getClosestBuildableSpot(pX, pY) {
+getClosestBuildableSpot = function(pX, pY) {
     var bestDistance = 2147483647
     var bestX = 0
     var bestY = 0
@@ -63,7 +62,7 @@ function getClosestBuildableSpot(pX, pY) {
 
 
 // Type is a type defined in ItemScripts.Building
-function buildAt(pos, type) { 
+buildAt = function(pos, type) { 
     
     with { influenceGrid, pos } // https://yal.cc/gamemaker-diy-closures/
         

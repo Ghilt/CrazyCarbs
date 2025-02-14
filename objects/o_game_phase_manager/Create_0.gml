@@ -8,15 +8,15 @@ state = GameState.BUILD
 
 
 
-function isBuildPhase() {
+isBuildPhase = function() {
     return state == GameState.BUILD
 }
 
-function isBattlePhase() {
+isBattlePhase = function() {
     return state == GameState.BATTLE
 }
 
-function goToBattleState() {
+goToBattleState = function() {
     state = GameState.BATTLE
     
 }

@@ -7,11 +7,8 @@ inventory = []
 inventoryX = guiXMid - (guiWidth * 0.25)
 inventoryY = guiYBot - inventoryHeight
 
-addItem(Building.GOLD_MINE)
 
-
-
-function addItem(item, amount = 1) {
+addItem = function(item, amount = 1) {
     for (var i = 0; i < amount; i++) {
         var inst = instance_create_layer(inventoryX + array_length(inventory) * itemSize, inventoryY, "Gui", o_placable_instance)
         inst.depth = 0
@@ -19,7 +16,7 @@ function addItem(item, amount = 1) {
     }
 }
 
-function removeItem(item) {
+removeItem = function(item) {
     with { inventory, item }
     var index = array_find_index(inventory, function(_e, _i) { 
             return _e == item; 
@@ -31,7 +28,7 @@ function removeItem(item) {
     compactify()
 }
 
-function compactify(){
+compactify = function(){
     for (var i = 0; i < array_length(inventory); i++) {
         inventory[i].buildPos.x = inventoryX + i * itemSize
     }

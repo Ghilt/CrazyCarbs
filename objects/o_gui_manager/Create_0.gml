@@ -1,5 +1,5 @@
 
-function uiScooch(instance) {
+uiScooch = function(instance) {
     // Gui manager requires that all utilizing instances store their own different positions
     switch (o_game_phase_manager.state) {
     
