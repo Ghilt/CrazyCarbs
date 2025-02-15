@@ -51,9 +51,6 @@ switch (carry) {
 }
 
 if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
-    
-    layer = layer_get_id("Air")
-    
     if (closestPos.distance < buildSnappingRange) {
         // Lets prepare to build it!
         var inGuiSpace = o_zoom_manager.convertToGuiSpace(closestPos.x, closestPos.y)
@@ -72,4 +69,7 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
     
     image_xscale = lerp(image_xscale, zoomPercent * cameraViewPortDiff, smoothScale)
     image_yscale = lerp(image_yscale, zoomPercent * cameraViewPortDiff, smoothScale)
-} 
+    layer = layer_get_id("GuiStratosphere")
+} else {
+    layer = layer_get_id("GuiAir")  
+}

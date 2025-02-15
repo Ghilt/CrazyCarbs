@@ -35,7 +35,7 @@ battlePos = {x : x, y: y + 64}
 type = irandom_range(1, 2) // randomize a structure for now, not starting port
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
-
+layer = layer_get_id("GuiAir")
 
 placeInstance = function(pos) {
     var success = o_influence_grid_manager.buildAt(pos, type)
@@ -51,7 +51,6 @@ placeInstance = function(pos) {
 }
 
 returnToInventoryPosition = function () {
-    layer = layer_get_id("Air")
     o_gui_manager.uiScooch(id)
     
     image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
