@@ -10,8 +10,7 @@ inventoryY = guiYBot - inventoryHeight
 
 addItem = function(item, amount = 1) {
     for (var i = 0; i < amount; i++) {
-        // TODO bbottom handling for entire layer instead of depth
-        var inst = instance_create_layer(inventoryX + array_length(inventory) * itemSize, inventoryY, "Gui", o_placable_instance, { depth: 0 }) 
+        var inst = instance_create_layer(inventoryX + array_length(inventory) * itemSize, inventoryY, "Gui", o_placable_instance) 
         array_push(inventory, inst)
     }
 }

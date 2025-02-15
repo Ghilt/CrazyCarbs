@@ -8,6 +8,7 @@ if (device_mouse_check_button(0, mb_left) ) {
     time++;
 }
 else if (time > 0) {
+    // Mouse just released, -1 means this speficially in the below logic
     time = -1;
 }
 else {
@@ -19,6 +20,7 @@ var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x - orig
 switch (carry) {
     case Carry.None:
         if (position_meeting(mouseGuiX, mouseGuiY, id) && time == 1) {
+            o_placable_instance.carry = Carry.None
             carry = Carry.ClickCarry
         } else if (action == Action.None) {
             // return to inventory
@@ -28,22 +30,29 @@ switch (carry) {
         }
     break;
     case Carry.ClickCarry:
-        o_placable_instance.layer = layer_get_id("Ground")
-        layer = layer_get_id("Air")
-        if (time > pickupFrameThreshold)
+        if (time > pickupFrameThreshold){
+            o_placable_instance.carry = Carry.None
             carry = Carry.HoldCarry
+        }
     
-        if (time == 1)
+        if (time == 1) {
             carry = Carry.None
+            resetMovStruct()
+        }
+
     break;
 
     case Carry.HoldCarry:
-        if (time == -1)
+        if (time == -1) {
             carry = Carry.None
+            resetMovStruct()
+        }
     break;
 }
 
 if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
+    
+    layer = layer_get_id("Air")
     
     if (closestPos.distance < buildSnappingRange) {
         // Lets prepare to build it!

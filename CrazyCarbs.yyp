@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"Extensions","folderPath":"folders/Extensions.yy","name":"Extensions","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Curves","folderPath":"folders/Curves.yy","name":"Curves","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"buildings","folderPath":"folders/Objects/buildings.yy","name":"buildings","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"gui","folderPath":"folders/Objects/gui.yy","name":"gui","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -33,6 +34,7 @@
   },
   "name":"CrazyCarbs",
   "resources":[
+    {"id":{"name":"c_movement","path":"animcurves/c_movement/c_movement.yy",},},
     {"id":{"name":"Easy_and_Wonderfully_Tileset","path":"extensions/Easy_and_Wonderfully_Tileset/Easy_and_Wonderfully_Tileset.yy",},},
     {"id":{"name":"o_building_gold_mine","path":"objects/o_building_gold_mine/o_building_gold_mine.yy",},},
     {"id":{"name":"o_building_lumber_mill","path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},},

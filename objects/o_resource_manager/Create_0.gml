@@ -10,7 +10,7 @@ enum Resource
 var resourceArea = object_get_sprite(o_gui_resource_area)
 var resourceAreaWidth = sprite_get_width(resourceArea)
 
-instance_create_layer(guiXMid - resourceAreaWidth / 2, 0, "Gui", o_gui_resource_area)
+instance_create_layer(guiXMid - resourceAreaWidth / 2, -sprite_get_height(resourceArea), "Gui", o_gui_resource_area)
 
 resourceAreaResourceStartX = guiXMid - resourceAreaWidth / 2 + 64
 resourceAreaResourceStartY = 8

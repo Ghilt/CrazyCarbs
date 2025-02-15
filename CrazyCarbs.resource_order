@@ -1,6 +1,7 @@
 {
   "FolderOrderSettings":[
     {"name":"Extensions","order":14,"path":"folders/Extensions.yy",},
+    {"name":"Curves","order":15,"path":"folders/Curves.yy",},
     {"name":"Objects","order":9,"path":"folders/Objects.yy",},
     {"name":"buildings","order":2,"path":"folders/Objects/buildings.yy",},
     {"name":"managers","order":3,"path":"folders/Objects/managers.yy",},

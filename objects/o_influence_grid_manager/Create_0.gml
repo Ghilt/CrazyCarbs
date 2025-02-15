@@ -81,16 +81,19 @@ buildAt = function(pos, type) {
     
     with { influenceGrid, pos } // https://yal.cc/gamemaker-diy-closures/
         
-    var loc = influenceGrid[
-        array_find_index(influenceGrid, function(_element, _index)
-           {
-               return (_element.x == pos.x && _element.y == pos.y);
-           }
-        )
-    ]
+    var buildingSiteIndex = array_find_index(influenceGrid, function(_element, _index) { return (_element.x == pos.x && _element.y == pos.y); } )
+    
+    if (buildingSiteIndex == -1) {
+        // This can happen when picking upp multiple placable buildings at once and placing them all at the same time, Bit of a side behavior really
+        return false
+    }
+    
+    var loc = influenceGrid[buildingSiteIndex]
+    
     var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building)
     
     loc.occupiedBy = newBuilding
+    return true
 
 }
 
