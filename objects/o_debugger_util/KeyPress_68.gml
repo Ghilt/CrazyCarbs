@@ -1,0 +1,1 @@
+o_stability_manager.stability -= 30

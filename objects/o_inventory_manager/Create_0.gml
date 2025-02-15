@@ -31,5 +31,6 @@ removeItem = function(item) {
 compactify = function(){
     for (var i = 0; i < array_length(inventory); i++) {
         inventory[i].buildPos.x = inventoryX + i * itemSize
+        inventory[i].battlePos.x = inventoryX + i * itemSize
     }
 }

@@ -16,7 +16,12 @@ isBattlePhase = function() {
     return state == GameState.BATTLE
 }
 
-goToBattleState = function() {
+goToBattle = function() {
     state = GameState.BATTLE
+    o_stability_manager.goToBattle()
     
+}
+
+goToBuild = function() {
+    state = GameState.BUILD
 }

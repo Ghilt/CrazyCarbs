@@ -1,5 +1,5 @@
 pressed = 0
 
 pressedButton = function pressedButton() {
-    o_game_phase_manager.goToBattleState()
+    o_game_phase_manager.goToBattle()
 }

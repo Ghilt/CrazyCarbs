@@ -1,3 +1,5 @@
+// This resource manager is responsible for managing prodouced resources during the battle phase
+
 enum Resource
 {
     LUMBER,
@@ -5,7 +7,7 @@ enum Resource
     ORE
 }
 
-resourceArea = object_get_sprite(o_gui_resource_area)
+var resourceArea = object_get_sprite(o_gui_resource_area)
 var resourceAreaWidth = sprite_get_width(resourceArea)
 
 instance_create_layer(guiXMid - resourceAreaWidth / 2, 0, "Gui", o_gui_resource_area)
@@ -34,11 +36,11 @@ generateResource = function(type, amount, resourceInstance) {
         
         for (var i = 0; i < array_length(resourceInstances); i++) {
             resourceInstances[i].battlePos = { x: overproductionDump.x, y: overproductionDump.y } 
-            resourceInstances[i].alarm[0] = 2 * one_second 
+            resourceInstances[i].destroyAfterDelay()
         }
         
         resources = [0, 0, 0]
-        resourceInstances = [] // maybe store them somewhere else to do some other fancy animation, load them on a ship or something
+        resourceInstances = []
         currentResourceCount = 0
     }
     
