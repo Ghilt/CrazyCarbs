@@ -29,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"s_debug_manager_game_initializer",
-    "path":"sprites/s_debug_manager_game_initializer/s_debug_manager_game_initializer.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

@@ -8,6 +8,7 @@ initialInfluenceGrid = function(){
     { x : -1, y : -1 },
     { x : -1, y : 0 },
     { x : 1, y : 0 },
+    { x : 0, y : 0 },
     { x : 0, y : 1 },
     { x : 1, y : 1 },
     { x : 2, y : 2 },
@@ -17,8 +18,8 @@ initialInfluenceGrid = function(){
     var _convert = function (_element, _index)
     {
         return { 
-            rX: x, 
-            rY: y, 
+            rX: _element.x, 
+            rY: _element.y, 
             x: x + _element.x * buildingSize, 
             y: y + _element.y * buildingSize, 
             occupiedBy: false
@@ -33,6 +34,20 @@ influenceGrid = initialInfluenceGrid()
 
 updateInfluenceGrid = function(newGrid) {
     influenceGrid = newGrid
+}
+
+getBuildingThatAcceptsOverProduction = function() {
+    for (var i = 0; i < array_length(influenceGrid); i++) {
+        
+        if (!influenceGrid[i].occupiedBy) {
+            continue;
+        }
+        
+        if (variable_instance_exists(influenceGrid[i].occupiedBy, "acceptsOverproduction") && influenceGrid[i].occupiedBy.acceptsOverproduction) {
+            return influenceGrid[i].occupiedBy
+        }
+    }
+    return false
 }
 
 
@@ -78,3 +93,11 @@ buildAt = function(pos, type) {
     loc.occupiedBy = newBuilding
 
 }
+
+for (var i = 0; i < array_length(influenceGrid); i++) { 
+    if (influenceGrid[i].rX == 0 && influenceGrid[i].rY == 0) {
+        var starintPortLocation = { x: influenceGrid[i].x, y : influenceGrid[i].y }
+        buildAt(starintPortLocation, Building.STARTING_PORT)
+    } 
+}
+

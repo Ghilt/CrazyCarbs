@@ -35,5 +35,5 @@
     "path":"sprites/s_debug_manager_resource/s_debug_manager_resource.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

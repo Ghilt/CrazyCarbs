@@ -28,13 +28,22 @@ getZoomPercentage = function(){
 convertToGuiSpace = function(pX, pY) {
     var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam)
     var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)
-    return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
+    return { x: gX * display_get_gui_width(), y: gY * display_get_gui_height() }
+}
+
+convertToWorldSpace = function(pos) {
+    var currentCameraX = camera_get_view_x(cam)
+    var currentCameraY = camera_get_view_y(cam)
+    var scaleX = camera_get_view_width(cam) / guiWidth
+    var scaleY = camera_get_view_height(cam) / guiHeight
+    
+    return { x: currentCameraX + pos.x * scaleX, y: currentCameraY + pos.y * scaleY }
 }
 
 convertToGuiSpaceDistance = function(pX, pY) {
     var gX = pX / camera_get_view_width(cam)
     var gY = pY / camera_get_view_height(cam)
-    return {x: gX * display_get_gui_width(), y: gY * display_get_gui_height()}
+    return { x: gX * display_get_gui_width(), y: gY * display_get_gui_height() }
 }
 
 

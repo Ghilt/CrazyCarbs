@@ -34,5 +34,5 @@
     "path":"sprites/s_debug_manager_game_initializer/s_debug_manager_game_initializer.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

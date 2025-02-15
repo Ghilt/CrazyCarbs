@@ -16,7 +16,7 @@
     "path":"folders/Objects/managers.yy",
   },
   "parentObjectId":null,
-  "persistent":true,
+  "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -35,5 +35,5 @@
   "solid":false,
   "spriteId":null,
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

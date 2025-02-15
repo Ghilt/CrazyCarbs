@@ -25,7 +25,7 @@ battlePos = {x : x, y: y + 64}
 
 #endregion
 
-type = irandom_range(0, 1) // randomize a structure for now
+type = irandom_range(1, 2) // randomize a structure for now, not starting port
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
 

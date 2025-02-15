@@ -16,8 +16,6 @@ resourceAreaResourceStartX = guiXMid - resourceAreaWidth / 2 + 64
 resourceAreaResourceStartY = 8
 storageSize = 45
 storageRowSize = 15
-overproductionDump = { x: guiXMid + resourceAreaWidth + 64, y: resourceAreaResourceStartY + 67 }
-
 
 // Indexes tied to enum above
 resources = [0, 0, 0]
@@ -33,10 +31,18 @@ generateResource = function(type, amount, resourceInstance) {
     var currentResourceCount = array_length(resourceInstances)
     
     if (currentResourceCount == storageSize) {
-        
+        // City have over produced, good job city
+
         for (var i = 0; i < array_length(resourceInstances); i++) {
-            resourceInstances[i].battlePos = { x: overproductionDump.x, y: overproductionDump.y } 
-            resourceInstances[i].destroyAfterDelay()
+            var consumer = o_influence_grid_manager.getBuildingThatAcceptsOverProduction() // TODO handle if there is no consumer
+            
+            var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[i].x, y: resourceInstances[i].y })
+            
+            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Instances", o_world_resource_instance)
+            sendToConsumerInstance.target = { x: consumer.x, y: consumer.y } 
+            sendToConsumerInstance.sprite_index = resourceInstances[i].sprite_index
+            
+            instance_destroy(resourceInstances[i])
         }
         
         resources = [0, 0, 0]

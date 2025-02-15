@@ -1,15 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"o_inventory_manager",
+  "%Name":"o_gui_resource_instance",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_inventory_manager",
+  "name":"o_gui_resource_instance",
   "overriddenProperties":[],
   "parent":{
-    "name":"managers",
-    "path":"folders/Objects/managers.yy",
+    "name":"gui",
+    "path":"folders/Objects/gui.yy",
   },
   "parentObjectId":{
     "name":"o_gui_parent",
@@ -32,7 +34,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_ui_resource_placeholder",
+    "path":"sprites/s_ui_resource_placeholder/s_ui_resource_placeholder.yy",
+  },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

@@ -1,15 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"o_gp_initPort",
+  "%Name":"o_building_starting_port",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_gp_initPort",
+  "name":"o_building_starting_port",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"buildings",
+    "path":"folders/Objects/buildings.yy",
   },
   "parentObjectId":null,
   "persistent":false,

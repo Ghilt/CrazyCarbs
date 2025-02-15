@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_debug_manager_influence_grid",
+    "path":"sprites/s_debug_manager_influence_grid/s_debug_manager_influence_grid.yy",
+  },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

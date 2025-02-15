@@ -2,6 +2,7 @@
 #macro mouseGuiY device_mouse_y_to_gui(0) 
 
 #macro guiWidth view_get_wport(view_current)
+#macro guiHeight view_get_hport(view_current)
 #macro guiXMid guiWidth / 2
 #macro guiYBot view_get_hport(view_current)
 #macro guiYMid guiYBot / 2
