@@ -7,6 +7,18 @@
         {"th0":-0.14359425,"th1":0.1100868,"tv0":-0.16784056,"tv1":0.12867528,"x":0.5,"y":0.78,},
         {"th0":-0.25,"th1":0.25,"tv0":-0.0016422272,"tv1":0.0,"x":1.0,"y":1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"slow_throw","colour":4281083598,"name":"slow_throw","points":[
+        {"th0":-0.25,"th1":0.2,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.14165363,"th1":0.008124232,"tv0":-0.06746459,"tv1":0.0038692653,"x":0.6785116,"y":0.18033826,},
+        {"th0":-0.0077210665,"th1":0.23487419,"tv0":-0.005078733,"tv1":0.15166727,"x":0.70229006,"y":0.19374412,},
+        {"th0":0.0,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"fast_throw","colour":4279025727,"name":"fast_throw","points":[
+        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.12557083,"th1":0.1469006,"tv0":0.010062753,"tv1":-0.011772037,"x":0.58587795,"y":0.5607959,},
+        {"th0":-0.088808596,"th1":0.09964404,"tv0":0.374594,"tv1":-0.42029783,"x":0.8482061,"y":0.14748594,},
+        {"th0":-0.003504455,"th1":0.25,"tv0":-0.0009300709,"tv1":0.0,"x":1.0,"y":-1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
   "name":"c_movement",

@@ -1,6 +1,19 @@
 // these instances are managed by o_resource_area_manager
-x = lerp(x, target.x, 0.02)
-y = lerp(y, target.y, 0.02)
 
-image_xscale = lerp(image_xscale, targetScale, 0.2)
-image_yscale = lerp(image_yscale, targetScale, 0.2)
+if (timePassed == duration){
+    // Movement finished
+    timePassed = 0 
+    instance_destroy(id)
+    
+} else {
+    timePassed += 1
+    var interpolation = timePassed / duration 
+    
+    var position = animcurve_channel_evaluate(curve, interpolation)    
+    var position2 = animcurve_channel_evaluate(curve2, interpolation)
+    x = lerp(origin.x, target.x, position)
+    y = lerp(origin.y, target.y, position)
+    
+    image_xscale = lerp(1, targetScale, -position2)
+    image_yscale = lerp(1, targetScale, -position2)
+}

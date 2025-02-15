@@ -39,7 +39,10 @@ generateResource = function(type, amount, resourceInstance) {
             var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[i].x, y: resourceInstances[i].y })
             
             var initData = {
-                target : { x: consumer.x, y: consumer.y },
+                origin: { x: detachFromUiPos.x, y: detachFromUiPos.y },
+                target: { x: consumer.x, y: consumer.y },
+                timePassed: 0,
+                duration: one_second * 2,
                 sprite_index : resourceInstances[i].sprite_index,
                 depth: -10,
                 image_xscale: o_zoom_manager.getZoomScale(),

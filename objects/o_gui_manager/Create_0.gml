@@ -1,5 +1,4 @@
 curve = animcurve_get_channel(c_movement, "fast_slow")
-percent = 0
 
 
 uiScooch = function(instance) {
