@@ -88,7 +88,7 @@ buildAt = function(pos, type) {
            }
         )
     ]
-    var newBuilding = instance_create_layer(loc.x, loc.y, "Instances", ds_map_find_value(global.buildings, type).building)
+    var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building)
     
     loc.occupiedBy = newBuilding
 

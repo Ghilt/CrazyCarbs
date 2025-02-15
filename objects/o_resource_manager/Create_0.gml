@@ -46,7 +46,7 @@ generateResource = function(type, amount, resourceInstance) {
                 image_yscale: o_zoom_manager.getZoomScale()
             }
             
-            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Instances", o_world_resource_instance, initData)
+            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Air", o_world_resource_instance, initData)
 
             instance_destroy(resourceInstances[i])
         }

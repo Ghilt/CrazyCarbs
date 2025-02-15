@@ -28,6 +28,8 @@ switch (carry) {
         }
     break;
     case Carry.ClickCarry:
+        o_placable_instance.layer = layer_get_id("Ground")
+        layer = layer_get_id("Air")
         if (time > pickupFrameThreshold)
             carry = Carry.HoldCarry
     

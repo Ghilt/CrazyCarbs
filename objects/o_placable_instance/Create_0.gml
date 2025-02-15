@@ -37,6 +37,7 @@ placeInstance = function(pos) {
 }
 
 returnToInventoryPosition = function () {
+    layer = layer_get_id("Air")
     o_gui_manager.uiScooch(id)
     
     image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
