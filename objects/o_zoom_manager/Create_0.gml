@@ -25,6 +25,10 @@ getZoomPercentage = function(){
     return baseWidth / camera_get_view_width(cam);
 }
 
+getZoomScale = function(){
+    return camera_get_view_width(cam) / baseWidth;
+}
+
 convertToGuiSpace = function(pX, pY) {
     var gX = (pX - camera_get_view_x(cam)) / camera_get_view_width(cam)
     var gY = (pY - camera_get_view_y(cam)) / camera_get_view_height(cam)

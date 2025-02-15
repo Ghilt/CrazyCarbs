@@ -38,10 +38,16 @@ generateResource = function(type, amount, resourceInstance) {
             
             var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[i].x, y: resourceInstances[i].y })
             
-            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Instances", o_world_resource_instance)
-            sendToConsumerInstance.target = { x: consumer.x, y: consumer.y } 
-            sendToConsumerInstance.sprite_index = resourceInstances[i].sprite_index
+            var initData = {
+                target : { x: consumer.x, y: consumer.y },
+                sprite_index : resourceInstances[i].sprite_index,
+                depth: -10,
+                image_xscale: o_zoom_manager.getZoomScale(),
+                image_yscale: o_zoom_manager.getZoomScale()
+            }
             
+            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Instances", o_world_resource_instance, initData)
+
             instance_destroy(resourceInstances[i])
         }
         
