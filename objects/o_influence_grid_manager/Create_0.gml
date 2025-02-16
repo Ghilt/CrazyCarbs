@@ -1,7 +1,8 @@
 debugGrid = true
 buildingSize = 64
 
-initialInfluenceGrid = function(){
+initialInfluenceGrid = function(player){
+    // This is all very temp
     var grid = [
     { x : -2, y : -2 },
     { x : -1, y : -2 },
@@ -14,6 +15,10 @@ initialInfluenceGrid = function(){
     { x : 2, y : 2 },
     { x : -6, y : 6 }
     ]
+    
+    with {player}
+    
+    array_map_ext(grid, function(_e, _i) { return { x: _e.x + player * 20, y: _e.y + player * 20}})
     
     var _convert = function (_element, _index)
     {
@@ -30,21 +35,18 @@ initialInfluenceGrid = function(){
 }
 
 // represents where structures of your city state can be built
-influenceGrid = initialInfluenceGrid()
+influenceGrid = [initialInfluenceGrid(0), initialInfluenceGrid(1)]
 
-updateInfluenceGrid = function(newGrid) {
-    influenceGrid = newGrid
-}
 
-getBuildingThatAcceptsOverProduction = function() {
-    for (var i = 0; i < array_length(influenceGrid); i++) {
+getBuildingThatAcceptsOverProduction = function(player) {
+    for (var i = 0; i < array_length(influenceGrid[player]); i++) {
         
-        if (!influenceGrid[i].occupiedBy) {
+        if (!influenceGrid[player][i].occupiedBy) {
             continue;
         }
         
-        if (variable_instance_exists(influenceGrid[i].occupiedBy, "acceptsOverproduction") && influenceGrid[i].occupiedBy.acceptsOverproduction) {
-            return influenceGrid[i].occupiedBy
+        if (variable_instance_exists(influenceGrid[player][i].occupiedBy, "acceptsOverproduction") && influenceGrid[player][i].occupiedBy.acceptsOverproduction) {
+            return influenceGrid[player][i].occupiedBy
         }
     }
     return false
@@ -52,22 +54,23 @@ getBuildingThatAcceptsOverProduction = function() {
 
 
 getClosestBuildableSpot = function(pX, pY) {
+    player = 0
     var bestDistance = 2147483647
     var bestX = 0
     var bestY = 0
     
-    for (var i = 0; i < array_length(influenceGrid); i++) {
+    for (var i = 0; i < array_length(influenceGrid[player]); i++) {
         
-        if (influenceGrid[i].occupiedBy) {
+        if (influenceGrid[player][i].occupiedBy) {
             continue;
         }
         
-        var distance = point_distance(pX, pY, influenceGrid[i].x, influenceGrid[i].y)
+        var distance = point_distance(pX, pY, influenceGrid[player][i].x, influenceGrid[player][i].y)
         
         if (distance < bestDistance) {
             bestDistance = distance
-            bestX = influenceGrid[i].x
-            bestY = influenceGrid[i].y
+            bestX = influenceGrid[player][i].x
+            bestY = influenceGrid[player][i].y
         }
 
     }
@@ -78,29 +81,32 @@ getClosestBuildableSpot = function(pX, pY) {
 
 // Type is a type defined in ItemScripts.Building
 buildAt = function(pos, type) { 
+    var player = 0
     
-    with { influenceGrid, pos } // https://yal.cc/gamemaker-diy-closures/
+    var buildings = influenceGrid[player]
+    
+    with { buildings, pos } // https://yal.cc/gamemaker-diy-closures/
         
-    var buildingSiteIndex = array_find_index(influenceGrid, function(_element, _index) { return (_element.x == pos.x && _element.y == pos.y); } )
+    var buildingSiteIndex = array_find_index(buildings, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y); } )
     
     if (buildingSiteIndex == -1) {
         // This can happen when picking upp multiple placable buildings at once and placing them all at the same time, Bit of a side behavior really
         return false
     }
     
-    var loc = influenceGrid[buildingSiteIndex]
+    var loc = influenceGrid[player][buildingSiteIndex]
     
-    var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building)
+    var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building, { player })
     
     loc.occupiedBy = newBuilding
     return true
 
 }
 
-for (var i = 0; i < array_length(influenceGrid); i++) { 
-    if (influenceGrid[i].rX == 0 && influenceGrid[i].rY == 0) {
-        var starintPortLocation = { x: influenceGrid[i].x, y : influenceGrid[i].y }
-        buildAt(starintPortLocation, Building.STARTING_PORT)
+for (var i = 0; i < array_length(influenceGrid[0]); i++) { 
+    if (influenceGrid[0][i].rX == 0 && influenceGrid[0][i].rY == 0) {
+        var staringPortLocation = { x: influenceGrid[0][i].x, y : influenceGrid[0][i].y }
+        buildAt(staringPortLocation, Building.STARTING_PORT)
     } 
 }
 

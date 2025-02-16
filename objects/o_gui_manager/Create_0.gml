@@ -12,7 +12,6 @@ uiScooch = function(instance) {
             }
         
             if (instance.mov.timePassed == instance.mov.duration){
-                ppp("End movement trigger gui: ", o_game_phase_manager.state, instance.mov)
                 // Movement finished
                 instance.mov.timePassed = 0 
                 instance.mov.originX = instance.battlePos.x
@@ -39,7 +38,6 @@ uiScooch = function(instance) {
             }
             
             if (instance.mov.timePassed == instance.mov.duration){
-                ppp("End movement trigger gui: ", o_game_phase_manager.state, instance.mov)
                 // Movement finished
                 instance.mov.timePassed = 0 
                 instance.mov.originX = instance.buildPos.x

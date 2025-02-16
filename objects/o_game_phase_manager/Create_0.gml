@@ -19,9 +19,13 @@ isBattlePhase = function() {
 goToBattle = function() {
     state = GameState.BATTLE
     o_stability_manager.goToBattle()
-    
 }
 
 goToBuild = function() {
     state = GameState.BUILD
+}
+
+loadEnemy = function() {
+    // hardcoded for now
+    
 }
