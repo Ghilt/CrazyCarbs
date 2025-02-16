@@ -31,9 +31,9 @@ generateResource = function(type, amount, resourceInstance) {
     
     if (currentResourceCount == storageSize) {
         // City have over produced, good job city
+        var consumer = o_influence_grid_manager.getBuildingThatAcceptsOverProduction() // TODO handle if there is no consumer
 
         for (var i = 0; i < array_length(resourceInstances); i++) {
-            var consumer = o_influence_grid_manager.getBuildingThatAcceptsOverProduction() // TODO handle if there is no consumer
             
             var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[i].x, y: resourceInstances[i].y })
             
@@ -56,6 +56,7 @@ generateResource = function(type, amount, resourceInstance) {
         resources = [0, 0, 0]
         resourceInstances = []
         currentResourceCount = 0
+        consumer.overproductionTriggered()
     }
     
     var row = currentResourceCount div storageRowSize
