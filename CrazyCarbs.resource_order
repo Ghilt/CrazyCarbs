@@ -16,6 +16,7 @@
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"c_up_over_and_down","order":1,"path":"animcurves/c_up_over_and_down/c_up_over_and_down.yy",},
     {"name":"o_building_gold_mine","order":2,"path":"objects/o_building_gold_mine/o_building_gold_mine.yy",},
     {"name":"o_building_lumber_mill","order":1,"path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},
     {"name":"o_building_starting_port","order":3,"path":"objects/o_building_starting_port/o_building_starting_port.yy",},

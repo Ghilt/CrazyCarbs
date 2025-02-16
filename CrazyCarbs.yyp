@@ -35,6 +35,7 @@
   "name":"CrazyCarbs",
   "resources":[
     {"id":{"name":"c_movement","path":"animcurves/c_movement/c_movement.yy",},},
+    {"id":{"name":"c_up_over_and_down","path":"animcurves/c_up_over_and_down/c_up_over_and_down.yy",},},
     {"id":{"name":"Easy_and_Wonderfully_Tileset","path":"extensions/Easy_and_Wonderfully_Tileset/Easy_and_Wonderfully_Tileset.yy",},},
     {"id":{"name":"o_building_gold_mine","path":"objects/o_building_gold_mine/o_building_gold_mine.yy",},},
     {"id":{"name":"o_building_lumber_mill","path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},},

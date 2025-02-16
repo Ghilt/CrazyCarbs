@@ -1,3 +1,3 @@
-destroyAfterDelay = function () {
-    alarm[0] = 2 * one_second
-}
+curveMovement = animcurve_get_channel(c_up_over_and_down, "movement")
+curveScale = animcurve_get_channel(c_up_over_and_down, "scale")
+

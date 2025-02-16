@@ -25,7 +25,6 @@ resourceInstances = []
 
 
 generateResource = function(type, amount, resourceInstance) {
-    resourceInstance.depth = 0
     resources[type] += amount
 
     var currentResourceCount = array_length(resourceInstances)
@@ -42,7 +41,7 @@ generateResource = function(type, amount, resourceInstance) {
                 origin: { x: detachFromUiPos.x, y: detachFromUiPos.y },
                 target: { x: consumer.x, y: consumer.y },
                 timePassed: 0,
-                duration: one_second * 2,
+                duration: one_second,
                 sprite_index : resourceInstances[i].sprite_index,
                 depth: -10,
                 image_xscale: o_zoom_manager.getZoomScale(),
@@ -65,6 +64,12 @@ generateResource = function(type, amount, resourceInstance) {
     var targetX = resourceAreaResourceStartX + column * resourceInstance.sprite_width
     var targetY = resourceAreaResourceStartY + row * resourceInstance.sprite_height
 
-    resourceInstance.battlePos = { x: targetX, y: targetY }
+    with (resourceInstance) {
+        origin = { x: resourceInstance.x, y: resourceInstance.y }
+        target = { x: targetX, y: targetY }
+        timePassed = 0
+        duration = one_second
+    }
+    
     array_push(resourceInstances, resourceInstance)
 }
