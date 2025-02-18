@@ -20,3 +20,17 @@ function ppp(){
 
     show_debug_message(_str);
 }
+
+/// Isometric constants
+
+#macro MAP_W 100
+#macro MAP_H 100
+#macro TILE_W 64 
+#macro TILE_H 32
+#macro CAMERA_W 1280
+#macro CAMERA_H 720
+
+enum TILE {
+    SPRITE = 0,
+    Z = 1    
+}
