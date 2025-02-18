@@ -1,5 +1,4 @@
 // Required field: type - which building this is
-type = type
 
 // These instances live in the inventory in the GUI layer.
 

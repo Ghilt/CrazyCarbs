@@ -1,15 +1,34 @@
-maxStability = 100
-stability = 0
+maxStability = [100, 100]
+stability = [0, 0]
 
 goToBattle = function (){
-    stability = 100
+    stability[Player.US] = maxStability[Player.US]
+    stability[Player.THEM] = maxStability[Player.THEM]
 }
 
 var meter = object_get_sprite(o_gui_stability_meter)
-var meterHeight = sprite_get_width(meter)
+var meterWidth = sprite_get_width(meter)
+var meterHeight = sprite_get_height(meter)
 
-instance_create_layer(0 - 64, guiYMid - meterHeight / 2, "Gui", o_gui_stability_meter)
+var stabilityMeterY =  guiYMid - meterHeight / 2
+var usPositionData = {
+    player: Player.US,
+    buildPos: { x: -meterWidth , y: stabilityMeterY },
+    battlePos: { x: meterWidth/2, y: stabilityMeterY }
+}
 
-stabilize = function(stabilizeBy) {
-    stability = clamp(stability + stabilizeBy, 0, maxStability)
+var themPositionData = {
+    player: Player.THEM,
+    buildPos: { x: guiWidth, y: stabilityMeterY },
+    battlePos: { x: guiWidth - meterWidth * 3/2, y: stabilityMeterY }
+}
+
+meters = [
+  instance_create_layer(usPositionData.buildPos.x, usPositionData.buildPos.y, "Gui", o_gui_stability_meter, usPositionData),
+  instance_create_layer(themPositionData.buildPos.x, themPositionData.buildPos.y,"Gui", o_gui_stability_meter, themPositionData)
+]
+
+
+stabilize = function(stabilizeBy, player) {
+    stability[player] = clamp(stability[player] + stabilizeBy, 0, maxStability[player])
 }

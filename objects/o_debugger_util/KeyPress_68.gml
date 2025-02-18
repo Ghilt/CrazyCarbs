@@ -1,1 +1,1 @@
-o_stability_manager.stability -= 30
+o_stability_manager.stability[Player.US] -= 30
