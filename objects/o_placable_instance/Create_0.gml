@@ -1,3 +1,6 @@
+// Required field: type - which building this is
+type = type
+
 // These instances live in the inventory in the GUI layer.
 
 mov = {
@@ -31,8 +34,6 @@ buildPos = { x, y }
 battlePos = {x : x, y: y + 64}
 
 #endregion
-
-type = irandom_range(1, 2) // randomize a structure for now, not starting port
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
 layer = layer_get_id("GuiAir")

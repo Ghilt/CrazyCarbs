@@ -24,8 +24,3 @@ goToBattle = function() {
 goToBuild = function() {
     state = GameState.BUILD
 }
-
-loadEnemy = function() {
-    // hardcoded for now
-    
-}

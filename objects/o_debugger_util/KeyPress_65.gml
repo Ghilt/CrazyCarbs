@@ -1,5 +1,5 @@
-var player = 0
-var spots = o_influence_grid_manager.influenceGrid[player]
+
+var spots = o_influence_grid_manager.influenceGrid[Player.US]
 
 
 for (var i = 0; i < array_length(spots); i++) {

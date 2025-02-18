@@ -34,25 +34,29 @@ generateResource = function(type, amount, resourceInstance, player) {
         // City have over produced, good job city
         var consumer = o_influence_grid_manager.getBuildingThatAcceptsOverProduction(player) // TODO handle if there is no consumer
 
-        for (var i = 0; i < array_length(resourceInstances[player]); i++) {
-            
-            var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[player][i].x, y: resourceInstances[player][i].y })
-            
-            var initData = {
-                origin: { x: detachFromUiPos.x, y: detachFromUiPos.y },
-                target: { x: consumer.x, y: consumer.y },
-                timePassed: 0,
-                duration: one_second,
-                sprite_index : resourceInstances[player][i].sprite_index,
-                depth: -10,
-                image_xscale: o_zoom_manager.getZoomScale(),
-                image_yscale: o_zoom_manager.getZoomScale()
-            }
-            
-            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Air", o_world_resource_instance, initData)
-
-            instance_destroy(resourceInstances[player][i])
+        if (player == Player.US) {
+            // animate goods going to consumer
+            for (var i = 0; i < array_length(resourceInstances[player]); i++) {
+                var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[player][i].x, y: resourceInstances[player][i].y })
+                
+                var initData = {
+                    origin: { x: detachFromUiPos.x, y: detachFromUiPos.y },
+                    target: { x: consumer.x, y: consumer.y },
+                    timePassed: 0,
+                    duration: one_second,
+                    sprite_index : resourceInstances[player][i].sprite_index,
+                    depth: -10,
+                    image_xscale: o_zoom_manager.getZoomScale(),
+                    image_yscale: o_zoom_manager.getZoomScale()
+                }
+                
+                var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Air", o_world_resource_instance, initData)
+                instance_destroy(resourceInstances[player][i])
+            } 
+        } else {
+            // do nothing, the resource instances are destroyed by themselves when they have finished animating
         }
+        
         
         resources[player] = [0, 0, 0]
         resourceInstances[player] = []
@@ -67,10 +71,19 @@ generateResource = function(type, amount, resourceInstance, player) {
     var targetY = resourceAreaResourceStartY + row * resourceInstance.sprite_height
 
     with (resourceInstance) {
-        origin = { x: resourceInstance.x, y: resourceInstance.y }
-        target = { x: targetX, y: targetY }
-        timePassed = 0
-        duration = one_second
+        if (player == Player.US) {
+            // then animate the resource to the ui
+            origin = { x: resourceInstance.x, y: resourceInstance.y }
+            target = { x: targetX, y: targetY }
+            timePassed = 0
+            duration = one_second
+        } else {
+            // then animate the resource to the ui
+            origin = { x: resourceInstance.x, y: resourceInstance.y }
+            target = { x: resourceInstance.x, y: resourceInstance.y - 20 }
+            timePassed = 0
+            duration = one_second
+        }
     }
     
     array_push(resourceInstances[player], resourceInstance)

@@ -1,3 +1,13 @@
+// If a method in this manager does not take a player argument, then that method only is used for the playing player and not enemy player
+
+// The position of this manager in the game world decides position of the player starting position
+
+enum Player{
+    US, THEM
+}
+
+
+
 debugGrid = true
 buildingSize = 64
 
@@ -16,18 +26,35 @@ initialInfluenceGrid = function(player){
     { x : -6, y : 6 }
     ]
     
-    with {player}
-    
-    array_map_ext(grid, function(_e, _i) { return { x: _e.x + player * 20, y: _e.y + player * 20}})
-    
-    var _convert = function (_element, _index)
+    with { id, player, buildingSize }
+     
+    var _convert = function (_e, _i)
     {
+        
+        // spawn in enemy 20 steps away for now
+        var shiftedEnemyPosition = player * 20
+        
+        var mappedToWorldX = id.x + (_e.x + shiftedEnemyPosition) * buildingSize 
+        var mappedToWorldY = id.y + (_e.y + shiftedEnemyPosition) * buildingSize  
+        
+        var createBuilding
+        if (player == Player.THEM) {
+            // give enemy fully stacked city
+            var randomBuildingType = _i == 0 ? Building.STARTING_PORT : randomBuilding()
+            createBuilding = instance_create_layer(mappedToWorldX, mappedToWorldY, "Ground", ds_map_find_value(global.buildings, randomBuildingType).building, { player: Player.THEM })
+        } else if (_e.x == 0 && _e.y == 0) {
+            // create starting building for player
+            createBuilding = instance_create_layer(mappedToWorldX, mappedToWorldY, "Ground", ds_map_find_value(global.buildings, Building.STARTING_PORT).building, { player: Player.US })
+        } else {
+            createBuilding = false
+        }
+        
         return { 
-            rX: _element.x, 
-            rY: _element.y, 
-            x: x + _element.x * buildingSize, 
-            y: y + _element.y * buildingSize, 
-            occupiedBy: false
+            relativeX: _e.x, // these relative values are not used for anything currently
+            relativeY: _e.y, 
+            x: mappedToWorldX, 
+            y: mappedToWorldY, 
+            occupiedBy: createBuilding
         }
     }
     
@@ -35,7 +62,7 @@ initialInfluenceGrid = function(player){
 }
 
 // represents where structures of your city state can be built
-influenceGrid = [initialInfluenceGrid(0), initialInfluenceGrid(1)]
+influenceGrid = [initialInfluenceGrid(Player.US), initialInfluenceGrid(Player.THEM)]
 
 
 getBuildingThatAcceptsOverProduction = function(player) {
@@ -54,23 +81,22 @@ getBuildingThatAcceptsOverProduction = function(player) {
 
 
 getClosestBuildableSpot = function(pX, pY) {
-    player = 0
     var bestDistance = 2147483647
     var bestX = 0
     var bestY = 0
-    
-    for (var i = 0; i < array_length(influenceGrid[player]); i++) {
+     
+    for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
         
-        if (influenceGrid[player][i].occupiedBy) {
+        if (influenceGrid[Player.US][i].occupiedBy) {
             continue;
         }
         
-        var distance = point_distance(pX, pY, influenceGrid[player][i].x, influenceGrid[player][i].y)
+        var distance = point_distance(pX, pY, influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)
         
         if (distance < bestDistance) {
             bestDistance = distance
-            bestX = influenceGrid[player][i].x
-            bestY = influenceGrid[player][i].y
+            bestX = influenceGrid[Player.US][i].x
+            bestY = influenceGrid[Player.US][i].y
         }
 
     }
@@ -81,9 +107,8 @@ getClosestBuildableSpot = function(pX, pY) {
 
 // Type is a type defined in ItemScripts.Building
 buildAt = function(pos, type) { 
-    var player = 0
-    
-    var buildings = influenceGrid[player]
+  
+    var buildings = influenceGrid[Player.US]
     
     with { buildings, pos } // https://yal.cc/gamemaker-diy-closures/
         
@@ -94,18 +119,19 @@ buildAt = function(pos, type) {
         return false
     }
     
-    var loc = influenceGrid[player][buildingSiteIndex]
+    var loc = influenceGrid[Player.US][buildingSiteIndex]
     
-    var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building, { player })
+    var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building, { player: Player.US })
     
     loc.occupiedBy = newBuilding
     return true
 
 }
 
-for (var i = 0; i < array_length(influenceGrid[0]); i++) { 
-    if (influenceGrid[0][i].rX == 0 && influenceGrid[0][i].rY == 0) {
-        var staringPortLocation = { x: influenceGrid[0][i].x, y : influenceGrid[0][i].y }
+// temp create a starting building at 0,0
+for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) { 
+    if (influenceGrid[Player.US][i].relativeX == 0 && influenceGrid[Player.US][i].relativeY == 0) {
+        var staringPortLocation = { x: influenceGrid[Player.US][i].x, y : influenceGrid[Player.US][i].y }
         buildAt(staringPortLocation, Building.STARTING_PORT)
     } 
 }

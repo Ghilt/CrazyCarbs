@@ -1,0 +1,1 @@
+showIsoMap = !showIsoMap

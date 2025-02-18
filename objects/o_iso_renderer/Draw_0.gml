@@ -1,5 +1,9 @@
 var tileData, roomX, roomY, tileIndex, tileZ
 
+if (o_debugger_util.showIsoMap) {
+    return;
+}
+
 
 for (var tX = 0; tX < MAP_W; tX++) {
     for (var tY = 0; tY < MAP_H; tY++)  {
