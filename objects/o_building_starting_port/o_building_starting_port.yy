@@ -34,5 +34,8 @@
     "path":"sprites/s_port/s_port.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "depth_sorted",
+  ],
   "visible":true,
 }

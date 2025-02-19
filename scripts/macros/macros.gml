@@ -25,7 +25,7 @@ function ppp(){
 
 #macro MAP_W 100
 #macro MAP_H 100
-#macro TILE_W 64 
-#macro TILE_H 32
+#macro TILE_W 128 
+#macro TILE_H 64
 #macro CAMERA_W 1280
 #macro CAMERA_H 720

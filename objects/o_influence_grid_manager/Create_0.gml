@@ -32,10 +32,10 @@ initialInfluenceGrid = function(player){
         // spawn in enemy 20 steps away for now
         var shiftedEnemyPosition = player * 20
         
-        var mappedToRoomX = _e.x + 10 + (_e.x + shiftedEnemyPosition)
-        var mappedToRoomY = _e.y + 10 + (_e.y + shiftedEnemyPosition) 
-        var mappedToWorldX = tileToRoomX(mappedToRoomX, mappedToRoomY)
-        var mappedToWorldY = tileToRoomY(mappedToRoomX, mappedToRoomY)
+        var tileX = _e.x + 10 + shiftedEnemyPosition
+        var tileY = _e.y + 10 + shiftedEnemyPosition
+        var mappedToWorldX = tileToRoomX(tileX, tileY)
+        var mappedToWorldY = tileToRoomY(tileX, tileY)
         
         var createBuilding
         if (player == Player.THEM) {

@@ -37,5 +37,8 @@
     "path":"sprites/s_building_lumber_mill/s_building_lumber_mill.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "depth_sorted",
+  ],
   "visible":true,
 }

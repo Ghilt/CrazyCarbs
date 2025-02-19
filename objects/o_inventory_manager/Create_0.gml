@@ -1,11 +1,11 @@
 
 itemSize = sprite_get_height(object_get_sprite(o_placable_instance))
-var inventoryHeight = sprite_get_height(object_get_sprite(o_gui_inventory)) - itemSize
+var inventoryHeight = sprite_get_height(object_get_sprite(o_gui_inventory)) 
 
 inventory = []
 
 inventoryX = guiXMid - (guiWidth * 0.25)
-inventoryY = guiYBot - inventoryHeight
+inventoryY = guiYBot - inventoryHeight + 64
 
 
 addItem = function(type, amount = 1) {
