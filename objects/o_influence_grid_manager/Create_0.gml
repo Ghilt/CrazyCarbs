@@ -1,7 +1,5 @@
 // If a method in this manager does not take a player argument, then that method only is used for the playing player and not enemy player
 
-// The position of this manager in the game world decides position of the player starting position
-
 enum Player{
     US, THEM
 }
@@ -34,8 +32,10 @@ initialInfluenceGrid = function(player){
         // spawn in enemy 20 steps away for now
         var shiftedEnemyPosition = player * 20
         
-        var mappedToWorldX = id.x + (_e.x + shiftedEnemyPosition) * buildingSize 
-        var mappedToWorldY = id.y + (_e.y + shiftedEnemyPosition) * buildingSize  
+        var mappedToRoomX = _e.x + 10 + (_e.x + shiftedEnemyPosition)
+        var mappedToRoomY = _e.y + 10 + (_e.y + shiftedEnemyPosition) 
+        var mappedToWorldX = tileToRoomX(mappedToRoomX, mappedToRoomY)
+        var mappedToWorldY = tileToRoomY(mappedToRoomX, mappedToRoomY)
         
         var createBuilding
         if (player == Player.THEM) {
