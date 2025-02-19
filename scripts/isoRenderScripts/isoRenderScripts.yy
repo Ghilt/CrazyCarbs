@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"TileToRoomX",
+  "%Name":"isoRenderScripts",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"TileToRoomX",
+  "name":"isoRenderScripts",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

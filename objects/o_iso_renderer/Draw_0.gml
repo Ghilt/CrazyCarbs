@@ -14,6 +14,12 @@ for (var tX = 0; tX < MAP_W; tX++) {
         tileIndex = tileData[TILE.SPRITE]
         tileZ = tileData[TILE.Z]
         
+        // nukes performance
+        if (roomToTileX(mouse_x, mouse_y) == tX && roomToTileY(mouse_x, mouse_y) == tY) {
+            tileZ -= 100
+        }  
+
+
         if (tileIndex != 0) {
             draw_sprite(s_iso_terrain, tileIndex - 1, roomX, roomY + tileZ)
         }

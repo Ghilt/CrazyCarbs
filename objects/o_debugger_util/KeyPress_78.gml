@@ -1,1 +1,1 @@
-ppp("hi test ", o_inventory_manager.inventory[0])
+show_debug_overlay(true)
