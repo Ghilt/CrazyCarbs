@@ -11,9 +11,13 @@ for (var tX = 0; tX < MAP_W; tX++) {
         var tileMapData = tilemap_get(tileMap, tX, tY)
         tileMapData = tile_get_index(tileMapData) // This is step not necessary if the tile map doesnt utilize mirrored or rotated tiles and stuff like that
         // Format [Sprite, Z]
-        var thisTile = [-1, 0]
-        thisTile[TILE.SPRITE] = tileMapData
-        thisTile[TILE.Z] = irandom(10)
+        var thisTile = { 
+            spriteIndex: tileMapData, 
+            z: irandom(10),
+            roomX: tileToRoomX(tX, tY),
+            roomY: tileToRoomY(tX, tY)
+             
+        }
         global.terrainMap[# tX, tY] = thisTile //# is a short hand accessor thing for ds grids, syntax sugar
     }
 }

@@ -8,16 +8,15 @@ if (o_debugger_util.showIsoMap) {
 for (var tX = 0; tX < MAP_W; tX++) {
     for (var tY = 0; tY < MAP_H; tY++)  {
         tileData = global.terrainMap[# tX, tY]   
-        roomX = tileToRoomX(tX, tY)
-        roomY = tileToRoomY(tX, tY) 
+        roomX = tileData.roomX
+        roomY = tileData.roomY
+        tileIndex = tileData.spriteIndex
+        tileZ = tileData.z
         
-        tileIndex = tileData[TILE.SPRITE]
-        tileZ = tileData[TILE.Z]
-        
-        // nukes performance
-        if (roomToTileX(mouse_x, mouse_y) == tX && roomToTileY(mouse_x, mouse_y) == tY) {
-            tileZ -= 100
-        }  
+        // nukes performance a bit
+        //if (roomToTileX(mouse_x, mouse_y) == tX && roomToTileY(mouse_x, mouse_y) == tY) {
+            //tileZ -= 100
+        //}  
 
 
         if (tileIndex != 0) {
