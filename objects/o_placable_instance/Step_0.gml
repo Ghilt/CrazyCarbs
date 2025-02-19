@@ -59,8 +59,8 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
         action = Action.Build
     } else {
         // Follow mouse
-        x = lerp(x, mouseGuiX - sprite_width / 2, smoothCarry)
-        y = lerp(y, mouseGuiY - sprite_height / 2, smoothCarry)
+        x = lerp(x, mouseGuiX, smoothCarry)
+        y = lerp(y, mouseGuiY, smoothCarry)
         action = Action.None
     }
     

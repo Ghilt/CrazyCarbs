@@ -14,7 +14,7 @@ for (var tX = 0; tX < MAP_W; tX++) {
         
         var thisTile = { 
             spriteIndex: tileMapData, 
-            z: irandom(10),
+            z: (irandom(20) == 1 && tileMapData < 3) ? (irandom(5) > 2 ? -14 : 14 ): 0,
             roomX: tileToRoomX(tX, tY),
             roomY: tileToRoomY(tX, tY)
              
