@@ -35,5 +35,8 @@
     "path":"sprites/s_ui_resource_placeholder/s_ui_resource_placeholder.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "depth_sorted_air",
+  ],
   "visible":true,
 }

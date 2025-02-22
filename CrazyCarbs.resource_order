@@ -22,6 +22,7 @@
     {"name":"o_building_starting_port","order":3,"path":"objects/o_building_starting_port/o_building_starting_port.yy",},
     {"name":"o_debugger_util","order":1,"path":"objects/o_debugger_util/o_debugger_util.yy",},
     {"name":"o_game_phase_manager","order":1,"path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},
+    {"name":"o_ground_building","order":4,"path":"objects/o_ground_building/o_ground_building.yy",},
     {"name":"o_gui_inventory","order":5,"path":"objects/o_gui_inventory/o_gui_inventory.yy",},
     {"name":"o_gui_manager","order":2,"path":"objects/o_gui_manager/o_gui_manager.yy",},
     {"name":"o_gui_progress_era_button","order":6,"path":"objects/o_gui_progress_era_button/o_gui_progress_era_button.yy",},

@@ -12,7 +12,10 @@
     "name":"buildings",
     "path":"folders/Objects/buildings.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_ground_building",
+    "path":"objects/o_ground_building/o_ground_building.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

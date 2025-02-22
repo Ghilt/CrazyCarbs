@@ -1,20 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"o_building_starting_port",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"o_ground_building",
+  "eventList":[],
   "managed":true,
-  "name":"o_building_starting_port",
+  "name":"o_ground_building",
   "overriddenProperties":[],
   "parent":{
     "name":"buildings",
     "path":"folders/Objects/buildings.yy",
   },
-  "parentObjectId":{
-    "name":"o_ground_building",
-    "path":"objects/o_ground_building/o_ground_building.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -32,10 +27,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"s_port",
-    "path":"sprites/s_port/s_port.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
+  "tags":[
+    "depth_sorted_ground",
+  ],
   "visible":true,
 }

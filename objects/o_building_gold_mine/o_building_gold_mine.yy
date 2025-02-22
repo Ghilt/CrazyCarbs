@@ -37,8 +37,5 @@
     "path":"sprites/s_building_gold_mine/s_building_gold_mine.yy",
   },
   "spriteMaskId":null,
-  "tags":[
-    "depth_sorted",
-  ],
   "visible":true,
 }
