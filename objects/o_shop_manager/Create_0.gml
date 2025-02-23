@@ -21,3 +21,15 @@ shopPosition = [
 nextOffer = function() {
     return randomBuilding()
 }
+
+removeItem = function(item) {
+    with { shopPosition, item }
+    var index = array_find_index(shopPosition, function(_e, _i) { 
+            return _e.occupiedBy == item; 
+        } 
+    )
+
+    shopPosition[index].occupiedBy = false
+    
+    instance_destroy(item.id)
+}

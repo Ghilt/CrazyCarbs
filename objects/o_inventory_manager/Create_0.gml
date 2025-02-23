@@ -10,11 +10,11 @@ inventoryX = guiXMid - (guiWidth * 0.25)
 inventoryY = guiYBot - inventoryHeight + 64
 
 
-addItem = function(type, amount = 1) {
-    for (var i = 0; i < amount; i++) {
-        var inst = instance_create_layer(inventoryX + array_length(inventory) * itemSize, inventoryY, "Gui", o_placable_instance, { type: type }) 
-        array_push(inventory, inst)
-    }
+addItem = function(type) {
+    var buildPos = { x: inventoryX + array_length(inventory) * itemSize, y: inventoryY }
+    var battlePos = {x : buildPos.x, y: buildPos.y + itemSize }
+    var inst = instance_create_layer(buildPos.x, buildPos.y, "Gui", o_placable_instance, { type: type, owner: id, buildPos, battlePos }) 
+    array_push(inventory, inst)
 }
 
 removeItem = function(item) {

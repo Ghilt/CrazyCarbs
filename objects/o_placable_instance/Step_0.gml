@@ -1,5 +1,5 @@
 if (!o_game_phase_manager.isBuildPhase()) {
-    returnToInventoryPosition()
+    returnToOwnerPosition()
     return;
 }
 
@@ -23,8 +23,8 @@ switch (carry) {
             o_placable_instance.carry = Carry.None
             carry = Carry.ClickCarry
         } else if (action == Action.None) {
-            // return to inventory
-            returnToInventoryPosition()
+            // return to inventory or shop
+            returnToOwnerPosition()
         } else {
             placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. IT will still work
         }

@@ -2,6 +2,7 @@
 
 // These instances live in the inventory in the GUI layer.
 
+
 mov = {
     duration: one_second * 1,
     timePassed: 0,
@@ -28,10 +29,6 @@ buildSnappingRange = 60
 
 originalWidth = sprite_width
 originalHeight = sprite_height
-
-buildPos = { x, y }
-battlePos = {x : x, y: y + 64}
-
 #endregion
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
@@ -40,7 +37,8 @@ layer = layer_get_id("GuiAir")
 placeInstance = function(pos) {
     var success = o_influence_grid_manager.buildAt(pos, type)
     if (success) {
-        o_inventory_manager.removeItem(id)
+        // Might be built directly from shop, or from inventory. Owning manager needs to be update
+        owner.removeItem(id)
     } else {
         // TODO this is a bit of a mess
         action = Action.None
@@ -50,7 +48,7 @@ placeInstance = function(pos) {
     }
 }
 
-returnToInventoryPosition = function () {
+returnToOwnerPosition = function () {
     o_gui_manager.uiScooch(id)
     
     image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)

@@ -4,10 +4,8 @@ enum Player{
     US, THEM
 }
 
-
-
 debugGrid = true
-buildingSize = 64
+
 
 initialInfluenceGrid = function(player){
     // This is all very temp
@@ -24,7 +22,7 @@ initialInfluenceGrid = function(player){
     { x : -6, y : 6 }
     ]
     
-    with { id, player, buildingSize }
+    with { id, player }
      
     var _convert = function (_e, _i)
     {
@@ -50,7 +48,7 @@ initialInfluenceGrid = function(player){
         }
         
         return { 
-            relativeX: _e.x, // these relative values are not used for anything currently
+            relativeX: _e.x,
             relativeY: _e.y, 
             x: mappedToWorldX, 
             y: mappedToWorldY, 
