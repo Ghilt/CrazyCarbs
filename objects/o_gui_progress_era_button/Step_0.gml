@@ -1,3 +1,5 @@
+o_gui_manager.uiScooch(id)
+
 if (device_mouse_check_button(0, mb_left) && position_meeting(mouseGuiX, mouseGuiY, id) ) {
     pressed = max(pressed, 1)   
     image_xscale = lerp(image_xscale, 0.8, 0.7)

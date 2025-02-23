@@ -13,7 +13,6 @@ if (current_frame == interval) {
     } else {
         // generate resource in world layer
         var initData = { sprite_index: childResourceSprite }
-        //
         var resourceInstance = instance_create_layer(x, y, "Ground", o_world_resource_instance, initData) 
         o_resource_manager.generateResource(childResource, childProductionRate, resourceInstance, Player.THEM)
     }

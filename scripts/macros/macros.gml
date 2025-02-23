@@ -9,6 +9,8 @@
 
 #macro one_second game_get_speed(gamespeed_fps)
 
+#macro itemSize sprite_get_height(object_get_sprite(o_placable_instance))
+
 
 function ppp(){
     var _str = "";

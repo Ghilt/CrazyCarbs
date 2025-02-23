@@ -1,3 +1,6 @@
+var progressButton = object_get_sprite(o_gui_progress_era_button)
+instance_create_layer(guiWidth - sprite_get_width(progressButton) / 2, guiYBot - sprite_get_height(progressButton) / 2, "Gui", o_gui_progress_era_button)
+
 enum GameState {
     BUILD,
     BATTLE,

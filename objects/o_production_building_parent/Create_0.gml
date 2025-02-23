@@ -1,2 +1,2 @@
 current_frame = 0
-interval = one_second
+interval = one_second + irandom(20)
