@@ -8,6 +8,7 @@ enum GameState {
 }
 
 state = GameState.BUILD
+gameRound = 0
 
 
 
@@ -26,4 +27,6 @@ goToBattle = function() {
 
 goToBuild = function() {
     state = GameState.BUILD
+    gameRound +=1
+    o_shop_manager.goToNextRound()
 }

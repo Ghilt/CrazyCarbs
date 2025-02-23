@@ -35,9 +35,12 @@ sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).build
 layer = layer_get_id("GuiAir")
 
 placeInstance = function(pos) {
-    var success = o_influence_grid_manager.buildAt(pos, type)
+    
+    var canAfford = owner.object_index == o_shop_manager && o_shop_manager.canAfford(type)
+    
+    var success = canAfford && o_influence_grid_manager.buildAt(pos, type)
     if (success) {
-        // Might be built directly from shop, or from inventory. Owning manager needs to be update
+        // Might be built directly from shop, or from inventory. Owning manager needs to be updated
         owner.removeItem(id)
     } else {
         // TODO this is a bit of a mess

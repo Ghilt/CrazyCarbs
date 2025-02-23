@@ -15,7 +15,7 @@ else {
     time = 0;
 }
 
-var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x - originalWidth / 2, mouse_y - originalHeight / 2)
+var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y)
 
 switch (carry) {
     case Carry.None:

@@ -20,3 +20,5 @@ show_debug_message("Camera gui w/h : " + string(display_get_gui_width()) + "/" +
 show_debug_message("Camera     w/h : " + string(camera_get_view_width(cam)) + "/" + string(camera_get_view_height(cam)))
 
 show_debug_message("Tile     x/y : " + string(roomToTileX(mouse_x, mouse_y)) + "/" + string(roomToTileY(mouse_x, mouse_y)))
+
+show_debug_message("closest buildable spot: " + string(o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y)))
