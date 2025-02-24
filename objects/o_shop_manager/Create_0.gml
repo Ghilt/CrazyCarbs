@@ -11,13 +11,14 @@ var inventory_sprite = object_get_sprite(o_gui_shop)
 var background = instance_create_layer(guiWidth - shopWidth, guiYMid, "Gui", o_gui_shop)
 var separation = itemSize + shopItemsPadding
 
+// x,y here is relative offsett compared to shopX and shopY
 shopPosition = [
-    { x: shopXItems + separation * 0, y: shopYItems + separation * 0, occupiedBy: false },
-    { x: shopXItems + separation * 1, y: shopYItems + separation * 0, occupiedBy: false },
-    { x: shopXItems + separation * 0, y: shopYItems + separation * 1, occupiedBy: false },
-    { x: shopXItems + separation * 1, y: shopYItems + separation * 1, occupiedBy: false },
-    { x: shopXItems + separation * 0, y: shopYItems + separation * 2, occupiedBy: false },
-    { x: shopXItems + separation * 1, y: shopYItems + separation * 2, occupiedBy: false },
+    { x: separation * 0, y: separation * 0, occupiedBy: false },
+    { x: separation * 1, y: separation * 0, occupiedBy: false },
+    { x: separation * 0, y: separation * 1, occupiedBy: false },
+    { x: separation * 1, y: separation * 1, occupiedBy: false },
+    { x: separation * 0, y: separation * 2, occupiedBy: false },
+    { x: separation * 1, y: separation * 2, occupiedBy: false },
 ]
 
 moneyProgression = function() {
@@ -28,10 +29,6 @@ currentMoney = moneyProgression()
 
 nextOffer = function() {
     return randomBuilding()
-}
-
-priceUiPosition = function(offerX, offerY) {
-    return { x: offerX, y: offerY }
 }
 
 

@@ -3,8 +3,7 @@ instance_create_layer(guiWidth - sprite_get_width(progressButton) / 2, guiYBot -
 
 enum GameState {
     BUILD,
-    BATTLE,
-    SHOP
+    BATTLE
 }
 
 state = GameState.BUILD

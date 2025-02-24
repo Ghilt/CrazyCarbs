@@ -30,7 +30,6 @@ uiScooch = function(instance) {
                 instance.y = lerp(instance.mov.originY, instance.battlePos.y, position)
             }
         break;
-        case GameState.SHOP:
         case GameState.BUILD:
             if (!variable_instance_exists(instance, "mov")) {
                 //The ui component does not support auto moving if it has no mov struct
