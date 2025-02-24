@@ -17,5 +17,7 @@ with (o_shop_manager) {
         draw_text(pricePosition.x, pricePosition.y, "Price: " + string(price))
         
     }
+    
+    draw_circle_color(other.x + shopSellPos.x, other.y + shopSellPos.y, shopSellPos.snappingDistance, c_orange, c_yellow, false)
 }
 

@@ -1,11 +1,17 @@
 
 shopWidth = 400
-shopHeight = 600
+shopHeight = guiHeight / 2
 shopX = guiWidth - shopWidth
 shopY = guiYMid
 shopItemsPadding = itemSize / 8
 shopXItems = shopX + shopItemsPadding * 4
 shopYItems = shopY + shopItemsPadding * 4
+
+//anchored to shop x,y
+shopSellPos = { 
+    x: -80, 
+    y: shopHeight - 80, 
+    snappingDistance: 80 }
 
 var inventory_sprite = object_get_sprite(o_gui_shop)
 var background = instance_create_layer(guiWidth - shopWidth, guiYMid, "Gui", o_gui_shop)
@@ -13,12 +19,12 @@ var separation = itemSize + shopItemsPadding
 
 // x,y here is relative offsett compared to shopX and shopY
 shopPosition = [
-    { x: separation * 0, y: separation * 0, occupiedBy: false },
-    { x: separation * 1, y: separation * 0, occupiedBy: false },
-    { x: separation * 0, y: separation * 1, occupiedBy: false },
-    { x: separation * 1, y: separation * 1, occupiedBy: false },
-    { x: separation * 0, y: separation * 2, occupiedBy: false },
-    { x: separation * 1, y: separation * 2, occupiedBy: false },
+    { x: separation * 0, y: shopItemsPadding + separation * 0, occupiedBy: false },
+    { x: separation * 1, y: shopItemsPadding + separation * 0, occupiedBy: false },
+    { x: separation * 0, y: shopItemsPadding + separation * 1, occupiedBy: false },
+    { x: separation * 1, y: shopItemsPadding + separation * 1, occupiedBy: false },
+    { x: separation * 0, y: shopItemsPadding + separation * 2, occupiedBy: false },
+    { x: separation * 1, y: shopItemsPadding + separation * 2, occupiedBy: false },
 ]
 
 moneyProgression = function() {
@@ -31,6 +37,20 @@ nextOffer = function() {
     return randomBuilding()
 }
 
+getSellIntent = function(mouseX, mouseY) {
+    var actualSellX = shopX + shopSellPos.x
+    var actualSellY = shopY + shopSellPos.y
+    
+    var distance = point_distance(mouseX, mouseY, actualSellX, actualSellY)
+
+    return { sellIt: distance < shopSellPos.snappingDistance, x: actualSellX, y: actualSellY}
+}
+
+sellItem = function(type) {
+    // selling gives half purchase price rounded up
+    var thePriceRoundUp = ds_map_find_value(global.buildings, type).price + 1
+    currentMoney += thePriceRoundUp div 2
+}
 
 canAfford = function(type) {
     return ds_map_find_value(global.buildings, type).price <= currentMoney

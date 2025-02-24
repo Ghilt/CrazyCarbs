@@ -14,5 +14,5 @@ buildPos = { x, y }
 battlePos = { x, y : guiYBot - 60 }
 
 priceUiPosition = function(buildXOfOffer, buildYOfOffer) {
-    return { x: buildXOfOffer + x, y: buildYOfOffer + y + o_shop_manager.shopItemsPadding }
+    return { x: buildXOfOffer + x, y: buildYOfOffer + y }
 }

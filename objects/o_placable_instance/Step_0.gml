@@ -17,16 +17,21 @@ else {
 
 var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y)
 
+var sellIntent = isOwnedByPlayer ? o_shop_manager.getSellIntent(mouseGuiX, mouseGuiY) : { sellIt: false }
+
 switch (carry) {
     case Carry.None:
         if (position_meeting(mouseGuiX, mouseGuiY, id) && time == 1) {
+            // Carry initiation
             o_placable_instance.carry = Carry.None
             carry = Carry.ClickCarry
+        } else if (action == Action.Sell) {
+            sellInstance()
         } else if (action == Action.None) {
             // return to inventory or shop
             returnToOwnerPosition()
         } else {
-            placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. IT will still work
+            placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. It will still work
         }
     break;
     case Carry.ClickCarry:
@@ -57,6 +62,10 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
         x = lerp(x, inGuiSpace.x, smoothCarry)
         y = lerp(y, inGuiSpace.y, smoothCarry)
         action = Action.Build
+    } else if (sellIntent.sellIt) {
+        x = lerp(x, sellIntent.x, smoothCarry)
+        y = lerp(y, sellIntent.y, smoothCarry)
+        action = Action.Sell   
     } else {
         // Follow mouse
         x = lerp(x, mouseGuiX, smoothCarry)
