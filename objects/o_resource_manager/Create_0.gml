@@ -78,7 +78,6 @@ generateResource = function(type, amount, resourceInstance, player) {
             timePassed = 0
             duration = one_second
         } else {
-            // then animate the resource to the ui
             origin = { x: resourceInstance.x, y: resourceInstance.y }
             target = { x: resourceInstance.x, y: resourceInstance.y - 20 }
             timePassed = 0
