@@ -19,6 +19,10 @@
         {"th0":-0.088808596,"th1":0.09964404,"tv0":0.374594,"tv1":-0.42029783,"x":0.8482061,"y":0.14748594,},
         {"th0":-0.003504455,"th1":0.25,"tv0":-0.0009300709,"tv1":0.0,"x":1.0,"y":-1.0,},
       ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"debug_linear","colour":4279234797,"name":"debug_linear","points":[
+        {"th0":-0.1,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.1,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
   ],
   "function":2,
   "name":"c_movement",

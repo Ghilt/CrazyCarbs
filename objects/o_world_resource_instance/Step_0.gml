@@ -9,8 +9,8 @@ if (timePassed == duration){
     timePassed += 1
     var interpolation = timePassed / duration 
     
-    var position = animcurve_channel_evaluate(curve, interpolation)    
-    var position2 = animcurve_channel_evaluate(curve2, interpolation)
+    var position = animcurve_channel_evaluate(movement, interpolation)    
+    var position2 = animcurve_channel_evaluate(scale, interpolation)
     x = lerp(origin.x, target.x, position)
     y = lerp(origin.y, target.y, position)
     

@@ -45,7 +45,6 @@ generateResource = function(type, amount, resourceInstance, player) {
                     timePassed: 0,
                     duration: one_second,
                     sprite_index : resourceInstances[player][i].sprite_index,
-                    depth: -10,
                     image_xscale: o_zoom_manager.getZoomScale(),
                     image_yscale: o_zoom_manager.getZoomScale()
                 }
@@ -67,8 +66,9 @@ generateResource = function(type, amount, resourceInstance, player) {
     var row = currentResourceCount div storageRowSize
     var column = currentResourceCount mod storageRowSize
     
-    var targetX = resourceAreaResourceStartX + column * resourceInstance.sprite_width
-    var targetY = resourceAreaResourceStartY + row * resourceInstance.sprite_height
+    // get original size of sprite, since this sprite is being scaled as part of anim
+    var targetX = resourceAreaResourceStartX + column * sprite_get_width(resourceInstance.sprite_index) 
+    var targetY = resourceAreaResourceStartY + row * sprite_get_height(resourceInstance.sprite_index) 
 
     with (resourceInstance) {
         if (player == Player.US) {
@@ -87,4 +87,20 @@ generateResource = function(type, amount, resourceInstance, player) {
     }
     
     array_push(resourceInstances[player], resourceInstance)
+}
+
+goToBuild = function(){
+    if (!o_game_phase_manager.isBattlePhase()) {
+        resources = [[0, 0, 0], [0, 0, 0]]
+        var player = 0
+        var enemy = 1
+        for (var i = 0; i < array_length(resourceInstances[player]); i++) {
+            instance_destroy(resourceInstances[player][i])
+        }
+        
+        for (var i = 0; i < array_length(resourceInstances[enemy]); i++) {
+            instance_destroy(resourceInstances[enemy][i])
+        }
+        resourceInstances = [[],[]]
+    } 
 }
