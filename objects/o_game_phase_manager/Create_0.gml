@@ -30,3 +30,13 @@ goToBuild = function() {
     o_shop_manager.goToNextRound()
     o_resource_manager.goToBuild()
 }
+
+goToEndOfRoundScreen = function(victory) {
+    goToBuild()
+    
+    var roundEndScreen = instance_create_layer(guiXMid, guiYMid, "Gui", o_gui_round_end_message, { victory: victory })
+    roundEndScreen.depth = -1000
+    roundEndScreen.image_xscale = 20
+    roundEndScreen.image_yscale = 10
+    
+}
