@@ -1,4 +1,5 @@
 
+
 var inventory_sprite = object_get_sprite(o_gui_inventory)
 instance_create_layer(guiXMid - sprite_get_width(inventory_sprite) / 2, guiYBot - sprite_get_height(inventory_sprite), "Gui", o_gui_inventory)
 
@@ -34,4 +35,10 @@ compactify = function(){
         inventory[i].buildPos.x = inventoryX + i * itemSize
         inventory[i].battlePos.x = inventoryX + i * itemSize
     }
+}
+
+getBuyIntent = function(mouseX, mouseY) {
+    var isOverInventoryBox = position_meeting(mouseX, mouseY, o_gui_inventory)
+
+    return { buyIt: isOverInventoryBox, x: inventoryX, y: inventoryY}
 }

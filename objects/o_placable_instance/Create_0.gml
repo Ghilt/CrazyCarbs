@@ -15,7 +15,7 @@ enum Carry {
 }
 
 enum Action {
-    None, Build, Sell
+    None, Build, Sell, Buy
 }
 
 #region Logistical variables - Helps managing the movement of the item in the gui
@@ -58,6 +58,21 @@ sellInstance = function() {
     o_shop_manager.sellItem(type)
     owner.removeItem(id)
 }
+
+buyInstance = function() {
+    // owner is garanteed to be the o_shop_manager here
+    var canAfford = !isOwnedByPlayer && o_shop_manager.canAfford(type)
+    if (canAfford) {
+        o_inventory_manager.addItem(type)
+        owner.removeItem(id)
+    } else {
+        action = Action.None
+        carry = Carry.None
+        time = 0
+        resetMovStruct() 
+    }
+}
+
 
 returnToOwnerPosition = function () {
     //Only scooch here

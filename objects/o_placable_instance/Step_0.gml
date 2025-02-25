@@ -17,8 +17,6 @@ else {
 
 var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y)
 
-var sellIntent = isOwnedByPlayer ? o_shop_manager.getSellIntent(mouseGuiX, mouseGuiY) : { sellIt: false }
-
 switch (carry) {
     case Carry.None:
         if (position_meeting(mouseGuiX, mouseGuiY, id) && time == 1) {
@@ -27,11 +25,13 @@ switch (carry) {
             carry = Carry.ClickCarry
         } else if (action == Action.Sell) {
             sellInstance()
-        } else if (action == Action.None) {
+        } else if (action == Action.Buy) {
+            buyInstance()
+        } else if (action == Action.Build) {
+            placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. It will still work
+        } else {
             // return to inventory or shop
             returnToOwnerPosition()
-        } else {
-            placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. It will still work
         }
     break;
     case Carry.ClickCarry:
@@ -55,8 +55,15 @@ switch (carry) {
     break;
 }
 
+var sellIntent = isOwnedByPlayer ? o_shop_manager.getSellIntent(mouseGuiX, mouseGuiY) : { sellIt: false }
+var buyIntent = !isOwnedByPlayer ? o_inventory_manager.getBuyIntent(mouseGuiX, mouseGuiY) : { buyIt: false }
+
 if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
-    if (closestPos.distance < buildSnappingRange) {
+    if (buyIntent.buyIt) {
+        x = lerp(x, buyIntent.x, smoothCarry)
+        y = lerp(y, buyIntent.y, smoothCarry)
+        action = Action.Buy   
+    } else if (closestPos.distance < buildSnappingRange) {
         // Lets prepare to build it!
         var inGuiSpace = o_zoom_manager.convertToGuiSpace(closestPos.x, closestPos.y)
         x = lerp(x, inGuiSpace.x, smoothCarry)
