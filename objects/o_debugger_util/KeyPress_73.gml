@@ -1,1 +1,1 @@
-showIsoMap = !showIsoMap
+showNavigableSeasGrid = !showNavigableSeasGrid

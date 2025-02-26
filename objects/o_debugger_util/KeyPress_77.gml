@@ -3,7 +3,7 @@ ppp("________________ |")
 
 // this is not it chief, show_debug_message("Display space  x: " + string(display_mouse_get_x()) + " y: " + string(display_mouse_get_y()))
 
-show_debug_message("Mouse world space x: " + string(mouse_x) + " y: " + string(mouse_y) )
+show_debug_message("Mouse world space x: " + string(mouse_x) + "/" + string(room_width) + " y: " + string(mouse_y) + "/" + string(room_height))
 show_debug_message("Mouse gui space  x: " + string(mouseGuiX) + "/" + string(display_get_gui_width()) + 
                             " y: " + string(mouseGuiY) + "/" + string(display_get_gui_height()))
 
