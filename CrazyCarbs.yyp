@@ -89,6 +89,7 @@
     {"id":{"name":"s_iso_dirt","path":"sprites/s_iso_dirt/s_iso_dirt.yy",},},
     {"id":{"name":"s_iso_grass","path":"sprites/s_iso_grass/s_iso_grass.yy",},},
     {"id":{"name":"s_iso_ocean","path":"sprites/s_iso_ocean/s_iso_ocean.yy",},},
+    {"id":{"name":"s_iso_terrain_backup","path":"sprites/s_iso_terrain_backup/s_iso_terrain_backup.yy",},},
     {"id":{"name":"s_iso_terrain","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},},
     {"id":{"name":"s_iso100_grass","path":"sprites/s_iso100_grass/s_iso100_grass.yy",},},
     {"id":{"name":"s_iso100_ground","path":"sprites/s_iso100_ground/s_iso100_ground.yy",},},

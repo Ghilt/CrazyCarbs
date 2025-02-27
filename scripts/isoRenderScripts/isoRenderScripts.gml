@@ -1,22 +1,43 @@
-global.isoRenderingOffsetX = (CAMERA_W * 2.75)
-global.isoRenderingOffsetY = (CAMERA_W * 0.25)
 
-function tileToRoomX(_tX, _tY) {
-    return (_tX - _tY) * TILE_W * 0.5 + global.isoRenderingOffsetX
+// https://yal.cc/understanding-isometric-grids/
+// from 0 to MAP_W, 0 to MAP_H
+function tileToIso(tileX, tileY) {
+    var roomX = tileX * tileSize
+    var roomY = tileY * tileSize
+    if (!o_debugger_util.isoProjection) {
+        return {x: roomX, y: roomY}
+    }
+    
+    return {
+        x: ISO_ORIGIN.x + (roomX - roomY) * ISO_W,
+        y: ISO_ORIGIN.y + (roomX + roomY) * ISO_H
+    }
 }
 
-function tileToRoomY(_tX, _tY) {
-    return (_tX + _tY) * TILE_H * 0.5 + global.isoRenderingOffsetY
+function roomToIso(_rX, _rY) {
+    var roomX = _rX
+    var roomY = _rY
+    if (!o_debugger_util.isoProjection) {
+        return {x: _rX, y: _rY}
+    }
+    
+    return {
+        x: ISO_ORIGIN.x + (roomX - roomY) * ISO_W,
+        y: ISO_ORIGIN.y + (roomX + roomY) * ISO_H
+    }
 }
 
-function roomToTileX(_rX, _rY) {
-    var roomX = _rX - global.isoRenderingOffsetX
-    var roomY = _rY - global.isoRenderingOffsetY
-    return floor(roomX / TILE_W + roomY / TILE_H)
+function isoToRoom(_rX, _rY) {
+    var roomX = _rX
+    var roomY = _rY
+    if (!o_debugger_util.isoProjection) {
+        return {x: _rX, y: _rY}
+    }
+    
+    return {
+        x: ((roomY - ISO_ORIGIN.y) / ISO_H + (roomX - ISO_ORIGIN.x) / ISO_W) / 2,
+        y: ((roomY - ISO_ORIGIN.y) / ISO_H - (roomX - ISO_ORIGIN.x) / ISO_W) / 2
+    }
 }
 
-function roomToTileY(_rX, _rY) {
-    var roomX = _rX - global.isoRenderingOffsetX
-    var roomY = _rY - global.isoRenderingOffsetY
-    return floor(roomY / TILE_H - roomX / TILE_W)
-}
+

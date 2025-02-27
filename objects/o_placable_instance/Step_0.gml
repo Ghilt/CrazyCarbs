@@ -65,7 +65,8 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
         action = Action.Buy   
     } else if (closestPos.distance < buildSnappingRange) {
         // Lets prepare to build it!
-        var inGuiSpace = o_zoom_manager.convertToGuiSpace(closestPos.x, closestPos.y)
+        var inIsoSpace = roomToIso(closestPos.x, closestPos.y)
+        var inGuiSpace = o_zoom_manager.convertToGuiSpace(inIsoSpace.x, inIsoSpace.y)
         x = lerp(x, inGuiSpace.x, smoothCarry)
         y = lerp(y, inGuiSpace.y, smoothCarry)
         action = Action.Build

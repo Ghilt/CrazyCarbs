@@ -10,6 +10,7 @@ debugGrid = true
 initialInfluenceGrid = function(player){
     // This is all very temp
     var grid = [
+    { x : -10, y : -10 },
     { x : -2, y : -2 },
     { x : -1, y : -2 },
     { x : -1, y : -1 },
@@ -30,19 +31,17 @@ initialInfluenceGrid = function(player){
         // spawn in enemy 20 steps away for now
         var shiftedEnemyPosition = player * 20
         
-        var tileX = _e.x + 10 + shiftedEnemyPosition
-        var tileY = _e.y + 10 + shiftedEnemyPosition
-        var mappedToWorldX = tileToRoomX(tileX, tileY)
-        var mappedToWorldY = tileToRoomY(tileX, tileY)
-        
+        var posX = (_e.x + 10 + shiftedEnemyPosition) * tileSize
+        var posY = (_e.y + 10 + shiftedEnemyPosition) * tileSize
+
         var createBuilding
         if (player == Player.THEM) {
             // give enemy fully stacked city
             var randomBuildingType = _i == 0 ? Building.STARTING_PORT : randomBuilding()
-            createBuilding = instance_create_layer(mappedToWorldX, mappedToWorldY, "Ground", ds_map_find_value(global.buildings, randomBuildingType).building, { player: Player.THEM })
+            createBuilding = instance_create_layer(posX, posY, "Ground", ds_map_find_value(global.buildings, randomBuildingType).building, { player: Player.THEM })
         } else if (_e.x == 0 && _e.y == 0) {
             // create starting building for player
-            createBuilding = instance_create_layer(mappedToWorldX, mappedToWorldY, "Ground", ds_map_find_value(global.buildings, Building.STARTING_PORT).building, { player: Player.US })
+            createBuilding = instance_create_layer(posX, posY, "Ground", ds_map_find_value(global.buildings, Building.STARTING_PORT).building, { player: Player.US })
         } else {
             createBuilding = false
         }
@@ -50,8 +49,8 @@ initialInfluenceGrid = function(player){
         return { 
             relativeX: _e.x,
             relativeY: _e.y, 
-            x: mappedToWorldX, 
-            y: mappedToWorldY, 
+            x: posX, 
+            y: posY, 
             occupiedBy: createBuilding
         }
     }
@@ -89,7 +88,11 @@ getClosestBuildableSpot = function(pX, pY) {
             continue;
         }
         
-        var distance = point_distance(pX, pY, influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)
+        var isoMappedMouse = isoToRoom(pX, pY)
+        var isoMapped = roomToIso(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y) // THE FUDGE
+        var roomt = isoToRoom(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y) 
+        
+        var distance = point_distance(isoMappedMouse.x, isoMappedMouse.y, influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)
         
         if (distance < bestDistance) {
             bestDistance = distance
@@ -98,7 +101,7 @@ getClosestBuildableSpot = function(pX, pY) {
         }
 
     }
-    
+     
     return { distance: bestDistance, x: bestX, y: bestY }
 }
 

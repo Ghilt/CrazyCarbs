@@ -1,12 +1,12 @@
-x = tileToRoomX(20, 20)
-y = tileToRoomY(20, 20)
+x = tileToIso(20, 20).x
+y = tileToIso(20, 20).y
 
 path = path_add()
 
-target_x = mouse_x
-target_y = mouse_y
+target_x = x
+target_y = y
 
-alarm[0] = 10
+alarm[0] = 90
 
 // So this boat will go into the red mp grid area
 // MP grid assumes that your object has a mask that is the same size as the grid cell

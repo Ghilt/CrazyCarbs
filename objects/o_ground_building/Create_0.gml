@@ -1,0 +1,1 @@
+ppp("Creating building at", x, y)

@@ -7,7 +7,9 @@ if (true) {
         var yy = o_influence_grid_manager.influenceGrid[Player.US][i].y
         var rY = o_influence_grid_manager.influenceGrid[Player.US][i].relativeX
         var rX = o_influence_grid_manager.influenceGrid[Player.US][i].relativeY
-        draw_circle(xx, yy, 5, true)
-        draw_text(xx, yy, string(rX) + "," + string(rY))
+        
+        var pos = roomToIso(xx, yy)
+        draw_circle(pos.x, pos.y, 5, true)
+        draw_text(pos.x, pos.y, string(rX) + "," + string(rY))
     }
 }

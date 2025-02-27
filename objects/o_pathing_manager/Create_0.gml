@@ -1,5 +1,5 @@
-gridWidth = MAP_W * 1.28
-gridHeight = MAP_H * 1.28// nicely divides current room size of 6400
+gridWidth = MAP_W
+gridHeight = MAP_H
 gridCellWidth = room_width / gridWidth
 gridCellHeight = room_height / gridHeight
 
@@ -13,21 +13,37 @@ for (var tX = 0; tX < MAP_W; tX++) {
     for (var tY = 0; tY < MAP_H; tY++) {
         var tileMapData = tilemap_get(tileMap, tX, tY)
         tileMapData = tile_get_index(tileMapData)
-        var worldX = tileToRoomX(tX, tY)
-        var worldY = tileToRoomY(tX, tY)
-        
-        var collisionGridX = gridWidth * worldX / room_width 
-        var collisionGridY = gridHeight * worldY / room_height
-        
+
         if (tileMapData != 3) {
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX, collisionGridY)
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX - 1, collisionGridY )     
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX, collisionGridY - 1)      
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX - 1, collisionGridY - 1)      
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX + 1, collisionGridY - 1)   
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX, collisionGridY - 2)
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX - 1, collisionGridY - 2)
-            mp_grid_add_cell(navigableSeasGrid, collisionGridX + 1, collisionGridY - 2)                       
+            mp_grid_add_cell(navigableSeasGrid, tX, tY)
         }
     }
+}
+
+// non iso cooridnates, real world coordinates
+motionPlanPathToIsometricSpace = function(path, startX, startY, targetX, targetY) {
+    // TODO fix after isometric projection rework
+    //var startPosProjectedToMpGridSpace = { x: startX / gridCellWidth, y: startY / gridCellHeight }
+    //var targetPosProjectedToMpGridSpace = { x: targetX / gridCellWidth, y: targetY / gridCellHeight }
+    
+    //var startPosProjectedToMpGridSpace = { x: roomToTileX(startX, startY) * gridCellWidth, y: roomToTileY(startX, startY) * gridCellHeight}
+    //var targetPosProjectedToMpGridSpace = { x: roomToTileX(targetX, targetY) * gridCellWidth, y: roomToTileY(targetX, targetY) * gridCellHeight}
+    //
+    //mp_grid_path(
+        //navigableSeasGrid, 
+        //path, 
+        //startPosProjectedToMpGridSpace.x, startPosProjectedToMpGridSpace.y, 
+        //targetPosProjectedToMpGridSpace.x, targetPosProjectedToMpGridSpace.y, 
+        //true
+    //)
+    //
+    //for (var i = 0; i < path_get_number(path); i++) {
+        //var pathPoint = { x: path_get_point_x(path, i), y: path_get_point_y(path, i)  }
+        //var newX = tileToRoomX(pathPoint.x / gridCellWidth, pathPoint.y / gridCellHeight)
+        //var newY = tileToRoomY(pathPoint.x / gridCellWidth, pathPoint.y / gridCellHeight)
+        //
+        //path_change_point(path, i, newX, newY, 9)
+    //}
+    //
+    //
 }

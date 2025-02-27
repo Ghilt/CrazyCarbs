@@ -27,7 +27,12 @@ function ppp(){
 
 #macro MAP_W 100
 #macro MAP_H 100
+#macro tileSize 64
 #macro TILE_W 128 
 #macro TILE_H 96
 #macro CAMERA_W 1280
 #macro CAMERA_H 720
+
+#macro ISO_ORIGIN { x: 3200, y: 0 }
+#macro ISO_W (4/3)
+#macro ISO_H 1
