@@ -21,29 +21,13 @@ for (var tX = 0; tX < MAP_W; tX++) {
 }
 
 // non iso cooridnates, real world coordinates
-motionPlanPathToIsometricSpace = function(path, startX, startY, targetX, targetY) {
-    // TODO fix after isometric projection rework
-    //var startPosProjectedToMpGridSpace = { x: startX / gridCellWidth, y: startY / gridCellHeight }
-    //var targetPosProjectedToMpGridSpace = { x: targetX / gridCellWidth, y: targetY / gridCellHeight }
+motionPlanToTarget = function(path, startX, startY, targetX, targetY) {
+    mp_grid_path(
+        navigableSeasGrid, 
+        path, 
+        startX, startY, 
+        targetX, targetY, 
+        true
+    )
     
-    //var startPosProjectedToMpGridSpace = { x: roomToTileX(startX, startY) * gridCellWidth, y: roomToTileY(startX, startY) * gridCellHeight}
-    //var targetPosProjectedToMpGridSpace = { x: roomToTileX(targetX, targetY) * gridCellWidth, y: roomToTileY(targetX, targetY) * gridCellHeight}
-    //
-    //mp_grid_path(
-        //navigableSeasGrid, 
-        //path, 
-        //startPosProjectedToMpGridSpace.x, startPosProjectedToMpGridSpace.y, 
-        //targetPosProjectedToMpGridSpace.x, targetPosProjectedToMpGridSpace.y, 
-        //true
-    //)
-    //
-    //for (var i = 0; i < path_get_number(path); i++) {
-        //var pathPoint = { x: path_get_point_x(path, i), y: path_get_point_y(path, i)  }
-        //var newX = tileToRoomX(pathPoint.x / gridCellWidth, pathPoint.y / gridCellHeight)
-        //var newY = tileToRoomY(pathPoint.x / gridCellWidth, pathPoint.y / gridCellHeight)
-        //
-        //path_change_point(path, i, newX, newY, 9)
-    //}
-    //
-    //
 }

@@ -1,10 +1,7 @@
-x = tileToIso(20, 20).x
-y = tileToIso(20, 20).y
 
 path = path_add()
 
-target_x = x
-target_y = y
+targetPos = { x, y }
 
 alarm[0] = 90
 

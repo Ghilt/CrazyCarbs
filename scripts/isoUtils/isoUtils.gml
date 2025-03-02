@@ -9,3 +9,8 @@ function projectionIndependentGuiUp(pos, pixelsUp) {
         return { x: pos.x , y: pos.y - pixelsUp } 
     }
 }
+
+function isoMouse() {
+    var isoSpace = isoToRoom(mouse_x, mouse_y)
+    return { x: isoSpace.x, y: isoSpace.y }
+}

@@ -1,7 +1,7 @@
 path_delete(path)
 path = path_add()
 
-o_pathing_manager.motionPlanPathToIsometricSpace(path, x, y, target_x, target_y)
+o_pathing_manager.motionPlanToTarget(path, x, y, targetPos.x, targetPos.y)
 
 path_start(path, 5, path_action_stop, true)
 
