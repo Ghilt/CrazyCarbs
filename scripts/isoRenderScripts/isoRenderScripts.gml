@@ -1,11 +1,17 @@
 
+enum OriginPositionType
+{
+    GUI,
+    WORLD
+};
+
 // https://yal.cc/understanding-isometric-grids/
 // from 0 to MAP_W, 0 to MAP_H
 function tileToIso(tileX, tileY) {
     var roomX = tileX * tileSize
     var roomY = tileY * tileSize
     if (!o_debugger_util.isoProjection) {
-        return {x: roomX, y: roomY}
+        return { x: roomX, y: roomY }
     }
     
     return {
@@ -18,7 +24,7 @@ function roomToIso(_rX, _rY) {
     var roomX = _rX
     var roomY = _rY
     if (!o_debugger_util.isoProjection) {
-        return {x: _rX, y: _rY}
+        return { x: _rX, y: _rY }
     }
     
     return {
@@ -31,7 +37,7 @@ function isoToRoom(_rX, _rY) {
     var roomX = _rX
     var roomY = _rY
     if (!o_debugger_util.isoProjection) {
-        return {x: _rX, y: _rY}
+        return { x: _rX, y: _rY }
     }
     
     return {
