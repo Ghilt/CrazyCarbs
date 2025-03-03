@@ -2,14 +2,6 @@
 
 // These instances live in the inventory in the GUI layer.
 
-
-mov = {
-    duration: one_second * 1,
-    timePassed: 0,
-    originX: x,
-    originY: y
-}
-
 enum Carry {
     None, ClickCarry, HoldCarry
 }
@@ -83,7 +75,7 @@ returnToOwnerPosition = function () {
 }
 
 resetMovStruct = function(){
-    mov.originX = x
-    mov.originY = y
-    mov.timePassed = 0
+    guiState.mov.originX = x
+    guiState.mov.originY = y
+    guiState.mov.timePassed = 0
 }

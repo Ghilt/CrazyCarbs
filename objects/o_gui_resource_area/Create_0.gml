@@ -1,11 +1,3 @@
-mov = {
-    duration: one_second * 1,
-    timePassed: 0,
-    originX: x,
-    originY: y
-}
+guiState = new GuiState(x, y, x, y + sprite_height)
 
-
-buildPos = { x, y }
-battlePos = { x, y: y + sprite_height }
 image_alpha = 0.5

@@ -8,6 +8,7 @@
     {"name":"units","order":6,"path":"folders/Objects/units.yy",},
     {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":5,"path":"folders/Scripts.yy",},
+    {"name":"data","order":6,"path":"folders/Scripts/data.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"buildings","order":3,"path":"folders/Sprites/buildings.yy",},
     {"name":"debug","order":7,"path":"folders/Sprites/debug.yy",},

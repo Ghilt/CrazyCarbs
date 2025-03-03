@@ -13,8 +13,11 @@ inventoryY = guiYBot - inventoryHeight + 64
 
 addItem = function(type) {
     var buildPos = { x: inventoryX + array_length(inventory) * itemSize, y: inventoryY }
-    var battlePos = {x : buildPos.x, y: buildPos.y + itemSize }
-    var inst = instance_create_layer(buildPos.x, buildPos.y, "Gui", o_placable_instance, { type: type, owner: id, buildPos, battlePos }) 
+    var battlePos = { x : buildPos.x, y: buildPos.y + itemSize }
+    
+    var guiState = new GuiState(buildPos.x, buildPos.y, battlePos.x, battlePos.y)
+    
+    var inst = instance_create_layer(buildPos.x, buildPos.y, "Gui", o_placable_instance, { type: type, owner: id, guiState }) 
     array_push(inventory, inst)
 }
 
@@ -30,10 +33,10 @@ removeItem = function(item) {
     compactify()
 }
 
-compactify = function(){
+compactify = function() {
     for (var i = 0; i < array_length(inventory); i++) {
-        inventory[i].buildPos.x = inventoryX + i * itemSize
-        inventory[i].battlePos.x = inventoryX + i * itemSize
+        inventory[i].guiState.buildPos.x = inventoryX + i * itemSize
+        inventory[i].guiState.battlePos.x = inventoryX + i * itemSize
     }
 }
 

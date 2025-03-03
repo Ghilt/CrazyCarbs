@@ -13,19 +13,18 @@ var meterHeight = sprite_get_height(meter)
 var stabilityMeterY =  guiYMid - meterHeight / 2
 var usPositionData = {
     player: Player.US,
-    buildPos: { x: -meterWidth , y: stabilityMeterY },
-    battlePos: { x: meterWidth/2, y: stabilityMeterY }
+    guiState: new GuiState(-meterWidth, stabilityMeterY, meterWidth/2, stabilityMeterY)
 }
 
 var themPositionData = {
     player: Player.THEM,
-    buildPos: { x: guiWidth, y: stabilityMeterY },
-    battlePos: { x: guiWidth - meterWidth * 3/2, y: stabilityMeterY }
+    guiState: new GuiState(guiWidth, stabilityMeterY, guiWidth - meterWidth * 3/2, stabilityMeterY)
+
 }
 
 meters = [
-  instance_create_layer(usPositionData.buildPos.x, usPositionData.buildPos.y, "Gui", o_gui_stability_meter, usPositionData),
-  instance_create_layer(themPositionData.buildPos.x, themPositionData.buildPos.y,"Gui", o_gui_stability_meter, themPositionData)
+  instance_create_layer(usPositionData.guiState.buildPos.x, stabilityMeterY, "Gui", o_gui_stability_meter, usPositionData),
+  instance_create_layer(themPositionData.guiState.buildPos.x, stabilityMeterY,"Gui", o_gui_stability_meter, themPositionData)
 ]
 
 
