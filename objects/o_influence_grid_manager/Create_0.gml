@@ -10,17 +10,25 @@ debugGrid = true
 initialInfluenceGrid = function(player){
     // This is all very temp
     var grid = [
-    { x : -10, y : -10 },
-    { x : -2, y : -2 },
-    { x : -1, y : -2 },
-    { x : -1, y : -1 },
-    { x : -1, y : 0 },
-    { x : 1, y : 0 },
-    { x : 0, y : 0 },
-    { x : 0, y : 1 },
-    { x : 1, y : 1 },
-    { x : 2, y : 2 },
-    { x : -6, y : 6 }
+        { x : -10, y : -10 },
+        { x : -2, y : -2 },
+        { x : -1, y : -2 },
+        { x : -1, y : -1 },
+        { x : -1, y : 0 },
+        { x : 0, y : -1 }, 
+        { x : 0, y : 1 }, 
+        { x : -1, y : 1 }, 
+        { x : 0, y : -2 },
+        { x : 0, y : 0 },
+        { x : -6, y : 6 },
+        // sea
+        { x : 1, y : -1, sea: true },
+        { x : 1, y : 0, sea: true },
+        { x : 1, y : 1, sea: true },
+        { x : 2, y : -1, sea: true },
+        { x : 2, y : 0, sea: true },
+        { x : 2, y : 1, sea: true }
+    
     ]
     
     with { id, player }
@@ -31,8 +39,8 @@ initialInfluenceGrid = function(player){
         // spawn in enemy 20 steps away for now
         var shiftedEnemyPosition = player * 20
         
-        var posX = (_e.x + 10 + shiftedEnemyPosition) * tileSize
-        var posY = (_e.y + 10 + shiftedEnemyPosition) * tileSize
+        var posX = (_e.x + 30 + shiftedEnemyPosition) * tileSize
+        var posY = (_e.y + 30 + shiftedEnemyPosition) * tileSize
 
         var createBuilding
         if (player == Player.THEM) {
@@ -51,7 +59,8 @@ initialInfluenceGrid = function(player){
             relativeY: _e.y, 
             x: posX, 
             y: posY, 
-            occupiedBy: createBuilding
+            occupiedBy: createBuilding,
+            terrain: variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
         }
     }
     
@@ -77,7 +86,7 @@ getBuildingThatAcceptsOverProduction = function(player) {
 }
 
 
-getClosestBuildableSpot = function(pX, pY) {
+getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
     var bestDistance = 2147483647
     var bestX = 0
     var bestY = 0
@@ -88,8 +97,12 @@ getClosestBuildableSpot = function(pX, pY) {
             continue;
         }
         
+        if (influenceGrid[Player.US][i].terrain != terrain) {
+            continue;
+        }
+        
         var isoMappedMouse = isoToRoom(pX, pY)
-        var isoMapped = roomToIso(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y) // THE FUDGE
+        var isoMapped = roomToIso(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)
         var roomt = isoToRoom(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y) 
         
         var distance = point_distance(isoMappedMouse.x, isoMappedMouse.y, influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)

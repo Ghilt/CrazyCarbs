@@ -31,6 +31,6 @@ function ppp(){
 #macro CAMERA_W 1280
 #macro CAMERA_H 720
 
-#macro ISO_ORIGIN { x: 3200, y: 0 }
+#macro ISO_ORIGIN { x: 3200, y: -2432 }
 #macro ISO_W (4/3)
 #macro ISO_H 1

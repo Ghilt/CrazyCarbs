@@ -24,6 +24,8 @@ originalHeight = sprite_height
 #endregion
 
 sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
+terrainRequirement = ds_map_find_value(global.buildings, type).terrainRequirement
+
 layer = layer_get_id("GuiAir")
 
 isOwnedByPlayer = owner.object_index == o_inventory_manager
