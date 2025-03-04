@@ -6,10 +6,8 @@ function CityDistrict(_relativeX, _relativeY, _x, _y, _occupiedBy, _terrain) con
     y = _y
     occupiedBy = _occupiedBy
     terrain = _terrain
-    resetAfterBattle = function() { 
+    static resetAfterBattle = function() { 
         if (occupiedBy) {
-                        ppp("sdf", occupiedBy, occupiedBy.player, occupiedBy.x, occupiedBy.y, relativeX, relativeY, terrain)
-
             occupiedBy.resetAfterBattle({ x, y })
         }
     }
