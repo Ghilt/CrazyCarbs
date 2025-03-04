@@ -1,3 +1,6 @@
+// Inherit the parent event
+event_inherited();
+
 acceptsOverproduction = true
 
 overproductionTriggered = function(){

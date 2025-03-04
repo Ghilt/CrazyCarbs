@@ -1,15 +1,12 @@
 // If a method in this manager does not take a player argument, then that method only is used for the playing player and not enemy player
 
-enum Player{
-    US, THEM
-}
-
 debugGrid = true
 
 
 initialInfluenceGrid = function(player){
     // This is all very temp
     var grid = [
+        { x : 0, y : 0 },
         { x : -10, y : -10 },
         { x : -2, y : -2 },
         { x : -1, y : -2 },
@@ -19,7 +16,6 @@ initialInfluenceGrid = function(player){
         { x : 0, y : 1 }, 
         { x : -1, y : 1 }, 
         { x : 0, y : -2 },
-        { x : 0, y : 0 },
         { x : -6, y : 6 },
         // sea
         { x : 1, y : -1, sea: true },
@@ -35,7 +31,7 @@ initialInfluenceGrid = function(player){
      
     var _convert = function (_e, _i)
     {
-        
+        var terrain = variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
         // spawn in enemy 20 steps away for now
         var shiftedEnemyPosition = player * 20
         
@@ -45,7 +41,7 @@ initialInfluenceGrid = function(player){
         var createBuilding
         if (player == Player.THEM) {
             // give enemy fully stacked city
-            var randomBuildingType = _i == 0 ? Building.STARTING_PORT : randomBuilding()
+            var randomBuildingType = _i == 0 ? Building.STARTING_PORT : randomBuilding(terrain)
             createBuilding = instance_create_layer(posX, posY, "Ground", ds_map_find_value(global.buildings, randomBuildingType).building, { player: Player.THEM })
         } else if (_e.x == 0 && _e.y == 0) {
             // create starting building for player
@@ -54,14 +50,7 @@ initialInfluenceGrid = function(player){
             createBuilding = false
         }
         
-        return { 
-            relativeX: _e.x,
-            relativeY: _e.y, 
-            x: posX, 
-            y: posY, 
-            occupiedBy: createBuilding,
-            terrain: variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
-        }
+        return new CityDistrict(_e.x, _e.y, posX, posY, createBuilding, terrain)
     }
     
     return array_map(grid, _convert)
@@ -150,3 +139,19 @@ for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
     } 
 }
 
+
+// returns city district with x, y
+getPlayerPosition = function(player) {
+    // first position in list is always starting position
+    return influenceGrid[player][0]
+}
+
+resetAfterBattle = function() {
+    for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
+        influenceGrid[Player.US][i].resetAfterBattle()
+    }
+    
+    for (var i = 0; i < array_length(influenceGrid[Player.THEM]); i++) {
+        influenceGrid[Player.THEM][i].resetAfterBattle()
+    }
+}

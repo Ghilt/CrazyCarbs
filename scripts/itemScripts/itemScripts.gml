@@ -19,7 +19,7 @@ enum Terrain
 {
     SEA,
     GROUND
-};
+}
 
 global.buildings = ds_map_create()
 ds_map_add(global.buildings, Building.STARTING_PORT, { building: o_building_starting_port, price: 0, terrainRequirement: Terrain.GROUND })
@@ -29,6 +29,10 @@ ds_map_add(global.buildings, Building.SHIP_SLOOP, { building: o_unit_sloop, pric
 
 // For development
 // Will return a random building type, besides starting building
-function randomBuilding() {
-    return irandom_range(1, 3)
+function randomBuilding(terrain) {
+    if (terrain == Terrain.SEA) {
+        return irandom_range(3, 3)
+    } else {
+        return irandom_range(1, 2)
+    }
 }

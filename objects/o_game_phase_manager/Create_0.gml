@@ -29,6 +29,7 @@ goToBuild = function() {
     gameRound +=1
     o_shop_manager.goToNextRound()
     o_resource_manager.goToBuild()
+    o_influence_grid_manager.resetAfterBattle()
 }
 
 goToEndOfRoundScreen = function(victory) {
@@ -40,3 +41,4 @@ goToEndOfRoundScreen = function(victory) {
     roundEndScreen.image_yscale = 10
     
 }
+
