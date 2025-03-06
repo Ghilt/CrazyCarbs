@@ -76,7 +76,7 @@ getBuildingThatAcceptsOverProduction = function(player) {
 
 
 getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
-    var bestDistance = 2147483647
+    var bestDistance = MAX_INT
     var bestX = 0
     var bestY = 0
      
@@ -163,9 +163,10 @@ getClosestEnemyShipWithin = function(unit, range) {
         return element.terrain == Terrain.SEA;
     }
     
-    var bestDistance = 2147483647
+    var bestDistance = MAX_INT
     var bestX = 0
     var bestY = 0
+    var enemy = false
     
     var opponent = getOpponentOf(unit.player)
     var seaDistricts = array_filter(influenceGrid[opponent], seaFilter) 
@@ -175,11 +176,15 @@ getClosestEnemyShipWithin = function(unit, range) {
         
         if (distance < bestDistance) {
             bestDistance = distance
-            bestX = influenceGrid[Player.US][i].x
-            bestY = influenceGrid[Player.US][i].y
+            bestX = seaDistricts[i].occupiedBy.x
+            bestY = seaDistricts[i].occupiedBy.y
+            enemy = seaDistricts[i].occupiedBy
         } 
     }
     
-    return bestDistance < range ? { x: bestX, y: bestY, distance: bestDistance} : false
+    return bestDistance < range ? { x: bestX, y: bestY, distance: bestDistance, enemy: enemy } : false
+}
 
+goToBattle = function() {
+    // TODO load the new enemy here
 }

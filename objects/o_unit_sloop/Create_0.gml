@@ -1,10 +1,10 @@
-path = path_add()
+range = 200
 
-alarm[0] = 15
-
-function resetAfterBattle(origin) {
-    path_delete(path)
-    path = path_add()
+resetAfterBattle = function(origin) {
     x = origin.x
     y = origin.y
+}
+
+moveTowards = function(pos) {
+    mp_linear_step(pos.x, pos.y, 4, false)
 }

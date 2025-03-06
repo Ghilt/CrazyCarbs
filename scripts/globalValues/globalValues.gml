@@ -11,18 +11,6 @@
 
 #macro itemSize sprite_get_height(object_get_sprite(o_placable_instance))
 
-
-function ppp(){
-    var _str = "";
-
-    for (var i = 0; i < argument_count; i ++)
-    {
-        _str += " | "+ string(argument[i]);
-    }
-
-    show_debug_message(_str);
-}
-
 /// Isometric constants
 
 #macro MAP_W 100
@@ -34,3 +22,5 @@ function ppp(){
 #macro ISO_ORIGIN { x: 3200, y: -2432 }
 #macro ISO_W (4/3)
 #macro ISO_H 1
+
+#macro MAX_INT 2147483647

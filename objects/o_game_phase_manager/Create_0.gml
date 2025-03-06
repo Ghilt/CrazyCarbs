@@ -22,6 +22,8 @@ isBattlePhase = function() {
 goToBattle = function() {
     state = GameState.BATTLE
     o_stability_manager.goToBattle()
+    o_influence_grid_manager.goToBattle()
+    o_pathing_manager.goToBattle()
 }
 
 goToBuild = function() {
