@@ -30,6 +30,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":null,
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"s_unit_obstacle",
+    "path":"sprites/s_unit_obstacle/s_unit_obstacle.yy",
+  },
   "visible":true,
 }

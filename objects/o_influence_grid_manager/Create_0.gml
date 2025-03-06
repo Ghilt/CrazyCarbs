@@ -155,3 +155,31 @@ resetAfterBattle = function() {
         influenceGrid[Player.THEM][i].resetAfterBattle()
     }
 }
+
+getClosestEnemyShipWithin = function(unit, range) {
+    
+    var seaFilter = function passed_the_test(element, index)
+    {
+        return element.terrain == Terrain.SEA;
+    }
+    
+    var bestDistance = 2147483647
+    var bestX = 0
+    var bestY = 0
+    
+    var opponent = getOpponentOf(unit.player)
+    var seaDistricts = array_filter(influenceGrid[opponent], seaFilter) 
+    
+    for (var i = 0; i < array_length(seaDistricts); i++) {
+        var distance = point_distance(unit.x, unit.y, seaDistricts[i].occupiedBy.x, seaDistricts[i].occupiedBy.y)
+        
+        if (distance < bestDistance) {
+            bestDistance = distance
+            bestX = influenceGrid[Player.US][i].x
+            bestY = influenceGrid[Player.US][i].y
+        } 
+    }
+    
+    return bestDistance < range ? { x: bestX, y: bestY, distance: bestDistance} : false
+
+}

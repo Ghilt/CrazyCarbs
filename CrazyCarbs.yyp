@@ -112,6 +112,7 @@
     {"id":{"name":"s_terrain_types","path":"sprites/s_terrain_types/s_terrain_types.yy",},},
     {"id":{"name":"s_ui_placeable_placeholder","path":"sprites/s_ui_placeable_placeholder/s_ui_placeable_placeholder.yy",},},
     {"id":{"name":"s_ui_resource_placeholder","path":"sprites/s_ui_resource_placeholder/s_ui_resource_placeholder.yy",},},
+    {"id":{"name":"s_unit_obstacle","path":"sprites/s_unit_obstacle/s_unit_obstacle.yy",},},
     {"id":{"name":"s_unit_sloop","path":"sprites/s_unit_sloop/s_unit_sloop.yy",},},
     {"id":{"name":"TempTileSet","path":"tilesets/TempTileSet/TempTileSet.yy",},},
     {"id":{"name":"ts_starting_location_data","path":"tilesets/ts_starting_location_data/ts_starting_location_data.yy",},},

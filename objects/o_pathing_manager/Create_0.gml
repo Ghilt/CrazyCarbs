@@ -1,3 +1,5 @@
+tempRange = 200
+
 gridWidth = MAP_W
 gridHeight = MAP_H
 gridCellWidth = room_width / gridWidth
@@ -21,13 +23,18 @@ for (var tX = 0; tX < MAP_W; tX++) {
 
 
 // non iso cooridnates, real world coordinates
-motionPlanToTarget = function(path, startX, startY, targetX, targetY) {
+motionPlanToTarget = function(path, unit) {
+    var opponent = getOpponentOf(unit.player)
+    var target = o_influence_grid_manager.getClosestEnemyShipWithin(unit, tempRange)
+    
+    if (!target) {
+        target = o_influence_grid_manager.getPlayerPosition(opponent)
+    }
+    
     mp_grid_path(
-        navigableSeasGrid, 
+        navigableSeasGrid,
         path, 
-        startX, startY, 
-        targetX, targetY, 
+        unit.x, unit.y, target.x, target.y,
         true
     )
-    
 }

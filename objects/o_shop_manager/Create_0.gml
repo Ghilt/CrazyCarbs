@@ -34,7 +34,7 @@ moneyProgression = function() {
 currentMoney = moneyProgression()
 
 nextOffer = function() {
-    return randomBuilding()
+    return randomBuilding(irandom_range(0, 1))
 }
 
 getSellIntent = function(mouseX, mouseY) {
