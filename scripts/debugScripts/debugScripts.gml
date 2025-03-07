@@ -1,3 +1,6 @@
+#macro pp ppp("Reached!")
+
+
 // Quick debug print
 function ppp(){
     var _str = "";

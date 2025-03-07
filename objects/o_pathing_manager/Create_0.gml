@@ -1,4 +1,5 @@
 tempRange = 200
+tempOuterTurnRange = 128
 
 gridWidth = MAP_W
 gridHeight = MAP_H
@@ -102,11 +103,13 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
         if (bestDistance < MAX_INT) {
             var unitPos = { x: unit.x, y: unit.y }
              
+            var previousPoint = { x: path_get_point_x(path, bestPoint - 1), y:  path_get_point_y(path, bestPoint - 1)}
             var closestPoint = { x: path_get_point_x(path, bestPoint), y:  path_get_point_y(path, bestPoint) }
             var nextPoint = { x: path_get_point_x(path, bestPoint + 1), y:  path_get_point_y(path, bestPoint + 1) }
             var farPoint = { x: path_get_point_x(path, bestPoint + 2), y:  path_get_point_y(path, bestPoint + 2) }
             var displacementVector = vectorSubtract(unitPos, nextPoint)
 
+            var previousDirection = vectorSubtract(closestPoint, previousPoint) 
             var nearDirection = vectorSubtract(nextPoint, closestPoint) 
             var farDirection = vectorSubtract(farPoint, closestPoint)
             var futureDirection = vectorSubtract(farPoint, nextPoint)
@@ -128,7 +131,9 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
             if (farDotProduct != nearDotProduct && farDotProduct > nearDotProduct) {
                 // We are on the inside of a turn. We do not want to overshoot/cross the path, turn now
                 target = vectorAdd(unitPos, futureDirection)
-                ppu(unit, unit.x, unit.y, unit.player)
+            } else if (previousDirection != nearDirection && vectorLength(displacementVector) < tempOuterTurnRange){
+                // We are on the outside of a turn
+                target = vectorAdd(unitPos, previousDirection)
             } else {
                 // TODO need to go one point back on the path to figure out if im on the outside of a turn and act accordingly
                 target = vectorAdd(unitPos, nearDirection)

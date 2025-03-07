@@ -160,14 +160,11 @@ getClosestEnemyShipWithin = function(unit, range) {
     
     var seaFilter = function passed_the_test(element, index)
     {
-        return element.terrain == Terrain.SEA;
+        return element.terrain == Terrain.SEA && element.occupiedBy;
     }
     
     var bestDistance = MAX_INT
-    var bestX = 0
-    var bestY = 0
-    var enemy = false
-    
+    var bestDistrict = false
     var opponent = getOpponentOf(unit.player)
     var seaDistricts = array_filter(influenceGrid[opponent], seaFilter) 
     
@@ -176,13 +173,15 @@ getClosestEnemyShipWithin = function(unit, range) {
         
         if (distance < bestDistance) {
             bestDistance = distance
-            bestX = seaDistricts[i].occupiedBy.x
-            bestY = seaDistricts[i].occupiedBy.y
-            enemy = seaDistricts[i].occupiedBy
+            bestDistrict = seaDistricts[i]
         } 
     }
-    
-    return bestDistance < range ? { x: bestX, y: bestY, distance: bestDistance, enemy: enemy } : false
+
+    return bestDistance < range ? { 
+        x: bestDistrict.occupiedBy.x, 
+        y: bestDistrict.occupiedBy.y, 
+        distance: bestDistance, 
+        enemy: bestDistrict.occupiedBy } : false
 }
 
 goToBattle = function() {

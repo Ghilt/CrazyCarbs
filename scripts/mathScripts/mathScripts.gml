@@ -15,3 +15,7 @@ function crossProduct(a, b) {
 function dotProduct(a, b) {
     return dot_product(a.x, a.y, b.x, b.y)
 }
+
+function vectorLength(a) {
+    return sqrt(power(a.x, 2) + power(a.y, 2))
+}
