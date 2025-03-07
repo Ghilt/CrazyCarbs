@@ -19,6 +19,7 @@
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"c_cannon_ball_arc","order":2,"path":"animcurves/c_cannon_ball_arc/c_cannon_ball_arc.yy",},
     {"name":"c_up_over_and_down","order":1,"path":"animcurves/c_up_over_and_down/c_up_over_and_down.yy",},
     {"name":"o_building_gold_mine","order":2,"path":"objects/o_building_gold_mine/o_building_gold_mine.yy",},
     {"name":"o_building_lumber_mill","order":1,"path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},
@@ -39,6 +40,7 @@
     {"name":"o_iso_renderer","order":5,"path":"objects/o_iso_renderer/o_iso_renderer.yy",},
     {"name":"o_pathing_manager","order":9,"path":"objects/o_pathing_manager/o_pathing_manager.yy",},
     {"name":"o_placable_instance","order":2,"path":"objects/o_placable_instance/o_placable_instance.yy",},
+    {"name":"o_projectile_cannon_ball","order":4,"path":"objects/o_projectile_cannon_ball/o_projectile_cannon_ball.yy",},
     {"name":"o_resource_manager","order":5,"path":"objects/o_resource_manager/o_resource_manager.yy",},
     {"name":"o_shop_manager","order":8,"path":"objects/o_shop_manager/o_shop_manager.yy",},
     {"name":"o_stability_manager","order":7,"path":"objects/o_stability_manager/o_stability_manager.yy",},
@@ -77,6 +79,7 @@
     {"name":"s_iso100_ground","order":12,"path":"sprites/s_iso100_ground/s_iso100_ground.yy",},
     {"name":"s_iso100_ocean","order":13,"path":"sprites/s_iso100_ocean/s_iso100_ocean.yy",},
     {"name":"s_iso100_water","order":14,"path":"sprites/s_iso100_water/s_iso100_water.yy",},
+    {"name":"s_projectile_cannon_ball","order":2,"path":"sprites/s_projectile_cannon_ball/s_projectile_cannon_ball.yy",},
     {"name":"s_resource_ore","order":1,"path":"sprites/s_resource_ore/s_resource_ore.yy",},
     {"name":"s_shop_background","order":4,"path":"sprites/s_shop_background/s_shop_background.yy",},
     {"name":"s_starting_location_data","order":13,"path":"sprites/s_starting_location_data/s_starting_location_data.yy",},

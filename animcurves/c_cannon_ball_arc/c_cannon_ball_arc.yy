@@ -1,0 +1,24 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"c_cannon_ball_arc",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"arc","colour":4290799884,"name":"arc","points":[
+        {"th0":-0.1,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.09694657,"th1":0.09233814,"tv0":-0.14133334,"tv1":0.13461494,"x":0.4255724,"y":3.6476798,},
+        {"th0":-0.14770997,"th1":0.1,"tv0":0.37426662,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"inPlane","colour":4281083598,"name":"inPlane","points":[
+        {"th0":-0.1,"th1":0.02761728,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.105115905,"th1":0.27474606,"tv0":-0.11071234,"tv1":0.2890904,"x":0.41030535,"y":0.5961837,},
+        {"th0":-0.07238269,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"c_cannon_ball_arc",
+  "parent":{
+    "name":"Curves",
+    "path":"folders/Curves.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}

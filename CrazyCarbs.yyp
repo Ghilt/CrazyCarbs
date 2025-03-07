@@ -37,6 +37,7 @@
   },
   "name":"CrazyCarbs",
   "resources":[
+    {"id":{"name":"c_cannon_ball_arc","path":"animcurves/c_cannon_ball_arc/c_cannon_ball_arc.yy",},},
     {"id":{"name":"c_movement","path":"animcurves/c_movement/c_movement.yy",},},
     {"id":{"name":"c_up_over_and_down","path":"animcurves/c_up_over_and_down/c_up_over_and_down.yy",},},
     {"id":{"name":"Easy_and_Wonderfully_Tileset","path":"extensions/Easy_and_Wonderfully_Tileset/Easy_and_Wonderfully_Tileset.yy",},},
@@ -61,6 +62,7 @@
     {"id":{"name":"o_pathing_manager","path":"objects/o_pathing_manager/o_pathing_manager.yy",},},
     {"id":{"name":"o_placable_instance","path":"objects/o_placable_instance/o_placable_instance.yy",},},
     {"id":{"name":"o_production_building_parent","path":"objects/o_production_building_parent/o_production_building_parent.yy",},},
+    {"id":{"name":"o_projectile_cannon_ball","path":"objects/o_projectile_cannon_ball/o_projectile_cannon_ball.yy",},},
     {"id":{"name":"o_resource_manager","path":"objects/o_resource_manager/o_resource_manager.yy",},},
     {"id":{"name":"o_shop_manager","path":"objects/o_shop_manager/o_shop_manager.yy",},},
     {"id":{"name":"o_stability_manager","path":"objects/o_stability_manager/o_stability_manager.yy",},},
@@ -107,6 +109,7 @@
     {"id":{"name":"s_iso100_water","path":"sprites/s_iso100_water/s_iso100_water.yy",},},
     {"id":{"name":"s_ocean","path":"sprites/s_ocean/s_ocean.yy",},},
     {"id":{"name":"s_port","path":"sprites/s_port/s_port.yy",},},
+    {"id":{"name":"s_projectile_cannon_ball","path":"sprites/s_projectile_cannon_ball/s_projectile_cannon_ball.yy",},},
     {"id":{"name":"s_resource_lumber","path":"sprites/s_resource_lumber/s_resource_lumber.yy",},},
     {"id":{"name":"s_resource_ore","path":"sprites/s_resource_ore/s_resource_ore.yy",},},
     {"id":{"name":"s_shop_background","path":"sprites/s_shop_background/s_shop_background.yy",},},
