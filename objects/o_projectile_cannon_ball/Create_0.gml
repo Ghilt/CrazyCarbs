@@ -14,3 +14,5 @@ startScale = 0.1
 endScale = 0.3
 image_xscale = startScale
 image_yscale = startScale
+
+lastTargetPos = instancePosition(target)

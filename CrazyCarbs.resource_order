@@ -51,6 +51,8 @@
     {"name":"o_zoom_manager","order":6,"path":"objects/o_zoom_manager/o_zoom_manager.yy",},
     {"name":"CityDistrictData","order":1,"path":"scripts/CityDistrictData/CityDistrictData.yy",},
     {"name":"debugScripts","order":5,"path":"scripts/debugScripts/debugScripts.yy",},
+    {"name":"EnemyCityBuildData","order":3,"path":"scripts/EnemyCityBuildData/EnemyCityBuildData.yy",},
+    {"name":"instanceScripts","order":7,"path":"scripts/instanceScripts/instanceScripts.yy",},
     {"name":"isoRenderScripts","order":2,"path":"scripts/isoRenderScripts/isoRenderScripts.yy",},
     {"name":"isoUtils","order":3,"path":"scripts/isoUtils/isoUtils.yy",},
     {"name":"itemScripts","order":1,"path":"scripts/itemScripts/itemScripts.yy",},

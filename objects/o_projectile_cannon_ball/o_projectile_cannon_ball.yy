@@ -36,5 +36,8 @@
     "path":"sprites/s_projectile_cannon_ball/s_projectile_cannon_ball.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "depth_sorted_air",
+  ],
   "visible":true,
 }

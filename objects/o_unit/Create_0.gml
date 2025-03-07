@@ -1,5 +1,5 @@
 // Origin is supplied by the influence manager, which manages where this unit is built
-function resetAfterBattle(origin) {
+function resetAfterBattle() {
     x = origin.x
     y = origin.y
 }

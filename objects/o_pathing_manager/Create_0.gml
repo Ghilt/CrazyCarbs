@@ -74,7 +74,7 @@ getClosestEnemyWithinEngageRange = function(unit) {
 moveTowardsShipOrBase = function(unit, targetUnit) {
     
     if (targetUnit) {
-        ppp("sdfs ")
+        ppp("TODO move towards unit ")
     } else {
         // navigate towards base along path
         

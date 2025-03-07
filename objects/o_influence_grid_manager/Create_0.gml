@@ -27,37 +27,21 @@ initialInfluenceGrid = function(player){
     
     ]
     
-    with { id, player }
-     
     var _convert = function (_e, _i)
     {
         var terrain = variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
-        // spawn in enemy 20 steps away for now
-        var shiftedEnemyPosition = player * 20
         
-        var posX = (_e.x + 30 + shiftedEnemyPosition) * tileSize
-        var posY = (_e.y + 30 + shiftedEnemyPosition) * tileSize
-
-        var createBuilding
-        if (player == Player.THEM) {
-            // give enemy fully stacked city
-            var randomBuildingType = _i == 0 ? Building.STARTING_PORT : randomBuilding(terrain)
-            createBuilding = instance_create_layer(posX, posY, "Ground", ds_map_find_value(global.buildings, randomBuildingType).building, { player: Player.THEM })
-        } else if (_e.x == 0 && _e.y == 0) {
-            // create starting building for player
-            createBuilding = instance_create_layer(posX, posY, "Ground", ds_map_find_value(global.buildings, Building.STARTING_PORT).building, { player: Player.US })
-        } else {
-            createBuilding = false
-        }
+        var posX = (_e.x + 30) * tileSize
+        var posY = (_e.y + 30) * tileSize
         
-        return new CityDistrict(_e.x, _e.y, posX, posY, createBuilding, terrain)
+        return new CityDistrict(_e.x, _e.y, posX, posY, false, terrain)
     }
     
     return array_map(grid, _convert)
 }
 
 // represents where structures of your city state can be built
-influenceGrid = [initialInfluenceGrid(Player.US), initialInfluenceGrid(Player.THEM)]
+influenceGrid = [initialInfluenceGrid(Player.US), [/*Loaded every battle*/]]
 
 
 getBuildingThatAcceptsOverProduction = function(player) {
@@ -124,7 +108,13 @@ buildAt = function(pos, type) {
     
     var loc = influenceGrid[Player.US][buildingSiteIndex]
     
-    var newBuilding = instance_create_layer(loc.x, loc.y, "Ground", ds_map_find_value(global.buildings, type).building, { player: Player.US })
+    var newBuilding = instance_create_layer(
+        loc.x, 
+        loc.y, 
+        "Ground", 
+        ds_map_find_value(global.buildings, type).building, 
+        { player: Player.US, origin: { x: loc.x, y: loc.y }}
+        )
     
     loc.occupiedBy = newBuilding
     return true
@@ -160,7 +150,7 @@ getClosestEnemyShipWithin = function(unit, range) {
     
     var seaFilter = function passed_the_test(element, index)
     {
-        return element.terrain == Terrain.SEA && element.occupiedBy;
+        return element.terrain == Terrain.SEA && element.occupiedBy && !element.occupiedBy.isDestroyed;
     }
     
     var bestDistance = MAX_INT
@@ -184,6 +174,30 @@ getClosestEnemyShipWithin = function(unit, range) {
         enemy: bestDistrict.occupiedBy } : false
 }
 
-goToBattle = function() {
-    // TODO load the new enemy here
+goToBattle = function(enemyCitySavedData) {
+    var startPos = enemyCitySavedData.pos
+    
+    with { startPos }
+        
+    var loadIntoMap = function (_savedDistrict, _i)
+    {
+        var pos = { 
+           x: (_savedDistrict.relativeX + startPos.x) * tileSize, 
+           y: (_savedDistrict.relativeY + startPos.y) * tileSize 
+        }
+        
+        var building = _savedDistrict.hasBuildingType() ? instance_create_layer(
+            pos.x, 
+            pos.y, 
+            "Ground", 
+            ds_map_find_value(global.buildings, _savedDistrict.buildingType).building, 
+            { player: Player.THEM, origin: pos }
+            ) : false
+        
+        return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, building, _savedDistrict.terrain)
+    }
+    
+    influenceGrid[Player.THEM] = array_map(enemyCitySavedData.districts, loadIntoMap)
+    
+    ppp("asdasda", influenceGrid[Player.THEM][0])
 }
