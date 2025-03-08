@@ -45,7 +45,6 @@
     {"name":"o_shop_manager","order":8,"path":"objects/o_shop_manager/o_shop_manager.yy",},
     {"name":"o_stability_manager","order":7,"path":"objects/o_stability_manager/o_stability_manager.yy",},
     {"name":"o_unit_sloop_debug","order":1,"path":"objects/o_unit_sloop_debug/o_unit_sloop_debug.yy",},
-    {"name":"o_unit_sloop_old_path_finding_version","order":3,"path":"objects/o_unit_sloop_old_path_finding_version/o_unit_sloop_old_path_finding_version.yy",},
     {"name":"o_unit","order":2,"path":"objects/o_unit/o_unit.yy",},
     {"name":"o_world_resource_instance","order":4,"path":"objects/o_world_resource_instance/o_world_resource_instance.yy",},
     {"name":"o_zoom_manager","order":6,"path":"objects/o_zoom_manager/o_zoom_manager.yy",},

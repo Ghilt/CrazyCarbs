@@ -67,7 +67,6 @@
     {"id":{"name":"o_shop_manager","path":"objects/o_shop_manager/o_shop_manager.yy",},},
     {"id":{"name":"o_stability_manager","path":"objects/o_stability_manager/o_stability_manager.yy",},},
     {"id":{"name":"o_unit_sloop_debug","path":"objects/o_unit_sloop_debug/o_unit_sloop_debug.yy",},},
-    {"id":{"name":"o_unit_sloop_old_path_finding_version","path":"objects/o_unit_sloop_old_path_finding_version/o_unit_sloop_old_path_finding_version.yy",},},
     {"id":{"name":"o_unit_sloop","path":"objects/o_unit_sloop/o_unit_sloop.yy",},},
     {"id":{"name":"o_unit","path":"objects/o_unit/o_unit.yy",},},
     {"id":{"name":"o_world_resource_instance","path":"objects/o_world_resource_instance/o_world_resource_instance.yy",},},

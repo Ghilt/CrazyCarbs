@@ -25,23 +25,6 @@ for (var tX = 0; tX < MAP_W; tX++) {
     }
 }
 
-
-motionPlanToTarget = function(path, unit) {
-    var opponent = getOpponentOf(unit.player)
-    var target = o_influence_grid_manager.getClosestEnemyShipWithin(unit, tempRange)
-    
-    if (!target) {
-        target = o_influence_grid_manager.getPlayerPosition(opponent)
-    }
-    
-    mp_grid_path(
-        navigableSeasGrid,
-        path, 
-        unit.x, unit.y, target.x, target.y,
-        true
-    )
-}
-
 goToBattle = function() { 
     var ourBase = o_influence_grid_manager.getPlayerPosition(Player.US)
     var enemyBase = o_influence_grid_manager.getPlayerPosition(Player.THEM)
@@ -54,13 +37,13 @@ goToBattle = function() {
         navigableSeasGrid,
         paths[Player.US], 
         ourBase.x, ourBase.y, enemyBase.x, enemyBase.y,
-        true // TODO support diagonal movement later
+        true
     )
     mp_grid_path(
         navigableSeasGrid,
         paths[Player.THEM], 
         ourBase.x, ourBase.y, enemyBase.x, enemyBase.y,
-        true // TODO support diagonal movement later
+        true
     )
     path_reverse(paths[Player.THEM])
 }
@@ -72,6 +55,10 @@ getClosestEnemyWithinEngageRange = function(unit) {
 clippedIntoShipInstance = function(unit) {
     var closestFriendlyShipData = o_influence_grid_manager.getClosestShipWithin(unit, itemSize / 2, unit.player)
     return closestFriendlyShipData ? closestFriendlyShipData.enemy : false
+}
+
+blockade = function(unit) {
+    // do nothing for now
 }
 
 moveTowardsShipOrBase = function(unit, targetUnit) {

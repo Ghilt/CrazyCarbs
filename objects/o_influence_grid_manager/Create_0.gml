@@ -58,6 +58,11 @@ getBuildingThatAcceptsOverProduction = function(player) {
     return false
 }
 
+getRandomPopulatedShoreDistrict = function (player){
+    // TODO algo for finding suitable districts
+    return influenceGrid[player][0]
+}
+
 
 getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
     var bestDistance = MAX_INT
@@ -146,6 +151,12 @@ resetAfterBattle = function() {
     }
 }
 
+distanceToBase = function (pos, player) {
+    var base = influenceGrid[player][0]
+    var distance = point_distance(pos.x, pos.y, base.x, base.y)
+    return distance
+}
+
 getClosestShipWithin = function(unit, range, owningPlayer) {
     
     with { unit }
@@ -153,7 +164,7 @@ getClosestShipWithin = function(unit, range, owningPlayer) {
     {
         return element.terrain == Terrain.SEA && 
                 element.occupiedBy && 
-                !element.occupiedBy.isDestroyed &&
+                !element.occupiedBy.isDefeated &&
                 element.occupiedBy != unit;
     }
     
@@ -201,6 +212,4 @@ goToBattle = function(enemyCitySavedData) {
     }
     
     influenceGrid[Player.THEM] = array_map(enemyCitySavedData.districts, loadIntoMap)
-    
-    ppp("asdasda", influenceGrid[Player.THEM][0])
 }

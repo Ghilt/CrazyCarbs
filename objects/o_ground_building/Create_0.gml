@@ -1,5 +1,12 @@
 ppp("Creating building at", x, y)
 
-function resetAfterBattle(origin) {
+//
+isDefeated = false
+
+resetAfterBattle = function(origin) {
     // No action needed   
+}
+
+hitByProjectile = function(damage) {
+    o_stability_manager.destabilize(damage, player)
 }

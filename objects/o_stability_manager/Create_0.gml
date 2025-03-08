@@ -31,3 +31,7 @@ meters = [
 stabilize = function(stabilizeBy, player) {
     stability[player] = clamp(stability[player] + stabilizeBy, 0, maxStability[player])
 }
+
+destabilize = function(destabilizeBy, player) {
+    stability[player] = clamp(stability[player] - destabilizeBy, 0, maxStability[player])
+}

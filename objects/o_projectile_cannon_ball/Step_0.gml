@@ -1,14 +1,14 @@
 if (timePassed == duration){
     // Movement finished
     timePassed = 0 
-    if (!target.isDestroyed) {
+    if (!target.isDefeated) {
         // Target may have been destroyed
         target.hitByProjectile(damage)
     }
     instance_destroy(id)
     
 } else {
-    if (!target.isDestroyed) {
+    if (!target.isDefeated) {
         lastTargetPos = instancePosition(target)
     }
     

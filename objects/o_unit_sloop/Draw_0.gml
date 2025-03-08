@@ -1,4 +1,4 @@
-if (isDestroyed) {
+if (isDefeated) {
     return;
 }
 
