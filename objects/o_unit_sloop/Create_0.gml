@@ -1,6 +1,6 @@
 stats = {
     hull: 100,
-    damage: 100,
+    damage: 50,
     range: 200,
     weaponReadiness: 20, // before firing weapon for the first time
     weaponCooldown: one_second * 2 
@@ -17,7 +17,7 @@ resetAfterBattle = function() {
 }
 
 moveTowards = function(pos) {
-    mp_linear_step(pos.x, pos.y, 6, false)
+    mp_linear_step(pos.x, pos.y, 3, false)
 }
 
 fireWeapon = function(enemy) {
@@ -33,7 +33,7 @@ fireWeapon = function(enemy) {
 hitByProjectile = function(damage){
     hull -= damage
     
-    if (hull < 0) {
+    if (hull <= 0) {
         destroyedByDamage()
     }
 }

@@ -146,17 +146,20 @@ resetAfterBattle = function() {
     }
 }
 
-getClosestEnemyShipWithin = function(unit, range) {
+getClosestShipWithin = function(unit, range, owningPlayer) {
     
+    with { unit }
     var seaFilter = function passed_the_test(element, index)
     {
-        return element.terrain == Terrain.SEA && element.occupiedBy && !element.occupiedBy.isDestroyed;
+        return element.terrain == Terrain.SEA && 
+                element.occupiedBy && 
+                !element.occupiedBy.isDestroyed &&
+                element.occupiedBy != unit;
     }
     
     var bestDistance = MAX_INT
     var bestDistrict = false
-    var opponent = getOpponentOf(unit.player)
-    var seaDistricts = array_filter(influenceGrid[opponent], seaFilter) 
+    var seaDistricts = array_filter(influenceGrid[owningPlayer], seaFilter) 
     
     for (var i = 0; i < array_length(seaDistricts); i++) {
         var distance = point_distance(unit.x, unit.y, seaDistricts[i].occupiedBy.x, seaDistricts[i].occupiedBy.y)

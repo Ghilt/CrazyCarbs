@@ -1,5 +1,5 @@
-tempRange = 200
-tempOuterTurnRange = 128
+tempRange = 400 // target acquiring
+tempOuterTurnRange = 100
 
 gridWidth = MAP_W
 gridHeight = MAP_H
@@ -26,8 +26,6 @@ for (var tX = 0; tX < MAP_W; tX++) {
 }
 
 
-
-// non iso cooridnates, real world coordinates
 motionPlanToTarget = function(path, unit) {
     var opponent = getOpponentOf(unit.player)
     var target = o_influence_grid_manager.getClosestEnemyShipWithin(unit, tempRange)
@@ -56,29 +54,45 @@ goToBattle = function() {
         navigableSeasGrid,
         paths[Player.US], 
         ourBase.x, ourBase.y, enemyBase.x, enemyBase.y,
-        false // TODO support diagonal movement later
+        true // TODO support diagonal movement later
     )
     mp_grid_path(
         navigableSeasGrid,
         paths[Player.THEM], 
         ourBase.x, ourBase.y, enemyBase.x, enemyBase.y,
-        false // TODO support diagonal movement later
+        true // TODO support diagonal movement later
     )
     path_reverse(paths[Player.THEM])
 }
 
 getClosestEnemyWithinEngageRange = function(unit) {
-    return o_influence_grid_manager.getClosestEnemyShipWithin(unit, tempRange)
+    return o_influence_grid_manager.getClosestShipWithin(unit, tempRange, getOpponentOf(unit.player))
+}
+
+clippedIntoShipInstance = function(unit) {
+    var closestFriendlyShipData = o_influence_grid_manager.getClosestShipWithin(unit, itemSize / 2, unit.player)
+    return closestFriendlyShipData ? closestFriendlyShipData.enemy : false
 }
 
 moveTowardsShipOrBase = function(unit, targetUnit) {
     
+    var unitPos = instancePosition(unit)
+    
+    var entangledInstance = clippedIntoShipInstance(unit)
+    if (entangledInstance) {
+        
+        var entangledPos = instancePosition(entangledInstance)    
+        var unentagleDisplacementVector = vectorSubtract(unitPos, entangledInstance)
+        unit.moveTowards(vectorAdd(unitPos, unentagleDisplacementVector))
+        //return;
+    }
+    
+    
     if (targetUnit) {
-        ppp("TODO move towards unit ")
+        unit.moveTowards(instancePosition(targetUnit))
     } else {
         // navigate towards base along path
         
-        // Get closest point on path
         var path = paths[unit.player]
         var bestDistance = MAX_INT
         var bestX = 0
@@ -101,7 +115,6 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
         }
 
         if (bestDistance < MAX_INT) {
-            var unitPos = { x: unit.x, y: unit.y }
              
             var previousPoint = { x: path_get_point_x(path, bestPoint - 1), y:  path_get_point_y(path, bestPoint - 1)}
             var closestPoint = { x: path_get_point_x(path, bestPoint), y:  path_get_point_y(path, bestPoint) }
@@ -135,10 +148,8 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
                 // We are on the outside of a turn
                 target = vectorAdd(unitPos, previousDirection)
             } else {
-                // TODO need to go one point back on the path to figure out if im on the outside of a turn and act accordingly
                 target = vectorAdd(unitPos, nearDirection)
             }
-            
             
             unit.moveTowards(target)
         }

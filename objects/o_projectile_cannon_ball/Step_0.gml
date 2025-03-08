@@ -17,8 +17,8 @@ if (timePassed == duration){
     
     var position = animcurve_channel_evaluate(movement, interpolation)    
     var position2 = animcurve_channel_evaluate(scale, interpolation)
-    x = lerp(origin.x, lastTargetPos.x, position)
-    y = lerp(origin.y, lastTargetPos.y, position)
+    x = lerp(firedFromPos.x, lastTargetPos.x, position)
+    y = lerp(firedFromPos.y, lastTargetPos.y, position)
     
     image_xscale = lerp(startScale, endScale, position2)
     image_yscale = lerp(startScale, endScale, position2)

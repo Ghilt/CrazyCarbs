@@ -1,3 +1,7 @@
+if (o_game_phase_manager.isBattlePhase()) {
+    ppp("Not supported right now, but could be usefull to spawn stuff in the middle of battle properly")
+    return;
+}
 
 var spots = o_influence_grid_manager.influenceGrid[Player.US]
 

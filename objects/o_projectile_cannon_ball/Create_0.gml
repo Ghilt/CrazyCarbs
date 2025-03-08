@@ -4,7 +4,7 @@
  * damage - real
  */
 
-duration = one_second * 1.2
+duration = one_second * 0.7
 timePassed = 0
 
 movement = animcurve_get_channel(c_cannon_ball_arc, "inPlane")
@@ -15,4 +15,5 @@ endScale = 0.3
 image_xscale = startScale
 image_yscale = startScale
 
+firedFromPos = instancePosition(origin)
 lastTargetPos = instancePosition(target)
