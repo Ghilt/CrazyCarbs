@@ -19,5 +19,6 @@ with (o_shop_manager) {
     }
     
     draw_circle_color(other.x + shopSellPos.x, other.y + shopSellPos.y, shopSellPos.snappingDistance, c_orange, c_yellow, false)
+    draw_text_color(other.x + shopSellPos.x - 14, other.y + shopSellPos.y, "Sell", c_black, c_red, c_black, c_black, 1)
 }
 

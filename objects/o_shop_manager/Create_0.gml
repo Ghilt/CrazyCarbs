@@ -1,4 +1,4 @@
-
+rerollPrice = 1
 shopWidth = 400
 shopHeight = guiHeight / 2
 shopX = guiWidth - shopWidth
@@ -35,6 +35,19 @@ currentMoney = moneyProgression()
 
 nextOffer = function() {
     return randomBuilding(irandom_range(0, 1))
+}
+
+rerollShop = function(){
+    if (currentMoney >= rerollPrice) {
+        currentMoney -= rerollPrice
+        for (var i = 0; i < array_length(shopPosition); i++) {
+            var shopItem = shopPosition[i].occupiedBy
+            if (shopItem) {
+                shopPosition[i].occupiedBy = false
+                instance_destroy(shopItem)
+            }
+        }
+    }
 }
 
 getSellIntent = function(mouseX, mouseY) {
