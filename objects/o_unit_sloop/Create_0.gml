@@ -19,8 +19,8 @@ resetAfterBattle = function() {
     isDefeated = false
 }
 
-moveTowards = function(pos) {
-    mp_linear_step(pos.x, pos.y, stats.speed, false)
+moveTowards = function(pos, speedModifier) {
+    mp_linear_step(pos.x, pos.y, stats.speed * speedModifier, false)
 }
 
 fireWeapon = function(enemy) {

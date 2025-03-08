@@ -11,6 +11,9 @@ navigableSeasGrid = mp_grid_create(0, 0, gridWidth, gridHeight, gridCellWidth, g
 // two paths, one for Player.US and one for Player.THEM
 paths = [path_add(), path_add()]
 
+// used to sail the fleets together (clump them up a bit)
+furthestCheckpointReached = [0, 0]
+
 
 var tileMap = layer_tilemap_get_id("Tiles_map")
 
@@ -26,6 +29,7 @@ for (var tX = 0; tX < MAP_W; tX++) {
 }
 
 goToBattle = function() { 
+    furthestCheckpointReached = [0, 0]
     var ourBase = o_influence_grid_manager.getPlayerPosition(Player.US)
     var enemyBase = o_influence_grid_manager.getPlayerPosition(Player.THEM)
     
@@ -58,7 +62,7 @@ clippedIntoShipInstance = function(unit) {
 }
 
 blockade = function(unit) {
-    // do nothing for now
+    // do nothing for now, maybe some pacing animation later
 }
 
 moveTowardsShipOrBase = function(unit, targetUnit) {
@@ -70,13 +74,13 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
         
         var entangledPos = instancePosition(entangledInstance)    
         var unentagleDisplacementVector = vectorSubtract(unitPos, entangledInstance)
-        unit.moveTowards(vectorAdd(unitPos, unentagleDisplacementVector))
+        unit.moveTowards(vectorAdd(unitPos, unentagleDisplacementVector), 1)
         //return;
     }
     
     
     if (targetUnit) {
-        unit.moveTowards(instancePosition(targetUnit))
+        unit.moveTowards(instancePosition(targetUnit), 1)
     } else {
         // navigate towards base along path
         
@@ -100,11 +104,15 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
                 bestPoint = i
             } 
         }
+        
+        if (bestPoint > furthestCheckpointReached[unit.player]) {
+            furthestCheckpointReached[unit.player] = bestPoint
+        }
 
         if (bestDistance < MAX_INT) {
              
             var previousPoint = { x: path_get_point_x(path, bestPoint - 1), y:  path_get_point_y(path, bestPoint - 1)}
-            var closestPoint = { x: path_get_point_x(path, bestPoint), y:  path_get_point_y(path, bestPoint) }
+            var closestPoint = { x: path_get_point_x(path, bestPoint), y:  path_get_point_y(path, bestPoint) } 
             var nextPoint = { x: path_get_point_x(path, bestPoint + 1), y:  path_get_point_y(path, bestPoint + 1) }
             var farPoint = { x: path_get_point_x(path, bestPoint + 2), y:  path_get_point_y(path, bestPoint + 2) }
             var displacementVector = vectorSubtract(unitPos, nextPoint)
@@ -138,7 +146,16 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
                 target = vectorAdd(unitPos, nearDirection)
             }
             
-            unit.moveTowards(target)
+            var speedFactor; // could probably do this with a curve ^^
+            if (bestPoint == furthestCheckpointReached[unit.player]) {
+                speedFactor = 0.9
+            } else if (bestPoint == furthestCheckpointReached[unit.player] - 1) {
+                speedFactor = 1
+            } else {
+                speedFactor = 1.5
+            }
+            
+            unit.moveTowards(target, speedFactor)
         }
     }
 }

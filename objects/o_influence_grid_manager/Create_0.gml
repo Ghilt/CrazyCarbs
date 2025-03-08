@@ -148,6 +148,9 @@ resetAfterBattle = function() {
     
     for (var i = 0; i < array_length(influenceGrid[Player.THEM]); i++) {
         influenceGrid[Player.THEM][i].resetAfterBattle()
+        // For now, just delete old enemy
+        instance_destroy(influenceGrid[Player.THEM][i].occupiedBy)
+        
     }
 }
 

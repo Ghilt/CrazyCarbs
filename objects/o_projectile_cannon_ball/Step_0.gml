@@ -1,14 +1,17 @@
+// Instance can have been removed from enemy fleet here. Mainly due to debug circumstances, deleting the old enemy is a WIP thing. 
+var isDeleted = !instance_exists(target)
+
 if (timePassed == duration){
     // Movement finished
     timePassed = 0 
-    if (!target.isDefeated) {
-        // Target may have been destroyed
+    if (!isDeleted && !target.isDefeated) {
+        // Target may have been defeated
         target.hitByProjectile(damage)
     }
     instance_destroy(id)
     
 } else {
-    if (!target.isDefeated) {
+    if (!isDeleted && !target.isDefeated) {
         lastTargetPos = instancePosition(target)
     }
     
