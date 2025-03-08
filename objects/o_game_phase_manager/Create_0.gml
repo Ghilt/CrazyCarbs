@@ -8,7 +8,7 @@ enum GameState {
 
 state = GameState.BUILD
 gameRound = 0
-
+battleDuration = 0;
 
 
 isBuildPhase = function() {
@@ -20,6 +20,7 @@ isBattlePhase = function() {
 }
 
 goToBattle = function() {
+    battleDuration = 0
     state = GameState.BATTLE
     o_stability_manager.goToBattle()
     

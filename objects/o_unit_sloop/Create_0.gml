@@ -4,6 +4,7 @@ stats = {
     range: 200,
     speed: 3,
     blockadeRange: 200, // This is a cosmetic value which only affacts how the blockade will look
+    blockadeDamage: 1,
     weaponReadiness: 20, // before firing weapon for the first time
     weaponCooldown: one_second * 2 
 }
@@ -52,7 +53,8 @@ participateInBlockade = function () {
     if (weaponCooldown == 0) {
         weaponCooldown = stats.weaponCooldown
         
-        var enemyBase = o_influence_grid_manager.getRandomPopulatedShoreDistrict(getOpponentOf(player)).occupiedBy
-        instance_create_layer(x, y, "Ground", o_projectile_cannon_ball, { target: enemyBase, origin: id, damage: stats.damage })
+        var opponent = getOpponentOf(player)
+        var enemyBase = o_influence_grid_manager.getRandomPopulatedShoreDistrict(opponent).occupiedBy
+        instance_create_layer(x, y, "Ground", o_projectile_cannon_ball, { target: enemyBase, origin: id, damage: stats.blockadeDamage })
     } 
 }
