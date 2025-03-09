@@ -16,6 +16,8 @@ isDefeated = false
 resetAfterBattle = function() {
     x = origin.x
     y = origin.y
+    hull = stats.hull
+    weaponCooldown = stats.weaponReadiness
     isDefeated = false
 }
 
