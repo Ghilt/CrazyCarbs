@@ -19,3 +19,29 @@ function dotProduct(a, b) {
 function vectorLength(a) {
     return sqrt(power(a.x, 2) + power(a.y, 2))
 }
+
+enum Direction
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+};
+
+global.directionVector = [{ x: 0, y: -1 },{ x: 1, y: 0 },{ x: 0, y: 1 },{ x: -1, y: 0 },]
+
+function vectorQuadrant(a) {
+    var thetaRadians = arctan2(a.y, a.x)
+    var qPi = pi/4
+    var qPi3 = 3*qPi
+    
+    if (-qPi < thetaRadians && thetaRadians < qPi) {
+        return Direction.EAST
+    } else if ( qPi <= thetaRadians && thetaRadians < qPi3) {
+        return Direction.SOUTH
+    } else if (thetaRadians <= -qPi3 || thetaRadians >= qPi3) {
+        return Direction.WEST 
+    } else {
+        return Direction.NORTH
+    }
+}

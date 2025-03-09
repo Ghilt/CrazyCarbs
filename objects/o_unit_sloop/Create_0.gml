@@ -22,6 +22,11 @@ resetAfterBattle = function() {
 }
 
 moveTowards = function(pos, speedModifier) {
+    
+    var displacement = vectorSubtract(pos, instancePosition(id))
+    
+    dir = vectorQuadrant(displacement)
+    
     mp_linear_step(pos.x, pos.y, stats.speed * speedModifier, false)
 }
 
