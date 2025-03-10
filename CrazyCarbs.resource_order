@@ -88,6 +88,8 @@
     {"name":"s_ui_placeable_placeholder","order":2,"path":"sprites/s_ui_placeable_placeholder/s_ui_placeable_placeholder.yy",},
     {"name":"s_ui_resource_placeholder","order":4,"path":"sprites/s_ui_resource_placeholder/s_ui_resource_placeholder.yy",},
     {"name":"s_unit_obstacle","order":1,"path":"sprites/s_unit_obstacle/s_unit_obstacle.yy",},
+    {"name":"test_space_ship_1","order":4,"path":"sprites/test_space_ship_1/test_space_ship_1.yy",},
+    {"name":"test_space_ship","order":3,"path":"sprites/test_space_ship/test_space_ship.yy",},
     {"name":"ts_starting_location_data","order":2,"path":"tilesets/ts_starting_location_data/ts_starting_location_data.yy",},
     {"name":"ts_terrain_map","order":1,"path":"tilesets/ts_terrain_map/ts_terrain_map.yy",},
   ],

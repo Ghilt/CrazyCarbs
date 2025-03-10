@@ -3,3 +3,5 @@ function resetAfterBattle() {
     x = origin.x
     y = origin.y
 }
+
+image_speed = 0

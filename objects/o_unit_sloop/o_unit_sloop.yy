@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"s_unit_sloop",
-    "path":"sprites/s_unit_sloop/s_unit_sloop.yy",
+    "name":"test_space_ship",
+    "path":"sprites/test_space_ship/test_space_ship.yy",
   },
   "spriteMaskId":null,
   "visible":true,

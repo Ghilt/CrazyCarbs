@@ -1,3 +1,7 @@
+event_inherited()
+
+image_speed = 0
+
 stats = {
     hull: 100,
     damage: 50,
@@ -22,10 +26,10 @@ resetAfterBattle = function() {
 }
 
 moveTowards = function(pos, speedModifier) {
-    
     var displacement = vectorSubtract(pos, instancePosition(id))
     
-    dir = vectorQuadrant(displacement)
+    //image index of sprite lines up with the Direction enum
+    image_index = vectorQuadrant(displacement)
     
     mp_linear_step(pos.x, pos.y, stats.speed * speedModifier, false)
 }
