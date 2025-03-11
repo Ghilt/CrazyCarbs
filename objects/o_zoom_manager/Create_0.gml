@@ -5,11 +5,12 @@ ratio = camera_get_view_width(cam) / camera_get_view_height(cam)
 baseWidth = camera_get_view_width(cam)
 baseHeight = camera_get_view_height(cam)
 
-scrollSpeed = 0.5
 
-// minimum zoom level. Stop at 200 pixels
-minWidth = 200 * ratio
-minHeight = 200
+
+scrollSpeed = 0.8
+
+minWidth = 1000 * ratio
+minHeight = 1000
 
 previousMouseX = mouse_x
 previousMouseY = mouse_y
@@ -84,5 +85,35 @@ zoomIt = function(directionIn) {
      
     camera_set_view_size(cam, newWidth, newHeight)
     camera_set_view_pos(cam, newX, newY)
+    
+}
+
+centerOn = function (pos) {
+    camera_set_view_pos(cam, pos.x, pos.y)
+}
+
+debugChangeProjection = function(isoProjection) {
+    var camX = camera_get_view_x(cam) 
+    var camY = camera_get_view_y(cam)
+    
+
+    
+    if (isoProjection) {
+        var posInOtherProjection = roomToIso(camX, camY)
+        // values to shift the came probably depends on iso ratio
+        var moveCamHalfALengthLeft = posInOtherProjection.x - camera_get_view_width(cam) / 4
+        var moveCamHalfALengthDown = posInOtherProjection.y + camera_get_view_height(cam) / 1.5
+        posInOtherProjection = { x: moveCamHalfALengthLeft, y: moveCamHalfALengthDown}
+        camera_set_view_pos(cam, posInOtherProjection.x, posInOtherProjection.y)
+    } else {
+        var isoToRoomMap = debug_isoToRoom(camX, camY)
+        var tile = { x: isoToRoomMap.x/TILE_SIZE, y: isoToRoomMap.y/TILE_SIZE }
+        var posInOtherProjection = debug_tileToIso(tile.x, tile.y)
+        
+        var moveCamHalfALengthLeft = posInOtherProjection.x - camera_get_view_width(cam) / 8
+        var moveCamHalfALengthDown = posInOtherProjection.y - camera_get_view_height(cam) / 2
+        posInOtherProjection = { x: moveCamHalfALengthLeft, y: moveCamHalfALengthDown}
+        camera_set_view_pos(cam, posInOtherProjection.x, posInOtherProjection.y)
+    }
     
 }

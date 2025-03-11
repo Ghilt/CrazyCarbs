@@ -13,13 +13,13 @@
 
 /// Isometric constants
 
-#macro MAP_W 100
-#macro MAP_H 100
-#macro tileSize 64
+#macro MAP_W 200
+#macro MAP_H 200
+#macro TILE_SIZE 256
 #macro CAMERA_W 1280
 #macro CAMERA_H 720
 
-#macro ISO_ORIGIN { x: 3200, y: -2432 }
+#macro ISO_ORIGIN { x: TILE_SIZE * MAP_W / 2, y: - 0.38 * MAP_H * TILE_SIZE }
 #macro ISO_W (4/3)
 #macro ISO_H 1
 

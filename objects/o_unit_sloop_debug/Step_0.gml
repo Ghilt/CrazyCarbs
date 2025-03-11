@@ -1,6 +1,21 @@
-var displacement = vectorSubtract(instancePosition(id), previousPos)
+if (o_debugger_util.isoProjection) {
+    sprites = spritesIso
+} else { 
+    sprites = spritesNormal
+}
 
-image_index = vectorQuadrant(displacement)
+var pos = instancePosition(id)
+
+var displacement = vectorSubtract(pos, previousPos)
 
 
-previousPos = instancePosition(id)
+if (displacement.x != 0 || displacement.y != 0) {
+   image_speed = 1  
+} else {
+    image_speed = 0
+}
+
+sprite_index = sprites[vectorQuadrant(displacement)]
+
+
+previousPos = pos

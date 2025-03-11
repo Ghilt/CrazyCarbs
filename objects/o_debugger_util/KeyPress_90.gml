@@ -1,5 +1,8 @@
 isoProjection = !isoProjection
 
+o_zoom_manager.debugChangeProjection(isoProjection)
+
+
 with (o_iso_renderer) {
     instance_destroy(id)
 }

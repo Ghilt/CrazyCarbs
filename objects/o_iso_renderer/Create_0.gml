@@ -6,6 +6,12 @@ global.terrainMap = ds_grid_create(MAP_W, MAP_H)
 
 var tileMap = layer_tilemap_get_id("Tiles_map")
 
+
+// values here are tied to the map size and angle of the isometric/dimetric projection
+outsideRenderedArea = function (tX, tY) {
+    return tY - tX > 74 || tX - tY > 74 || tX + tY < 76 || tX + tY > 273
+}
+
 for (var tX = 0; tX < MAP_W; tX++) {
     for (var tY = 0; tY < MAP_H; tY++) {
         var tileMapData = tilemap_get(tileMap, tX, tY)
@@ -13,10 +19,13 @@ for (var tX = 0; tX < MAP_W; tX++) {
         
         var thisTile = { 
             spriteIndex: tileMapData, 
-            z: (irandom(20) == 1 && tileMapData < 3) ? (irandom(5) > 2 ? -14 : 14 ): 0,
+            z: (irandom(20) == 1 && tileMapData < 3) ? (irandom(5) > 2 ? -114 : 114 ): 0,
             mapped: tileToIso(tX, tY)
              
         }
-        global.terrainMap[# tX, tY] = thisTile //# is a short hand accessor thing for ds grids, syntax sugar
+        
+        var skipRender = outsideRenderedArea(tX, tY)
+        
+        global.terrainMap[# tX, tY] = skipRender ? false : thisTile //# is a short hand accessor thing for ds grids, syntax sugar
     }
 }

@@ -31,8 +31,8 @@ initialInfluenceGrid = function(player){
     {
         var terrain = variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
         
-        var posX = (_e.x + 30) * tileSize
-        var posY = (_e.y + 30) * tileSize
+        var posX = (_e.x + o_game_phase_manager.tempUsStartPos.x) * TILE_SIZE
+        var posY = (_e.y + o_game_phase_manager.tempUsStartPos.y) * TILE_SIZE
         
         return new CityDistrict(_e.x, _e.y, posX, posY, false, terrain)
     }
@@ -199,8 +199,8 @@ goToBattle = function(enemyCitySavedData) {
     var loadIntoMap = function (_savedDistrict, _i)
     {
         var pos = { 
-           x: (_savedDistrict.relativeX + startPos.x) * tileSize, 
-           y: (_savedDistrict.relativeY + startPos.y) * tileSize 
+           x: (_savedDistrict.relativeX + startPos.x) * TILE_SIZE, 
+           y: (_savedDistrict.relativeY + startPos.y) * TILE_SIZE 
         }
         
         var building = _savedDistrict.hasBuildingType() ? instance_create_layer(

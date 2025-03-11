@@ -8,6 +8,6 @@ mp_grid_path(
     true
 )
 
-path_start(path, 5, path_action_stop, true)
+path_start(path, 10, path_action_stop, true)
 
 alarm[0] = 10

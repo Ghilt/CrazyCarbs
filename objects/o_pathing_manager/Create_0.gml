@@ -1,5 +1,5 @@
-tempRange = 400 // target acquiring
-tempOuterTurnRange = 100
+tempRange = TILE_SIZE * 6 // target acquiring
+tempOuterTurnRange = TILE_SIZE * 2
 
 gridWidth = MAP_W
 gridHeight = MAP_H

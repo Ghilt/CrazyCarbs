@@ -12,3 +12,28 @@ alarm[0] = 90
 // to make it work well the sprite of the objects using the mp_grid should be the same size or maybe a little bit smaller than the cells
 
 image_speed = 0
+
+// some trixy stuff to fix being in iso space
+spritesNormal = [
+    s_debug_ranger_north,
+    s_debug_ranger_north_east,
+    s_debug_ranger_east,
+    s_debug_ranger_south_east,
+    s_debug_ranger_south,
+    s_debug_ranger_south_west,
+    s_debug_ranger_west,
+    s_debug_ranger_north_west
+]
+
+spritesIso = [
+    s_debug_ranger_north_east,
+    s_debug_ranger_east,
+    s_debug_ranger_south_east,
+    s_debug_ranger_south,
+    s_debug_ranger_south_west,
+    s_debug_ranger_west,
+    s_debug_ranger_north_west,
+    s_debug_ranger_north
+]
+
+sprites = spritesIso

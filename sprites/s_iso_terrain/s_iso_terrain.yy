@@ -2,9 +2,9 @@
   "$GMSprite":"",
   "%Name":"s_iso_terrain",
   "bboxMode":0,
-  "bbox_bottom":166,
+  "bbox_bottom":687,
   "bbox_left":0,
-  "bbox_right":171,
+  "bbox_right":687,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -13,13 +13,14 @@
   "For3D":false,
   "frames":[
     {"$GMSpriteFrame":"","%Name":"04ecb97e-9e28-4cca-a941-5eb326e506ab","name":"04ecb97e-9e28-4cca-a941-5eb326e506ab","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"7676de1d-b9f5-4ae4-8d66-f2aef022ef7f","name":"7676de1d-b9f5-4ae4-8d66-f2aef022ef7f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"9b090c35-c1ad-400d-b913-29966926ddca","name":"9b090c35-c1ad-400d-b913-29966926ddca","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"d43e56b4-39ca-433d-a28b-c339d2f583e7","name":"d43e56b4-39ca-433d-a28b-c339d2f583e7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"1af12f12-21b1-419d-9ce5-4c33e70ad724","name":"1af12f12-21b1-419d-9ce5-4c33e70ad724","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"cb67dd67-8112-4a3b-8be9-dac5962b59f2","name":"cb67dd67-8112-4a3b-8be9-dac5962b59f2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"325cc7cf-8911-46a6-8116-8fc086e75835","name":"325cc7cf-8911-46a6-8116-8fc086e75835","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
-  "height":172,
+  "height":688,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"3a9535c0-c4e4-49b9-a58d-c8adca6ea0f6","blendMode":0,"displayName":"default","isLocked":false,"name":"3a9535c0-c4e4-49b9-a58d-c8adca6ea0f6","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -52,7 +53,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":4.0,
+    "length":5.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -75,19 +76,22 @@
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"04ecb97e-9e28-4cca-a941-5eb326e506ab","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"339a00e8-9935-4f34-b5db-a7b220dacc08","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7676de1d-b9f5-4ae4-8d66-f2aef022ef7f","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"c12804f2-712f-467c-98e8-9d704eb18b2b","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9b090c35-c1ad-400d-b913-29966926ddca","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"a514536b-7a92-4594-9d25-e88deb9f0e17","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d43e56b4-39ca-433d-a28b-c339d2f583e7","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"f267af77-9cc8-487f-9b16-05b7c6e46d36","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1af12f12-21b1-419d-9ce5-4c33e70ad724","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"51ad4c5f-f663-4918-a3c3-301bb496b09b","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cb67dd67-8112-4a3b-8be9-dac5962b59f2","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a8115c62-2d76-446f-94ab-7ab5baf2f1c4","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"325cc7cf-8911-46a6-8116-8fc086e75835","path":"sprites/s_iso_terrain/s_iso_terrain.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"4a1b4f15-5289-435b-9e16-bcf122736dd2","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"51ad4c5f-f663-4918-a3c3-301bb496b09b","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":86,
+    "xorigin":344,
     "yorigin":0,
   },
   "swatchColours":null,
@@ -98,5 +102,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":172,
+  "width":688,
 }

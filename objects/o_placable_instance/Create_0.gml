@@ -17,7 +17,8 @@ smoothCarry = 0.4
 smoothScale = 0.4
 time = 0
 pickupFrameThreshold = 8
-buildSnappingRange = 60
+buildSnappingRange = itemSize
+guiScale = 0.25
 
 originalWidth = sprite_width
 originalHeight = sprite_height
@@ -72,8 +73,8 @@ returnToOwnerPosition = function () {
     //Only scooch here
     o_gui_manager.uiScooch(id)
     
-    image_xscale = lerp(image_xscale, 1, smoothScale * 0.2)
-    image_yscale = lerp(image_yscale, 1, smoothScale * 0.2)
+    image_xscale = lerp(image_xscale, guiScale, smoothScale * 0.2)
+    image_yscale = lerp(image_yscale, guiScale, smoothScale * 0.2)
 }
 
 resetMovStruct = function(){

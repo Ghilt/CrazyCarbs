@@ -5,9 +5,9 @@ image_speed = 0
 stats = {
     hull: 100,
     damage: 50,
-    range: 200,
-    speed: 3,
-    blockadeRange: 200, // This is a cosmetic value which only affacts how the blockade will look
+    range: 3 * TILE_SIZE,
+    speed: 0.03 * TILE_SIZE,
+    blockadeRange: 3 * TILE_SIZE, // This is a cosmetic value which only affacts how the blockade will look
     blockadeDamage: 1,
     weaponReadiness: 20, // before firing weapon for the first time
     weaponCooldown: one_second * 2 
