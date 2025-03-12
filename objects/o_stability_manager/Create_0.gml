@@ -2,7 +2,7 @@ stability = [0, 0]
 
 fatigueDamage = 0
 fatigueRate = one_second
-fatigueTimeLimit = one_second * 20
+fatigueTimeLimit = one_second * 19
 
 
 var meter = object_get_sprite(o_gui_stability_meter)
@@ -52,4 +52,8 @@ takeFatigueDamage = function() {
     fatigueDamage += 1
     destabilize(fatigueDamage, Player.US)
     destabilize(fatigueDamage, Player.THEM)
+    
+    if (!instance_exists(o_gui_fatigue_banner)) {
+        instance_create_layer(0, 0, "Gui", o_gui_fatigue_banner) 
+    }
 }

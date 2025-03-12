@@ -4,6 +4,7 @@ enum Building
     STARTING_PORT,
     GOLD_MINE,
     LUMBER_MILL,
+    GRAND_OAK,
     SHIP_SLOOP,
     // the below is not implemented
     RUM_DISTILLERY,
@@ -25,14 +26,15 @@ global.buildings = ds_map_create()
 ds_map_add(global.buildings, Building.STARTING_PORT, { building: o_building_starting_port, price: 0, terrainRequirement: Terrain.GROUND })
 ds_map_add(global.buildings, Building.GOLD_MINE, { building: o_building_gold_mine, price: 4, terrainRequirement: Terrain.GROUND })
 ds_map_add(global.buildings, Building.LUMBER_MILL, { building: o_building_lumber_mill, price: 3, terrainRequirement: Terrain.GROUND })
+ds_map_add(global.buildings, Building.GRAND_OAK, { building: o_building_grand_oak, price: 2, terrainRequirement: Terrain.GROUND })
 ds_map_add(global.buildings, Building.SHIP_SLOOP, { building: o_unit_sloop, price: 3, terrainRequirement: Terrain.SEA })
 
 // For development
 // Will return a random building type, besides starting building
 function randomBuilding(terrain) {
     if (terrain == Terrain.SEA) {
-        return irandom_range(3, 3)
+        return irandom_range(4, 4)
     } else {
-        return irandom_range(1, 2)
+        return irandom_range(1, 3)
     }
 }

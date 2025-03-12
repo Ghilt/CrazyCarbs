@@ -1,10 +1,9 @@
 ppp("Creating building at", x, y)
 
-//
 isDefeated = false
 
 resetAfterBattle = function(origin) {
-    // No action needed   
+    // No action needed
 }
 
 hitByProjectile = function(damage) {

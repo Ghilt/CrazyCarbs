@@ -1,19 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"o_production_building_parent",
+  "%Name":"o_building_continuous_cooldown",
   "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_production_building_parent",
+  "name":"o_building_continuous_cooldown",
   "overriddenProperties":[],
   "parent":{
     "name":"buildings",
     "path":"folders/Objects/buildings.yy",
   },
   "parentObjectId":{
-    "name":"o_building_continuous_cooldown",
-    "path":"objects/o_building_continuous_cooldown/o_building_continuous_cooldown.yy",
+    "name":"o_ground_building",
+    "path":"objects/o_ground_building/o_ground_building.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -28,16 +29,11 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[
-    {"$GMObjectProperty":"v1","%Name":"player","filters":[],"listItems":[],"multiselect":false,"name":"player","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
-  ],
+  "properties":[],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"s_building_placeholder",
-    "path":"sprites/s_building_placeholder/s_building_placeholder.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

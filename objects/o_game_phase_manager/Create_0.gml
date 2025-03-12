@@ -40,7 +40,7 @@ goToBattle = function() {
         { x : 0, y : 0, building: Building.STARTING_PORT },
         { x : -2, y : -2, building: Building.LUMBER_MILL },
         { x : -1, y : -2, building: Building.GOLD_MINE },
-        { x : -1, y : -1 },
+        { x : -1, y : -1, building: Building.GRAND_OAK },
         { x : -1, y : 0 },
         { x : 0, y : -1 }, 
         { x : 0, y : 1 }, 
@@ -77,6 +77,9 @@ goToBuild = function() {
     o_shop_manager.goToNextRound()
     o_resource_manager.goToBuild()
     o_influence_grid_manager.resetAfterBattle()
+    
+    ppp("show state of grid")
+    
 }
 
 goToEndOfRoundScreen = function(victory) {

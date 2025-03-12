@@ -99,6 +99,7 @@ getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
 
 // Type is a type defined in ItemScripts.Building
 buildAt = function(pos, type) { 
+ 
   
     var buildings = influenceGrid[Player.US]
     
@@ -118,8 +119,8 @@ buildAt = function(pos, type) {
         loc.y, 
         "Ground", 
         ds_map_find_value(global.buildings, type).building, 
-        { player: Player.US, origin: { x: loc.x, y: loc.y }}
-        )
+        { player: Player.US, origin: { x: loc.x, y: loc.y } }
+    )
     
     loc.occupiedBy = newBuilding
     return true
@@ -149,8 +150,9 @@ resetAfterBattle = function() {
     for (var i = 0; i < array_length(influenceGrid[Player.THEM]); i++) {
         influenceGrid[Player.THEM][i].resetAfterBattle()
         // For now, just delete old enemy
-        instance_destroy(influenceGrid[Player.THEM][i].occupiedBy)
-        
+        if (influenceGrid[Player.THEM][i].occupiedBy) {
+            instance_destroy(influenceGrid[Player.THEM][i].occupiedBy)
+        }
     }
 }
 
@@ -209,7 +211,7 @@ goToBattle = function(enemyCitySavedData) {
             "Ground", 
             ds_map_find_value(global.buildings, _savedDistrict.buildingType).building, 
             { player: Player.THEM, origin: pos }
-            ) : false
+        ) : false
         
         return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, building, _savedDistrict.terrain)
     }
