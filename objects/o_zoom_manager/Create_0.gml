@@ -106,9 +106,9 @@ debugChangeProjection = function(isoProjection) {
         posInOtherProjection = { x: moveCamHalfALengthLeft, y: moveCamHalfALengthDown}
         camera_set_view_pos(cam, posInOtherProjection.x, posInOtherProjection.y)
     } else {
-        var isoToRoomMap = debug_isoToRoom(camX, camY)
+        var isoToRoomMap = debug_isoToRoom(camX, camY) // important to use the debug version here; since it doesnt get disabled by the debug projection flag
         var tile = { x: isoToRoomMap.x/TILE_SIZE, y: isoToRoomMap.y/TILE_SIZE }
-        var posInOtherProjection = debug_tileToIso(tile.x, tile.y)
+        var posInOtherProjection = tileToIso(tile.x, tile.y)
         
         var moveCamHalfALengthLeft = posInOtherProjection.x - camera_get_view_width(cam) / 8
         var moveCamHalfALengthDown = posInOtherProjection.y - camera_get_view_height(cam) / 2

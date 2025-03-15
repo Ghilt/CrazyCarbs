@@ -2,47 +2,131 @@
 
 debugGrid = true
 
+// Used to
+// limit search for tiles for city when iterating on the whole map
+roughCitySize = 10
 
-initialInfluenceGrid = function(player){
-    // This is all very temp
-    var grid = [
-        { x : 0, y : 0 },
-        { x : -10, y : -10 },
-        { x : -2, y : -2 },
-        { x : -1, y : -2 },
-        { x : -1, y : -1 },
-        { x : -1, y : 0 },
-        { x : 0, y : -1 }, 
-        { x : 0, y : 1 }, 
-        { x : -1, y : 1 }, 
-        { x : 0, y : -2 },
-        { x : -6, y : 6 },
-        // sea
-        { x : 1, y : -1, sea: true },
-        { x : 1, y : 0, sea: true },
-        { x : 1, y : 1, sea: true },
-        { x : 2, y : -1, sea: true },
-        { x : 2, y : 0, sea: true },
-        { x : 2, y : 1, sea: true }
-    
-    ]
-    
-    var _convert = function (_e, _i)
-    {
-        var terrain = variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
-        
-        var posX = (_e.x + o_game_phase_manager.tempUsStartPos.x) * TILE_SIZE
-        var posY = (_e.y + o_game_phase_manager.tempUsStartPos.y) * TILE_SIZE
-        
-        return new CityDistrict(_e.x, _e.y, posX, posY, false, terrain)
+
+// Holds the order of expansion for the city in relative terms
+// {x, y, dist}
+areaExpandOrder = []
+
+var sizeOfExpansion = 5
+for (var xx = -sizeOfExpansion; xx < sizeOfExpansion; xx++) {
+    for (var yy = -sizeOfExpansion; yy < sizeOfExpansion; yy++) {
+        array_push(areaExpandOrder, { x: xx, y: yy, dist: point_distance(xx, yy, 0, 0) } )
     }
-    
-    return array_map(grid, _convert)
 }
 
-// represents where structures of your city state can be built
-influenceGrid = [initialInfluenceGrid(Player.US), [/*Loaded every battle*/]]
+array_sort(areaExpandOrder, function(elm1, elm2)
+{
+    // The order of the points with the same distance is not stable. But I dont care atm
+    return sign(elm1.dist - elm2.dist);
+});
 
+
+expandToNewSpot = function(currentSpots, allowedTerrain) {
+    var newDistrict = false
+    for (var i = 0; i < array_length(areaExpandOrder); i++) {
+        var tile = global.terrainMap[# o_game_phase_manager.tempUsStartPos.x + areaExpandOrder[i].x, o_game_phase_manager.tempUsStartPos.y + areaExpandOrder[i].y]
+        var terrain = o_map_loader_manager.convertTileTypeToTerrain(tile)
+
+        if (terrain != allowedTerrain) {
+            continue; 
+        }
+        
+        // No premature optimization here! Harmony, let it be!
+        var alreadyHasSpot = false
+        for (var j = 0; j < array_length(currentSpots); j++) {
+            if (areaExpandOrder[i].x == currentSpots[j].relativeX && currentSpots[j].relativeY == areaExpandOrder[i].y) {
+                alreadyHasSpot = true
+                continue;
+            }
+        }
+        if (alreadyHasSpot) {
+            continue;
+        }
+        
+        newDistrict = relativePosToCityDistrict(areaExpandOrder[i], allowedTerrain)
+        
+        // insert at the first position, since pos 0 is reserved for starting position (0, 0)
+        if (array_length(currentSpots) == 0) throw ("Developer error: This function requires that we have initialized the starting pos at (0, 0)")
+        
+        if (newDistrict) {
+            break;
+        }  
+    }  
+     
+    if (newDistrict) {
+        ppp("Expanding influence to ", newDistrict)
+        array_insert(currentSpots, 1, newDistrict)  
+    } else {
+        ppp("Failed to expand influence")
+    }
+
+}
+
+
+relativePosToCityDistrict = function(pos, terrain) {
+    var posX = (pos.x + o_game_phase_manager.tempUsStartPos.x) * TILE_SIZE
+    var posY = (pos.y + o_game_phase_manager.tempUsStartPos.y) * TILE_SIZE
+    
+    return new CityDistrict(pos.x, pos.y, posX, posY, false, terrain)
+}
+
+
+var startPos = o_map_loader_manager.getPlayerPosition(Player.US)
+// represents where structures of your city state can be built
+influenceGrid = [[
+    // Here be some temp spaghetti: setting up start position here for player
+    new CityDistrict(0, 0, startPos.x, startPos.y, false, Terrain.SEA)
+], [/*Loaded every battle*/]]
+
+// Type is a type defined in ItemScripts.Building
+buildAt = function(pos, type) { 
+
+    var spots = influenceGrid[Player.US]
+    
+    with { spots, pos } // https://yal.cc/gamemaker-diy-closures/
+        
+    var buildingSiteIndex = array_find_index(spots, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y); } )
+    
+    if (buildingSiteIndex == -1) {
+        // This can happen when picking upp multiple placable buildings at once and placing them all at the same time, Bit of a side behavior really
+        return false
+    }
+    
+    var loc = influenceGrid[Player.US][buildingSiteIndex]
+    
+    var newBuilding = instance_create_layer(
+        loc.x, 
+        loc.y, 
+        "Ground", 
+        ds_map_find_value(global.buildings, type).building, 
+        { player: Player.US, origin: { x: loc.x, y: loc.y } }
+    )
+    
+    loc.occupiedBy = newBuilding
+    return true
+}
+
+
+#region Player setup
+
+buildAt(o_map_loader_manager.getPlayerPosition(Player.US), Building.STARTING_PORT)
+repeat (5) {
+    expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
+    expandToNewSpot(influenceGrid[Player.US], Terrain.SEA)
+}
+
+
+// returns city district with x, y, for players relative (0,0) starting position 
+getPlayerPosition = function(player) {
+    // first position in list is always starting position
+    return influenceGrid[player][0]
+}
+
+#endregion
 
 getBuildingThatAcceptsOverProduction = function(player) {
     for (var i = 0; i < array_length(influenceGrid[player]); i++) {
@@ -96,52 +180,6 @@ getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
     return { distance: bestDistance, x: bestX, y: bestY }
 }
 
-
-// Type is a type defined in ItemScripts.Building
-buildAt = function(pos, type) { 
- 
-  
-    var buildings = influenceGrid[Player.US]
-    
-    with { buildings, pos } // https://yal.cc/gamemaker-diy-closures/
-        
-    var buildingSiteIndex = array_find_index(buildings, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y); } )
-    
-    if (buildingSiteIndex == -1) {
-        // This can happen when picking upp multiple placable buildings at once and placing them all at the same time, Bit of a side behavior really
-        return false
-    }
-    
-    var loc = influenceGrid[Player.US][buildingSiteIndex]
-    
-    var newBuilding = instance_create_layer(
-        loc.x, 
-        loc.y, 
-        "Ground", 
-        ds_map_find_value(global.buildings, type).building, 
-        { player: Player.US, origin: { x: loc.x, y: loc.y } }
-    )
-    
-    loc.occupiedBy = newBuilding
-    return true
-
-}
-
-// temp create a starting building at 0,0
-for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) { 
-    if (influenceGrid[Player.US][i].relativeX == 0 && influenceGrid[Player.US][i].relativeY == 0) {
-        var staringPortLocation = { x: influenceGrid[Player.US][i].x, y : influenceGrid[Player.US][i].y }
-        buildAt(staringPortLocation, Building.STARTING_PORT)
-    } 
-}
-
-
-// returns city district with x, y
-getPlayerPosition = function(player) {
-    // first position in list is always starting position
-    return influenceGrid[player][0]
-}
-
 resetAfterBattle = function() {
     for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
         influenceGrid[Player.US][i].resetAfterBattle()
@@ -154,14 +192,17 @@ resetAfterBattle = function() {
             instance_destroy(influenceGrid[Player.THEM][i].occupiedBy)
         }
     }
+    
+    expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
 }
 
 distanceToBase = function (pos, player) {
-    var base = influenceGrid[player][0]
+    var base = getPlayerPosition(player)
     var distance = point_distance(pos.x, pos.y, base.x, base.y)
     return distance
 }
 
+//TODO this should only give the ships, not do range calcs. move somewhere else
 getClosestShipWithin = function(unit, range, owningPlayer) {
     
     with { unit }

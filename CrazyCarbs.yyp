@@ -63,6 +63,7 @@
     {"id":{"name":"o_influence_grid_manager","path":"objects/o_influence_grid_manager/o_influence_grid_manager.yy",},},
     {"id":{"name":"o_inventory_manager","path":"objects/o_inventory_manager/o_inventory_manager.yy",},},
     {"id":{"name":"o_iso_renderer","path":"objects/o_iso_renderer/o_iso_renderer.yy",},},
+    {"id":{"name":"o_map_loader_manager","path":"objects/o_map_loader_manager/o_map_loader_manager.yy",},},
     {"id":{"name":"o_pathing_manager","path":"objects/o_pathing_manager/o_pathing_manager.yy",},},
     {"id":{"name":"o_placable_instance","path":"objects/o_placable_instance/o_placable_instance.yy",},},
     {"id":{"name":"o_production_building_parent","path":"objects/o_production_building_parent/o_production_building_parent.yy",},},

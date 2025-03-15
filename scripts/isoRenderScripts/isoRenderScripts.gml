@@ -46,14 +46,11 @@ function isoToRoom(_rX, _rY) {
     }
 }
 
-
-function debug_tileToIso(tileX, tileY) {
+// This is needed when setting up the map. o_debugger_util is not initiated when we set up the terrain before the game started
+function gameSetup_tileToIso(tileX, tileY) {
     var roomX = tileX * TILE_SIZE
     var roomY = tileY * TILE_SIZE
-    if (!o_debugger_util.isoProjection) {
-        return { x: roomX, y: roomY }
-    }
-    
+
     return {
         x: ISO_ORIGIN.x + (roomX - roomY) * ISO_W,
         y: ISO_ORIGIN.y + (roomX + roomY) * ISO_H

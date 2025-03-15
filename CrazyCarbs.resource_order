@@ -42,6 +42,7 @@
     {"name":"o_influence_grid_manager","order":3,"path":"objects/o_influence_grid_manager/o_influence_grid_manager.yy",},
     {"name":"o_inventory_manager","order":4,"path":"objects/o_inventory_manager/o_inventory_manager.yy",},
     {"name":"o_iso_renderer","order":5,"path":"objects/o_iso_renderer/o_iso_renderer.yy",},
+    {"name":"o_map_loader_manager","order":11,"path":"objects/o_map_loader_manager/o_map_loader_manager.yy",},
     {"name":"o_pathing_manager","order":9,"path":"objects/o_pathing_manager/o_pathing_manager.yy",},
     {"name":"o_placable_instance","order":2,"path":"objects/o_placable_instance/o_placable_instance.yy",},
     {"name":"o_projectile_cannon_ball","order":4,"path":"objects/o_projectile_cannon_ball/o_projectile_cannon_ball.yy",},
