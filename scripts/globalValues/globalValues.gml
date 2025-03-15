@@ -24,3 +24,7 @@
 #macro ISO_H 1
 
 #macro MAX_INT 2147483647
+
+// Buidling tags - Tag names
+#macro TAG_NATURE "nature"
+#macro TAG_INDUSTRY "industry"

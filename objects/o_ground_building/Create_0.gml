@@ -9,3 +9,7 @@ resetAfterBattle = function(origin) {
 hitByProjectile = function(damage) {
     o_stability_manager.destabilize(damage, player)
 }
+
+adjacencyUpdate = function(adjacentDistricts) {
+    // Implemented in children    
+}

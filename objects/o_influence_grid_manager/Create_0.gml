@@ -9,20 +9,7 @@ roughCitySize = 10
 
 // Holds the order of expansion for the city in relative terms
 // {x, y, dist}
-areaExpandOrder = []
-
-var sizeOfExpansion = 5
-for (var xx = -sizeOfExpansion; xx < sizeOfExpansion; xx++) {
-    for (var yy = -sizeOfExpansion; yy < sizeOfExpansion; yy++) {
-        array_push(areaExpandOrder, { x: xx, y: yy, dist: point_distance(xx, yy, 0, 0) } )
-    }
-}
-
-array_sort(areaExpandOrder, function(elm1, elm2)
-{
-    // The order of the points with the same distance is not stable. But I dont care atm
-    return sign(elm1.dist - elm2.dist);
-});
+areaExpandOrder = getOrderedAreaExpansion(5)
 
 
 expandToNewSpot = function(currentSpots, allowedTerrain) {
@@ -59,7 +46,8 @@ expandToNewSpot = function(currentSpots, allowedTerrain) {
      
     if (newDistrict) {
         ppp("Expanding influence to ", newDistrict)
-        array_insert(currentSpots, 1, newDistrict)  
+        array_insert(currentSpots, 1, newDistrict) 
+        recalculateAdjacency(Player.US) 
     } else {
         ppp("Failed to expand influence")
     }
@@ -87,7 +75,7 @@ buildAt = function(pos, type) {
 
     var spots = influenceGrid[Player.US]
     
-    with { spots, pos } // https://yal.cc/gamemaker-diy-closures/
+    with { spots, pos } // https://yal.cc/gamemaker-diy-closures/ I like method(...) more now! 
         
     var buildingSiteIndex = array_find_index(spots, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y); } )
     
@@ -107,7 +95,45 @@ buildAt = function(pos, type) {
     )
     
     loc.occupiedBy = newBuilding
+    recalculateAdjacencyOnNewBuilding(loc)
     return true
+}
+
+updateAdjacencyForDistrict = function(district) {
+    // Lets try have this 'variable_instance_exists' here for a bit. It feels yucky, but maybe we are in rome.
+    if (district.occupiedBy && variable_instance_exists(district.occupiedBy, "adjacencyUpdate")) {
+        district.occupiedBy.adjacencyUpdate(arrayFilterOnIndexes(influenceGrid[Player.US], district.adjacentDistricts))    
+    }
+}
+
+recalculateAdjacencyOnNewBuilding = function(cityDistrict) {
+    ppp("Recalculating adjacency for", cityDistrict.relativeX, cityDistrict.relativeY, "as", cityDistrict.adjacentDistricts)
+    updateAdjacencyForDistrict(cityDistrict)
+    for (var i = 0; i < array_length(cityDistrict.adjacentDistricts); i++) {
+        var district = influenceGrid[Player.US][cityDistrict.adjacentDistricts[i]] 
+        ppp("Recalculating adjacency for", district.relativeX, district.relativeY, "as", district.adjacentDistricts)
+        updateAdjacencyForDistrict(district)
+    }
+}
+
+// This method completely updates the adjacency information. Required when expanding the grid itself.
+// When a building is built, this is not required.
+recalculateAdjacency = function(player) { 
+    for (var i = 0; i < array_length(influenceGrid[player]); i++) {
+        with (influenceGrid[player][i]) {
+            adjacentDistricts = [] // clear adjacent list in the cityDistrict
+            var pos = { x: relativeX, y: relativeY }
+            // Embrace non-premature-optimization, O(n2) ahead:
+            for (var j = 0; j < array_length(other.influenceGrid[player]); j++) {
+                var potentialNeighbor = other.influenceGrid[player][j]  
+                var diff = vectorSubtract(pos, { x: potentialNeighbor.relativeX, y: potentialNeighbor.relativeY })
+                if (vectorIsOrthogonalDirection(diff)) {
+                    array_push(adjacentDistricts, j) // Dont store the neighbor directly -> leads to 'Recursive stuct' warning
+                }
+            }
+            other.updateAdjacencyForDistrict(self)
+        }
+    }
 }
 
 
@@ -147,12 +173,11 @@ getRandomPopulatedShoreDistrict = function (player){
     return influenceGrid[player][0]
 }
 
-
 getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
     var bestDistance = MAX_INT
     var bestX = 0
     var bestY = 0
-     
+    
     for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
         
         if (influenceGrid[Player.US][i].occupiedBy) {
@@ -174,11 +199,11 @@ getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
             bestX = influenceGrid[Player.US][i].x
             bestY = influenceGrid[Player.US][i].y
         }
-
     }
-     
+    
     return { distance: bestDistance, x: bestX, y: bestY }
 }
+
 
 resetAfterBattle = function() {
     for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {

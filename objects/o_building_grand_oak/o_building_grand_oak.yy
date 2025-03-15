@@ -2,7 +2,6 @@
   "$GMObject":"",
   "%Name":"o_building_grand_oak",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
@@ -14,8 +13,8 @@
     "path":"folders/Objects/buildings.yy",
   },
   "parentObjectId":{
-    "name":"o_ground_building",
-    "path":"objects/o_ground_building/o_ground_building.yy",
+    "name":"o_building_continuous_cooldown",
+    "path":"objects/o_building_continuous_cooldown/o_building_continuous_cooldown.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -39,5 +38,8 @@
     "path":"sprites/s_building_grand_oak/s_building_grand_oak.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "nature",
+  ],
   "visible":true,
 }

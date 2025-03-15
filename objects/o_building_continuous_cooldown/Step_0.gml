@@ -2,7 +2,11 @@ if (!o_game_phase_manager.isBattlePhase()) {
     return;
 }
 
-if (current_frame == interval) {
+//This allows for children to either have their cooldown as a simple variable or a function
+
+// Interesting GMS legacy note: is_callable(...) returns true if testing a number
+var childDefinedCooldown = is_method(stats.cooldown) ? stats.cooldown() : stats.cooldown
+if (current_frame == childDefinedCooldown) {
     current_frame = 0; 
     if (player == Player.US) {
         onAbilityActivationPlayer()

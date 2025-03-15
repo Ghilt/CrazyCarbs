@@ -1,8 +1,12 @@
 // Inherit the parent event
 event_inherited();
 
+stats = {
+    overpdocutionHealingPower: 10
+}
+
 acceptsOverproduction = true
 
 overproductionTriggered = function(){
-    o_stability_manager.stabilize(10, player)
+    o_stability_manager.stabilize(stats.overpdocutionHealingPower, player)
 }

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"OrderedAreaExpansion",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"OrderedAreaExpansion",
+  "parent":{
+    "name":"data",
+    "path":"folders/Scripts/data.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -3,6 +3,10 @@ event_inherited();
 
 current_frame = 0
 
+resetAfterBattle = function(origin) {
+    current_frame = 0
+}
+
 onAbilityActivationPlayer = function (){
     // should be overridden by children
     ppp("Parent building reporting use")

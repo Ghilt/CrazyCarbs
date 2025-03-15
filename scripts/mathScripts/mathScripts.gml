@@ -24,6 +24,13 @@ function vectorLength(a) {
     return sqrt(power(a.x, 2) + power(a.y, 2))
 }
 
+function vectorIsOrthogonalDirection(a) {
+    return vectorEquals(a, global.directionVector[Direction.NORTH]) 
+        || vectorEquals(a, global.directionVector[Direction.EAST])
+        || vectorEquals(a, global.directionVector[Direction.SOUTH]) 
+        || vectorEquals(a, global.directionVector[Direction.WEST])
+}
+
 enum Direction
 {
     NORTH,

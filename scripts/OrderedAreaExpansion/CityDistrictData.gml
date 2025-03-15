@@ -33,8 +33,7 @@ function CityDistrict(_relativeX, _relativeY, _x, _y, _occupiedBy, _terrain)
 {
     x = _x
     y = _y
-    occupiedBy = _occupiedBy 
-    adjacentDistricts = []
+    occupiedBy = _occupiedBy
     
     static resetAfterBattle = function() { 
         if (occupiedBy && instance_exists(occupiedBy)) {
