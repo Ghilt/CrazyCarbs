@@ -1,4 +1,5 @@
-// Not that this depth sorting really belongs in this object. But it'll go here for now 
+// TODO -> solve that my room is larger than 16k pixels high
+
 // Remember the tag belongs to the object, not to individual instances. That is why with(...) does such good work here
 var objectsOnGround = tag_get_asset_ids("depth_sorted_ground", asset_object)
 var objectsInAir = tag_get_asset_ids("depth_sorted_air", asset_object)
@@ -11,6 +12,11 @@ array_foreach(objectsOnGround, method(ctx, function(_obj){
         depth = -bbox_bottom
         other.shallowest = min(-bbox_bottom, other.shallowest)
     }
+}))
+
+array_foreach(particleSystems, method(ctx, function(_obj){
+    part_system_depth(_obj.particleSystem, shallowest -_obj.pos.y)
+    shallowest = min(-_obj.pos.y, shallowest)
 }))
 
 array_foreach(objectsInAir, method(ctx, function(_obj){

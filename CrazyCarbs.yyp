@@ -47,6 +47,7 @@
     {"id":{"name":"o_building_lumber_mill","path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},},
     {"id":{"name":"o_building_starting_port","path":"objects/o_building_starting_port/o_building_starting_port.yy",},},
     {"id":{"name":"o_debugger_util","path":"objects/o_debugger_util/o_debugger_util.yy",},},
+    {"id":{"name":"o_depth_manager","path":"objects/o_depth_manager/o_depth_manager.yy",},},
     {"id":{"name":"o_game_phase_manager","path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},},
     {"id":{"name":"o_ground_building","path":"objects/o_ground_building/o_ground_building.yy",},},
     {"id":{"name":"o_gui_fatigue_banner","path":"objects/o_gui_fatigue_banner/o_gui_fatigue_banner.yy",},},

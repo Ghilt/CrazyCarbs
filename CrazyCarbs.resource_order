@@ -27,6 +27,7 @@
     {"name":"o_building_lumber_mill","order":1,"path":"objects/o_building_lumber_mill/o_building_lumber_mill.yy",},
     {"name":"o_building_starting_port","order":3,"path":"objects/o_building_starting_port/o_building_starting_port.yy",},
     {"name":"o_debugger_util","order":1,"path":"objects/o_debugger_util/o_debugger_util.yy",},
+    {"name":"o_depth_manager","order":10,"path":"objects/o_depth_manager/o_depth_manager.yy",},
     {"name":"o_game_phase_manager","order":1,"path":"objects/o_game_phase_manager/o_game_phase_manager.yy",},
     {"name":"o_ground_building","order":4,"path":"objects/o_ground_building/o_ground_building.yy",},
     {"name":"o_gui_fatigue_banner","order":12,"path":"objects/o_gui_fatigue_banner/o_gui_fatigue_banner.yy",},

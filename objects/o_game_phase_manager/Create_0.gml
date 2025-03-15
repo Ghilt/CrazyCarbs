@@ -77,9 +77,6 @@ goToBuild = function() {
     o_shop_manager.goToNextRound()
     o_resource_manager.goToBuild()
     o_influence_grid_manager.resetAfterBattle()
-    
-    ppp("show state of grid")
-    
 }
 
 goToEndOfRoundScreen = function(victory) {
