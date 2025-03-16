@@ -28,3 +28,17 @@
 // Buidling tags - Tag names
 #macro TAG_NATURE "nature"
 #macro TAG_INDUSTRY "industry"
+
+enum Modifier
+{
+    PATRIOTISM, // buffs
+    WEATHER,
+    MORALE,
+    PEACE,
+    PROSPERITY,
+    MYSTICISM,
+    RECKLESSNESS, // debuffs
+    SCURVY,
+    DREAD,
+    FAMINE
+};

@@ -31,6 +31,10 @@ stabilityProgression = function(player) {
     return o_game_phase_manager.gameRound * 7 + 30
 }
 
+goToBuild = function(){
+    fatigueDamage = 0    
+}
+
 goToBattle = function(){
     stability[Player.US] = stabilityProgression(Player.US)
     stability[Player.THEM] = stabilityProgression(Player.THEM)

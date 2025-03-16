@@ -10,7 +10,8 @@ stats = {
     blockadeRange: 3 * TILE_SIZE, // This is a cosmetic value which only affacts how the blockade will look
     blockadeDamage: 1,
     weaponReadiness: 20, // before firing weapon for the first time
-    weaponCooldown: one_second * 2 
+    weaponCooldown: one_second * 2,
+    evasion: 0.20
 }
 
 hull = stats.hull
@@ -31,16 +32,23 @@ moveTowards = function(pos, speedModifier) {
     //image index of sprite lines up with the Direction enum
     image_index = vectorQuadrant(displacement)
     
-    mp_linear_step(pos.x, pos.y, stats.speed * speedModifier, false)
+    var moveSpeed = o_buff_debuff_manager.getWeatherSpeedBoost(stats.speed * speedModifier, player)
+    
+    mp_linear_step(pos.x, pos.y, moveSpeed, false)
 }
 
-fireWeapon = function(enemy) {
+fireWeapon = function(enemyInstance) {
     weaponCooldown -= 1
     
     if (weaponCooldown == 0) {
         weaponCooldown = stats.weaponCooldown
         
-        instance_create_layer(x, y, "Ground", o_projectile_cannon_ball, { target: enemy, origin: id, damage: stats.damage })
+        var hit = runWeaponHitCalculator(enemyInstance)
+        if (hit) {
+            // Maybe it would make more sense to have this calculation later, on the actual hit. Can take into consideration damage mitigation and stuff
+            o_buff_debuff_manager.triggerPatriotism(stats.damage, player) 
+        }
+        instance_create_layer(x, y, "Ground", o_projectile_cannon_ball, { target: enemyInstance, origin: id, damage: stats.damage, isHit: hit })
     } 
 }
 
@@ -68,4 +76,10 @@ participateInBlockade = function () {
         var enemyBase = o_influence_grid_manager.getRandomPopulatedShoreDistrict(opponent).occupiedBy
         instance_create_layer(x, y, "Ground", o_projectile_cannon_ball, { target: enemyBase, origin: id, damage: stats.blockadeDamage })
     } 
+}
+
+runWeaponHitCalculator = function(enemyInstance) {
+    var coinToss = random_range(0, 1)
+    var evasion = o_buff_debuff_manager.getWeatherEvasionBoost(enemyInstance.stats.evasion, enemyInstance.player)
+    return coinToss > evasion
 }

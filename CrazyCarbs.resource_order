@@ -21,6 +21,7 @@
   "ResourceOrderSettings":[
     {"name":"c_cannon_ball_arc","order":2,"path":"animcurves/c_cannon_ball_arc/c_cannon_ball_arc.yy",},
     {"name":"c_up_over_and_down","order":1,"path":"animcurves/c_up_over_and_down/c_up_over_and_down.yy",},
+    {"name":"o_buff_debuff_manager","order":12,"path":"objects/o_buff_debuff_manager/o_buff_debuff_manager.yy",},
     {"name":"o_building_continuous_cooldown","order":6,"path":"objects/o_building_continuous_cooldown/o_building_continuous_cooldown.yy",},
     {"name":"o_building_gold_mine","order":2,"path":"objects/o_building_gold_mine/o_building_gold_mine.yy",},
     {"name":"o_building_grand_oak","order":5,"path":"objects/o_building_grand_oak/o_building_grand_oak.yy",},

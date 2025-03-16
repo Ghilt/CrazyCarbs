@@ -6,7 +6,7 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_74596FB2","path":"rooms/worldRoom/worldRoom.yy",},
+    {"name":"inst_478C57E","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_4C7C6C71","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_4F3EF26C","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_12669285","path":"rooms/worldRoom/worldRoom.yy",},
@@ -20,12 +20,12 @@
     {"name":"inst_22B1C146","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_701F5E94","path":"rooms/worldRoom/worldRoom.yy",},
     {"name":"inst_58510063","path":"rooms/worldRoom/worldRoom.yy",},
+    {"name":"inst_5387CD14","path":"rooms/worldRoom/worldRoom.yy",},
   ],
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Ground","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v1","%Name":"inst_701F5E94","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_701F5E94","objectId":{"name":"o_unit_sloop_debug","path":"objects/o_unit_sloop_debug/o_unit_sloop_debug.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":22784.0,"y":20864.0,},
-        {"$GMRInstance":"v1","%Name":"inst_74596FB2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_74596FB2","objectId":{"name":"o_map_loader_manager","path":"objects/o_map_loader_manager/o_map_loader_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1184.0,"y":384.0,},
       ],"layers":[],"name":"Ground","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"GuiStratosphere","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"GuiStratosphere","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"GuiAir","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"GuiAir","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
@@ -43,6 +43,8 @@
         {"$GMRInstance":"v1","%Name":"inst_1DBA03E7","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1DBA03E7","objectId":{"name":"o_pathing_manager","path":"objects/o_pathing_manager/o_pathing_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":832.0,"y":384.0,},
         {"$GMRInstance":"v1","%Name":"inst_22B1C146","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_22B1C146","objectId":{"name":"o_shop_manager","path":"objects/o_shop_manager/o_shop_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":704.0,"y":384.0,},
         {"$GMRInstance":"v1","%Name":"inst_58510063","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_58510063","objectId":{"name":"o_depth_manager","path":"objects/o_depth_manager/o_depth_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":768.0,"y":512.0,},
+        {"$GMRInstance":"v1","%Name":"inst_5387CD14","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5387CD14","objectId":{"name":"o_buff_debuff_manager","path":"objects/o_buff_debuff_manager/o_buff_debuff_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":896.0,"y":512.0,},
+        {"$GMRInstance":"v1","%Name":"inst_478C57E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_478C57E","objectId":{"name":"o_map_loader_manager","path":"objects/o_map_loader_manager/o_map_loader_manager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":512.0,"y":256.0,},
       ],"layers":[],"name":"Managers","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_map","depth":500,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_map","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":200,"SerialiseWidth":200,"TileCompressedData":[
           -2,3,-10,1,-7,3,1,4,-16,3,1,13,-37,3,3,0,3,0,-16,3,-7,1,-100,3,3,1,3,3,-6,1,-4,2,-60,3,1,0,-3,3,1,0,

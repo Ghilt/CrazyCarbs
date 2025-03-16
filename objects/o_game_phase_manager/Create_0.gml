@@ -31,9 +31,7 @@ isBattlePhase = function() {
 }
 
 goToBattle = function() {
-    battleDuration = 0
     state = GameState.BATTLE
-    o_stability_manager.goToBattle()
     
     // Load debug enemy
     var grid = [
@@ -67,16 +65,19 @@ goToBattle = function() {
     
     var districts = array_map(grid, _convert)
     
+    o_stability_manager.goToBattle()
     o_influence_grid_manager.goToBattle(new EnemyCity(tempThemStartPos, districts))
     o_pathing_manager.goToBattle()
 }
 
 goToBuild = function() {
+    battleDuration = 0
     state = GameState.BUILD
     gameRound +=1
     o_shop_manager.goToNextRound()
     o_resource_manager.goToBuild()
     o_influence_grid_manager.resetAfterBattle()
+    o_stability_manager.goToBuild()
 }
 
 goToEndOfRoundScreen = function(victory) {
