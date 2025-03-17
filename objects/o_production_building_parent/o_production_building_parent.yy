@@ -12,8 +12,8 @@
     "path":"folders/Objects/buildings.yy",
   },
   "parentObjectId":{
-    "name":"o_building_continuous_cooldown",
-    "path":"objects/o_building_continuous_cooldown/o_building_continuous_cooldown.yy",
+    "name":"o_ground_building",
+    "path":"objects/o_ground_building/o_ground_building.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

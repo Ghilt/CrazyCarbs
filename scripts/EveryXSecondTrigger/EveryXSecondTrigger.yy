@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"EveryXSecondTrigger",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"EveryXSecondTrigger",
+  "parent":{
+    "name":"buildingAtom",
+    "path":"folders/Scripts/buildingAtom.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

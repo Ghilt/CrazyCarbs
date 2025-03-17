@@ -1,0 +1,1 @@
+o_atom_manager.cleanUpInstance(id)

@@ -1,4 +1,3 @@
-event_inherited()
 
 stats = {
     childProductionRate: 1,
@@ -7,3 +6,5 @@ stats = {
 
 childResourceSprite = s_resource_lumber
 childResource = Resource.LUMBER
+
+event_inherited()

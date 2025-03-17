@@ -2,11 +2,11 @@
 event_inherited();
 
 stats = {
-    overpdocutionHealingPower: 10
+    overproductionHealingPower: 10
 }
 
 acceptsOverproduction = true
 
 overproductionTriggered = function(){
-    o_stability_manager.stabilize(stats.overpdocutionHealingPower, player)
+    o_stability_manager.stabilize(stats.overproductionHealingPower, player)
 }

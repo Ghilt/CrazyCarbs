@@ -10,3 +10,5 @@ onAbilityActivationEnemy = function (){
     // generate resource in world layer
     o_resource_manager.generateResource(childResource, stats.childProductionRate, id)
 }
+
+everySecondAtom = new EveryXSecondTrigger(id, player, stats.cooldown, onAbilityActivationPlayer, onAbilityActivationEnemy)
