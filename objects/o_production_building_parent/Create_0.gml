@@ -1,3 +1,5 @@
+// TODO remove this class, not worth it
+
 event_inherited()
 
 
@@ -11,4 +13,4 @@ onAbilityActivationEnemy = function (){
     o_resource_manager.generateResource(childResource, stats.childProductionRate, id)
 }
 
-everySecondAtom = new EveryXSecondTrigger(id, player, stats.cooldown, onAbilityActivationPlayer, onAbilityActivationEnemy)
+everySecondAtom = new TimedTrigger(id, player, stats.cooldown, onAbilityActivationPlayer, onAbilityActivationEnemy)

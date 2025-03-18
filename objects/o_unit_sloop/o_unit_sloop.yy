@@ -41,5 +41,8 @@
     "path":"sprites/test_space_ship/test_space_ship.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "ship",
+  ],
   "visible":true,
 }

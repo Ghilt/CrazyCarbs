@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"o_map_loader_manager",
+  "%Name":"o_map_manager",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_map_loader_manager",
+  "name":"o_map_manager",
   "overriddenProperties":[],
   "parent":{
     "name":"managers",

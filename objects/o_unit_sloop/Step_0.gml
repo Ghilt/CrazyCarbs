@@ -10,8 +10,8 @@ if (!enemyToEngageData || enemyToEngageData.distance > stats.range) {
         o_pathing_manager.blockade(id)
         participateInBlockade()
     } else {
-        o_pathing_manager.moveTowardsShipOrBase(id, enemyToEngageData ? enemyToEngageData.enemy : false)
+        o_pathing_manager.moveTowardsShipOrBase(id, enemyToEngageData ? enemyToEngageData.instance : false)
     }
 } else {
-    fireWeapon(enemyToEngageData.enemy)
+    fireWeapon(enemyToEngageData.instance)
 }

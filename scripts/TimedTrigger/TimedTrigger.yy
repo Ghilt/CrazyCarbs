@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"EveryXSecondTrigger",
+  "%Name":"TimedTrigger",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"EveryXSecondTrigger",
+  "name":"TimedTrigger",
   "parent":{
     "name":"buildingAtom",
     "path":"folders/Scripts/buildingAtom.yy",

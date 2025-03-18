@@ -28,7 +28,7 @@ onAbilityActivationEnemy = function (){
     part_particles_burst(particleSystem, isoPos.x, isoPos.y, ps_jiggle);
 }
 
-everySecondAtom = new EveryXSecondTrigger(id, player, adjecencyBoosted, onAbilityActivationPlayer, onAbilityActivationEnemy)
+everySecondAtom = new TimedTrigger(id, player, adjecencyBoosted, onAbilityActivationPlayer, onAbilityActivationEnemy)
 
 
 adjacencyUpdate = function(adjacentDistricts) {

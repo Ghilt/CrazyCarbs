@@ -4,7 +4,7 @@
 /// @param {Function | Real} _cooldownNumberOrFunction Description
 /// @param {Function} _activationCallbackPlayer Description
 /// @param {Function} _activationCallbackEnemy Description
-function EveryXSecondTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy) constructor
+function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy) constructor
 {
     player = _player
     current_frame = 0

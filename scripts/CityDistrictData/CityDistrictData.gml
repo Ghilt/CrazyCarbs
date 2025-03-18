@@ -41,6 +41,14 @@ function CityDistrict(_relativeX, _relativeY, _x, _y, _occupiedBy, _terrain)
             occupiedBy.resetAfterBattle()
         }
     }
+        
+    static holdsAliveShip = function() { 
+        if (occupiedBy && instance_exists(occupiedBy)) {
+            return instanceHasTag(occupiedBy, TAG_SHIP) && !occupiedBy.isDefeated
+        } else {
+            return false
+        }
+    }
     
 }
 

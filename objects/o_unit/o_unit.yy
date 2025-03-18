@@ -34,5 +34,8 @@
     "name":"s_unit_obstacle",
     "path":"sprites/s_unit_obstacle/s_unit_obstacle.yy",
   },
+  "tags":[
+    "ship",
+  ],
   "visible":true,
 }

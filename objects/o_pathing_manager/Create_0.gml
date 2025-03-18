@@ -58,7 +58,7 @@ getClosestEnemyWithinEngageRange = function(unit) {
 
 clippedIntoShipInstance = function(unit) {
     var closestFriendlyShipData = o_influence_grid_manager.getClosestShipWithin(unit, itemSize / 2, unit.player)
-    return closestFriendlyShipData ? closestFriendlyShipData.enemy : false
+    return closestFriendlyShipData ? closestFriendlyShipData.instance : false
 }
 
 blockade = function(unit) {
@@ -146,6 +146,7 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
                 target = vectorAdd(unitPos, nearDirection)
             }
             
+            // This is some janky code to make the fleets clump together
             var speedFactor; // could probably do this with a curve ^^
             if (bestPoint == furthestCheckpointReached[unit.player]) {
                 speedFactor = 0.9

@@ -16,7 +16,7 @@ expandToNewSpot = function(currentSpots, allowedTerrain) {
     var newDistrict = false
     for (var i = 0; i < array_length(areaExpandOrder); i++) {
         var tile = global.terrainMap[# o_game_phase_manager.tempUsStartPos.x + areaExpandOrder[i].x, o_game_phase_manager.tempUsStartPos.y + areaExpandOrder[i].y]
-        var terrain = o_map_loader_manager.convertTileTypeToTerrain(tile)
+        var terrain = o_map_manager.convertTileTypeToTerrain(tile)
 
         if (terrain != allowedTerrain) {
             continue; 
@@ -63,7 +63,7 @@ relativePosToCityDistrict = function(pos, terrain) {
 }
 
 
-var startPos = o_map_loader_manager.getPlayerPosition(Player.US)
+var startPos = o_map_manager.getPlayerPosition(Player.US)
 // represents where structures of your city state can be built
 influenceGrid = [[
     // Here be some temp spaghetti: setting up start position here for player
@@ -139,7 +139,7 @@ recalculateAdjacency = function(player) {
 
 #region Player setup
 
-buildAt(o_map_loader_manager.getPlayerPosition(Player.US), Building.STARTING_PORT)
+buildAt(o_map_manager.getPlayerPosition(Player.US), Building.STARTING_PORT)
 repeat (5) {
     expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
     expandToNewSpot(influenceGrid[Player.US], Terrain.SEA)
@@ -231,32 +231,12 @@ distanceToBase = function (pos, player) {
 getClosestShipWithin = function(unit, range, owningPlayer) {
     
     with { unit }
-    var seaFilter = function passed_the_test(element, index)
-    {
-        return element.terrain == Terrain.SEA && 
-                element.occupiedBy && 
-                !element.occupiedBy.isDefeated &&
-                element.occupiedBy != unit;
-    }
+    var seaFilter = function(district, index) { return district.holdsAliveShip(); }
     
-    var bestDistance = MAX_INT
-    var bestDistrict = false
-    var seaDistricts = array_filter(influenceGrid[owningPlayer], seaFilter) 
-    
-    for (var i = 0; i < array_length(seaDistricts); i++) {
-        var distance = point_distance(unit.x, unit.y, seaDistricts[i].occupiedBy.x, seaDistricts[i].occupiedBy.y)
-        
-        if (distance < bestDistance) {
-            bestDistance = distance
-            bestDistrict = seaDistricts[i]
-        } 
-    }
+    var filteredDistricts = array_filter(influenceGrid[owningPlayer], seaFilter)
+    var shipInstances = array_map(filteredDistricts, function(_obj) { return _obj.occupiedBy }) 
 
-    return bestDistance < range ? { 
-        x: bestDistrict.occupiedBy.x, 
-        y: bestDistrict.occupiedBy.y, 
-        distance: bestDistance, 
-        enemy: bestDistrict.occupiedBy } : false
+    return getClosestInstanceWithin(shipInstances, instancePosition(unit), range)
 }
 
 goToBattle = function(enemyCitySavedData) {

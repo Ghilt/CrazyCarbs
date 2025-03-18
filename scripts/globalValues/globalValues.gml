@@ -27,6 +27,7 @@
 
 // Buidling tags - Tag names
 #macro TAG_NATURE "nature"
+#macro TAG_SHIP "ship"
 #macro TAG_INDUSTRY "industry"
 
 enum Modifier
