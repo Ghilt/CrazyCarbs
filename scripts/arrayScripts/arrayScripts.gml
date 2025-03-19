@@ -15,3 +15,9 @@ function arrayCount(array, predicate){
     }
     return count
 }
+
+function arrayRemove(array, item){
+    return array_filter(array, method({ item }, function(_obj) { return _obj != item }))
+}
+
+

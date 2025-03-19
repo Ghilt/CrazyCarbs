@@ -12,11 +12,11 @@ if (true) {
         var isoPos = roomToIso(xx, yy)
         
         if (pos.terrain == Terrain.SEA) {
-            draw_circle_color(isoPos.x, isoPos.y, 5, c_aqua, c_blue, false)
+            draw_circle_color(isoPos.x, isoPos.y, 20, c_aqua, c_blue, false)
             draw_text(isoPos.x, isoPos.y, string(rX) + "," + string(rY))
         } else {
-            draw_circle(isoPos.x, isoPos.y, 5, true)
-            draw_text(isoPos.x, isoPos.y, string(rX) + "," + string(rY))
+            draw_circle(isoPos.x, isoPos.y, 20, false)
+            draw_text_color(isoPos.x, isoPos.y, string(rX) + "," + string(rY), c_black, c_black, c_black, c_black, c_white)
         }
     }
 }

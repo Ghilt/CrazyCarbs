@@ -72,6 +72,8 @@ influenceGrid = [[
 
 // Type is a type defined in ItemScripts.Building
 buildAt = function(pos, type) { 
+        
+    var buildingParameters = ds_map_find_value(global.buildings, type)
 
     var spots = influenceGrid[Player.US]
     
@@ -84,18 +86,38 @@ buildAt = function(pos, type) {
         return false
     }
     
-    var loc = influenceGrid[Player.US][buildingSiteIndex]
+    var district = spots[buildingSiteIndex]
+    var footprintCoordinates = footprintToCoordinates(district, buildingParameters.footprint)
+    
+    // terrain already checked, so it is not strictly required to be checked here
+    footprintUnionedWithInfluenceGridIndex(spots, footprintCoordinates, buildingParameters.terrainRequirement)
+    
+    // Check that all spots are unoccupied (and in the grid when called by debug function)
+    for (var i = 0; i < array_length(footprintCoordinates); i++) {
+        if (!variable_struct_exists(footprintCoordinates[i], "influenceGridIndex")) {
+            // the spot required isn't even on grid, this was called from debug function that is a bit lax
+            return false    
+        } else if (spots[footprintCoordinates[i].influenceGridIndex].occupiedBy) {
+            // Cant build here, already occupied
+            // TODO will change this so that building is allowed and it ejects the current occupant
+            return false      
+        }
+    }
+    
     
     var newBuilding = instance_create_layer(
-        loc.x, 
-        loc.y, 
+        district.x, 
+        district.y, 
         "Ground", 
-        ds_map_find_value(global.buildings, type).building, 
-        { player: Player.US, origin: { x: loc.x, y: loc.y } }
+        buildingParameters.object, 
+        { player: Player.US, origin: { x: district.x, y: district.y } }
     )
     
-    loc.occupiedBy = newBuilding
-    recalculateAdjacencyOnNewBuilding(loc)
+    
+    for (var i = 0; i < array_length(footprintCoordinates); i++) {
+        spots[footprintCoordinates[i].influenceGridIndex].occupiedBy = newBuilding
+    }
+    recalculateAdjacencyOnNewBuilding(district)
     return true
 }
 
@@ -140,7 +162,7 @@ recalculateAdjacency = function(player) {
 #region Player setup
 
 buildAt(o_map_manager.getPlayerPosition(Player.US), Building.STARTING_PORT)
-repeat (5) {
+repeat (9) {
     expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
     expandToNewSpot(influenceGrid[Player.US], Terrain.SEA)
 }
@@ -173,7 +195,7 @@ getRandomPopulatedShoreDistrict = function (player){
     return influenceGrid[player][0]
 }
 
-getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
+getClosestBuildableSpot = function(pX, pY, footprint, terrain = Terrain.GROUND) {
     var bestDistance = MAX_INT
     var bestX = 0
     var bestY = 0
@@ -181,10 +203,15 @@ getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
     for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
         
         if (influenceGrid[Player.US][i].occupiedBy) {
+            // TODO just skip this check and make sure to unbuild the occupying structure and send it to inventory
             continue;
         }
         
         if (influenceGrid[Player.US][i].terrain != terrain) {
+            continue;
+        }
+        
+        if (!footprintFitsInGrid(influenceGrid[Player.US][i], footprint, influenceGrid[Player.US][i].terrain)) {
             continue;
         }
         
@@ -202,6 +229,14 @@ getClosestBuildableSpot = function(pX, pY, terrain = Terrain.GROUND) {
     }
     
     return { distance: bestDistance, x: bestX, y: bestY }
+}
+
+footprintFitsInGrid = function(anchorDistrict, footprint, requiredTerrain) {
+    // refactor influence grid data structure some day
+    var listOfRequiredCoordinates = footprintToCoordinates(anchorDistrict, footprint)
+    
+    var fits = arrayContainsAllTerrainedPos(influenceGrid[Player.US], listOfRequiredCoordinates, requiredTerrain)
+    return fits
 }
 
 
@@ -227,7 +262,6 @@ distanceToBase = function (pos, player) {
     return distance
 }
 
-//TODO this should only give the ships, not do range calcs. move somewhere else
 getClosestShipWithin = function(unit, range, owningPlayer) {
     
     with { unit }
@@ -255,7 +289,7 @@ goToBattle = function(enemyCitySavedData) {
             pos.x, 
             pos.y, 
             "Ground", 
-            ds_map_find_value(global.buildings, _savedDistrict.buildingType).building, 
+            ds_map_find_value(global.buildings, _savedDistrict.buildingType).object, 
             { player: Player.THEM, origin: pos }
         ) : false
         

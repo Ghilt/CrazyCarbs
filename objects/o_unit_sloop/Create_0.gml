@@ -11,7 +11,8 @@ stats = {
     blockadeDamage: 1,
     weaponReadiness: 20, // before firing weapon for the first time
     weaponCooldown: one_second * 2,
-    evasion: 0.20
+    evasion: 0.20,
+    footprint: { width: 1, height: 1 }
 }
 
 hull = stats.hull

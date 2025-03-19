@@ -18,14 +18,18 @@ smoothScale = 0.4
 time = 0
 pickupFrameThreshold = 8
 buildSnappingRange = itemSize
-guiScale = 0.25
-
 originalWidth = sprite_width
 originalHeight = sprite_height
+
 #endregion
 
-sprite_index = object_get_sprite(ds_map_find_value(global.buildings, type).building)
-terrainRequirement = ds_map_find_value(global.buildings, type).terrainRequirement
+var carriedObject = ds_map_find_value(global.buildings, type)
+sprite_index = object_get_sprite(carriedObject.object)
+guiScale = 128 / sprite_width // Square sprite assumed
+
+
+terrainRequirement = carriedObject.terrainRequirement
+footprint = carriedObject.footprint
 
 layer = layer_get_id("GuiAir")
 

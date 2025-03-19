@@ -4,7 +4,7 @@ numberOfAdjacentNatureTag = 0
 
 stats = {
     healingPower: 8,
-    baseCooldown: 5 * one_second,
+    baseCooldown: 5 * one_second
 }
 
 particleSystem = part_system_create()
