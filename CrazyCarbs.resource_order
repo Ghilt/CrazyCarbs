@@ -107,6 +107,7 @@
     {"name":"s_iso100_ocean","order":13,"path":"sprites/s_iso100_ocean/s_iso100_ocean.yy",},
     {"name":"s_iso100_water","order":14,"path":"sprites/s_iso100_water/s_iso100_water.yy",},
     {"name":"s_projectile_cannon_ball","order":2,"path":"sprites/s_projectile_cannon_ball/s_projectile_cannon_ball.yy",},
+    {"name":"s_resource_honey","order":2,"path":"sprites/s_resource_honey/s_resource_honey.yy",},
     {"name":"s_resource_ore","order":1,"path":"sprites/s_resource_ore/s_resource_ore.yy",},
     {"name":"s_shop_background","order":4,"path":"sprites/s_shop_background/s_shop_background.yy",},
     {"name":"s_starting_location_data","order":13,"path":"sprites/s_starting_location_data/s_starting_location_data.yy",},

@@ -138,6 +138,7 @@
     {"id":{"name":"s_ocean","path":"sprites/s_ocean/s_ocean.yy",},},
     {"id":{"name":"s_port","path":"sprites/s_port/s_port.yy",},},
     {"id":{"name":"s_projectile_cannon_ball","path":"sprites/s_projectile_cannon_ball/s_projectile_cannon_ball.yy",},},
+    {"id":{"name":"s_resource_honey","path":"sprites/s_resource_honey/s_resource_honey.yy",},},
     {"id":{"name":"s_resource_lumber","path":"sprites/s_resource_lumber/s_resource_lumber.yy",},},
     {"id":{"name":"s_resource_ore","path":"sprites/s_resource_ore/s_resource_ore.yy",},},
     {"id":{"name":"s_shop_background","path":"sprites/s_shop_background/s_shop_background.yy",},},

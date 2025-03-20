@@ -4,16 +4,21 @@
 /// @param {Function | Real} _cooldownNumberOrFunction Description
 /// @param {Function} _activationCallbackPlayer Description
 /// @param {Function} _activationCallbackEnemy Description
-function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy) constructor
+function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy, _times = -1) constructor
 {
     player = _player
     current_frame = 0
     cooldownNumberOrFunction = _cooldownNumberOrFunction
+    triggerTimes = 0
+    maxTriggerTimes = _times
     activationCallbackPlayer = _activationCallbackPlayer
     activationCallbackEnemy = _activationCallbackEnemy
      
     doStep = function() { 
         if (!o_game_phase_manager.isBattlePhase()) {
+            return;
+        }
+        if (maxTriggerTimes != -1 && triggerTimes >= maxTriggerTimes) {
             return;
         }
         
@@ -23,6 +28,7 @@ function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activation
         var buffDebuffedCooldown = o_buff_debuff_manager.getProsperityAndFaminModifiedCooldown(childDefinedCooldown, player)
         if (current_frame == childDefinedCooldown) {
             current_frame = 0; 
+            triggerTimes += 1
             if (player == Player.US) {
                 activationCallbackPlayer()
             } else {
@@ -36,8 +42,16 @@ function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activation
     
     resetAfterBattle = function() { 
         current_frame = 0
+        triggerTimes = 0
     }
     
     o_atom_manager.registerForResetAfterBattle(_instance, resetAfterBattle)
     o_atom_manager.registerForStep(_instance, doStep)
 }
+
+function OnceTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy)  
+    : TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy, 1) constructor
+{
+    
+}
+

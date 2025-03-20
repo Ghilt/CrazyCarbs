@@ -12,6 +12,6 @@ if (timePassed == duration){
     x = lerp(origin.x, target.x, position)
     y = lerp(origin.y, target.y, position)
     
-    image_xscale = lerp(0.2, 1, position2)
-    image_yscale = lerp(0.2, 1, position2)
+    image_xscale = lerp(0.2, scaleFactor, position2)
+    image_yscale = lerp(0.2, scaleFactor, position2)
 }

@@ -11,6 +11,8 @@
 
 #macro itemSize sprite_get_height(object_get_sprite(o_placable_instance))
 
+#macro guiResourceSize 32
+
 /// Isometric constants
 
 #macro MAP_W 200

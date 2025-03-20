@@ -4,6 +4,6 @@ function countBuildingTags(adjacentDistrictsArray, buildingTag) {
             return instanceHasTag(_obj.occupiedBy, buildingTag)
         } else {
             return false
-        }    
+        }
     }))
 }

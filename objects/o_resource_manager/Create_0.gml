@@ -3,7 +3,7 @@
 enum Resource
 {
     LUMBER,
-    WOOL,
+    HONEY,
     ORE
 }
 
@@ -72,8 +72,8 @@ generateResource = function(type, amount, productionSource) {
     var column = currentResourceCount mod storageRowSize
     
     // get original size of sprite, since this sprite is being scaled as part of anim
-    var targetX = resourceAreaResourceStartX + column * sprite_get_width(productionSource.childResourceSprite) 
-    var targetY = resourceAreaResourceStartY + row * sprite_get_height(productionSource.childResourceSprite) 
+    var targetX = resourceAreaResourceStartX + column * guiResourceSize
+    var targetY = resourceAreaResourceStartY + row * guiResourceSize
 
 
     var resourceInstance
