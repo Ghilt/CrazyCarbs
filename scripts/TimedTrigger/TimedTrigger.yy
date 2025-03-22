@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"TimedTrigger",
   "parent":{
-    "name":"buildingAtom",
-    "path":"folders/Scripts/buildingAtom.yy",
+    "name":"BuildingAtom",
+    "path":"folders/BuildingAtom.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

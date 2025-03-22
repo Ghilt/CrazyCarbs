@@ -8,3 +8,5 @@ scaleFactor = guiResourceSize / sprite_width
 // starting size
 image_xscale = 0.2 
 image_yscale = 0.2
+
+animateScale = true

@@ -20,4 +20,11 @@ function arrayRemove(array, item){
     return array_filter(array, method({ item }, function(_obj) { return _obj != item }))
 }
 
-
+function arrayFlatten(arrayOfArrays) {
+    var flattened = []
+    var length = array_length(arrayOfArrays)
+    for (var i = 0; i < length; i++) {
+        flattened = array_concat(flattened, arrayOfArrays[i])
+    }
+    return flattened
+}

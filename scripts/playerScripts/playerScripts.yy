@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"EnemyCityBuildData",
+  "%Name":"playerScripts",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"EnemyCityBuildData",
+  "name":"playerScripts",
   "parent":{
-    "name":"Data",
-    "path":"folders/Data.yy",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

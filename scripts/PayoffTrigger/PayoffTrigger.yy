@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"PlayerData",
+  "%Name":"PayoffTrigger",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"PlayerData",
+  "name":"PayoffTrigger",
   "parent":{
-    "name":"data",
-    "path":"folders/Scripts/data.yy",
+    "name":"BuildingAtom",
+    "path":"folders/BuildingAtom.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

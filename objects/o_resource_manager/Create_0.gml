@@ -1,12 +1,5 @@
 // This resource manager is responsible for managing prodouced resources during the battle phase
 
-enum Resource
-{
-    LUMBER,
-    HONEY,
-    ORE
-}
-
 var resourceArea = object_get_sprite(o_gui_resource_area)
 var resourceAreaWidth = sprite_get_width(resourceArea)
 
@@ -17,19 +10,13 @@ resourceAreaResourceStartY = 8
 storageSize = 45
 storageRowSize = 15
 
-// Indexes tied to enum above
-resources = [[0, 0, 0], [0, 0, 0]]
+resources = [new ResourceStore(), new ResourceStore()]
 
 
-resourceInstances = [[],[]]
-
-
-// Player 0 is the player, player 1 is the enemy
 generateResource = function(type, amount, productionSource) {
-    player = productionSource.player
+    var player = productionSource.player
     
-    resources[player][type] += 1
-    var currentResourceCount = array_length(resourceInstances[player])
+    var currentResourceCount = resources[player].getResourceCount()
     
     #region Overproduction trigger
     if (currentResourceCount == storageSize) {
@@ -39,30 +26,29 @@ generateResource = function(type, amount, productionSource) {
 
         if (player == Player.US) {
             // animate goods going to consumer
-            for (var i = 0; i < array_length(resourceInstances[player]); i++) {
-                var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstances[player][i].x, y: resourceInstances[player][i].y })
+            
+            resources[player].useEveryResource(method({ consumer }, function(instance) {
+                var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: instance.x, y: instance.y })
                 
                 var initData = {
                     origin: { x: detachFromUiPos.x, y: detachFromUiPos.y },
                     target: { x: consumer.x, y: consumer.y },
                     timePassed: 0,
                     duration: one_second,
-                    sprite_index : resourceInstances[player][i].sprite_index,
+                    sprite_index : instance.sprite_index,
                     image_xscale: o_zoom_manager.getZoomScale(),
                     image_yscale: o_zoom_manager.getZoomScale(),
                     originPositionType: OriginPositionType.GUI
                 }
                 
                 var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Ground", o_world_resource_instance, initData)
-                instance_destroy(resourceInstances[player][i])
-            } 
+            }))
         } else {
+            resources[player].useEveryResource(function(){ })
             // do nothing for enemy resource instances, the instances are destroyed by themselves when they have finished animating
         }
         
         
-        resources[player] = [0, 0, 0]
-        resourceInstances[player] = []
         currentResourceCount = 0
         consumer.overproductionTriggered()
     }
@@ -75,10 +61,9 @@ generateResource = function(type, amount, productionSource) {
     var targetX = resourceAreaResourceStartX + column * guiResourceSize
     var targetY = resourceAreaResourceStartY + row * guiResourceSize
 
-
     var resourceInstance
     var initData = { 
-        sprite_index: productionSource.childResourceSprite,
+        sprite_index: global.resourceTypes[? type].sprite,
         timePassed: 0,
         duration: one_second
     }
@@ -99,31 +84,83 @@ generateResource = function(type, amount, productionSource) {
         }
         
         resourceInstance = instance_create_layer(posInUiSpaceToGenerateResource.x, posInUiSpaceToGenerateResource.y, "GuiAir", o_gui_resource_instance, initData)
+        resources[player].addResource(type, resourceInstance)
     } else {
         // do a bubble anim over the enemy structure
         with(initData) {
             origin = { x: productionSource.x, y: productionSource.y }
-            target = projectionIndependentGuiUp({ x: productionSource.x, y: productionSource.y}, 20)
+            target = projectionIndependentGuiUp({ x: productionSource.x, y: productionSource.y }, 20)
         }
-        resourceInstance = instance_create_layer(initData.origin.x, initData.origin.y, "Ground", o_world_resource_instance, initData) 
+        resourceInstance = instance_create_layer(initData.origin.x, initData.origin.y, "Ground", o_world_resource_instance, initData)
+        resources[player].addResource(type, false)
     }
     
     
-    array_push(resourceInstances[player], resourceInstance)
 }
 
 goToBuild = function(){
     if (!o_game_phase_manager.isBattlePhase()) {
-        resources = [[0, 0, 0], [0, 0, 0]]
-        var player = 0
-        var enemy = 1
-        for (var i = 0; i < array_length(resourceInstances[player]); i++) {
-            instance_destroy(resourceInstances[player][i])
-        }
-        
-        for (var i = 0; i < array_length(resourceInstances[enemy]); i++) {
-            instance_destroy(resourceInstances[enemy][i])
-        }
-        resourceInstances = [[],[]]
+        resources[Player.US].clear()
+        resources[Player.THEM].clear()
     } 
+}
+
+
+// cost = [{type, amount}]
+resourcesExist = function(player, cost) {
+    // TODO tier system
+    return resources[Player.US].hasResources(cost)
+    
+}
+
+compactifyResourceInstances = function() {
+
+    resources[Player.US].forEeachResourceInCreationOrder(function(resourceStruct, index) {
+        var row = index div o_resource_manager.storageRowSize
+        var column = index mod o_resource_manager.storageRowSize
+        var targetX = o_resource_manager.resourceAreaResourceStartX + column * guiResourceSize
+        var targetY = o_resource_manager.resourceAreaResourceStartY + row * guiResourceSize
+        
+        // this is janky - doesnt work
+        //if (resourceStruct.instance.timePassed != 0) {
+            //resourceStruct.instance.target.x = targetX
+            //resourceStruct.instance.target.y = targetY  
+        //} else {
+            //resourceStruct.instance.animateScale = true
+            resourceStruct.instance.origin.x = resourceStruct.instance.target.x 
+            resourceStruct.instance.origin.y = resourceStruct.instance.target.y
+            resourceStruct.instance.timePassed = 0
+            resourceStruct.instance.target.x = targetX
+            resourceStruct.instance.target.y = targetY    
+        //}
+
+    })
+}
+
+instanceUseResources = function(buildingInstance, cost) {
+    if (buildingInstance.player == Player.US) {
+        // animate goods going to instance; temp
+        
+        resources[buildingInstance.player].useResources(cost, method({ buildingInstance }, function(resourceInstance) {
+            var detachFromUiPos = o_zoom_manager.convertToWorldSpace({ x: resourceInstance.x, y: resourceInstance.y })
+            
+            var initData = {
+                origin: { x: detachFromUiPos.x, y: detachFromUiPos.y },
+                target: { x: buildingInstance.x, y: buildingInstance.y },
+                timePassed: 0,
+                duration: one_second,
+                sprite_index : resourceInstance.sprite_index,
+                image_xscale: o_zoom_manager.getZoomScale(),
+                image_yscale: o_zoom_manager.getZoomScale(),
+                originPositionType: OriginPositionType.GUI
+            }
+            
+            var sendToConsumerInstance = instance_create_layer(detachFromUiPos.x, detachFromUiPos.y, "Ground", o_world_resource_instance, initData)
+        }))
+        
+        o_resource_manager.compactifyResourceInstances()
+    } else {
+        resources[buildingInstance.player].useResources(cost, function(){ })
+        // do nothing for enemy resource instances, the instances are destroyed by themselves when they have finished animating
+    }
 }

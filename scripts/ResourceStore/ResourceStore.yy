@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"EnemyCityBuildData",
+  "%Name":"ResourceStore",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"EnemyCityBuildData",
+  "name":"ResourceStore",
   "parent":{
     "name":"Data",
     "path":"folders/Data.yy",

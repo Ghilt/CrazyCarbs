@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"OrderedAreaExpansion",
   "parent":{
-    "name":"data",
-    "path":"folders/Scripts/data.yy",
+    "name":"Data",
+    "path":"folders/Data.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
