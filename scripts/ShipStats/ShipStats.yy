@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ShipStats",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ShipStats",
+  "parent":{
+    "name":"Data",
+    "path":"folders/Data.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

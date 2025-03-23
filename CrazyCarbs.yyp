@@ -101,6 +101,8 @@
     {"id":{"name":"playerScripts","path":"scripts/playerScripts/playerScripts.yy",},},
     {"id":{"name":"resourceScripts","path":"scripts/resourceScripts/resourceScripts.yy",},},
     {"id":{"name":"ResourceStore","path":"scripts/ResourceStore/ResourceStore.yy",},},
+    {"id":{"name":"shipScripts","path":"scripts/shipScripts/shipScripts.yy",},},
+    {"id":{"name":"ShipStats","path":"scripts/ShipStats/ShipStats.yy",},},
     {"id":{"name":"TimedTrigger","path":"scripts/TimedTrigger/TimedTrigger.yy",},},
     {"id":{"name":"s_building_beekeeper","path":"sprites/s_building_beekeeper/s_building_beekeeper.yy",},},
     {"id":{"name":"s_building_gold_mine","path":"sprites/s_building_gold_mine/s_building_gold_mine.yy",},},

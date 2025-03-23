@@ -4,9 +4,9 @@ if (!o_game_phase_manager.isBattlePhase() || isDefeated) {
 
 var enemyToEngageData = o_pathing_manager.getClosestEnemyWithinEngageRange(id); // TODO later optimaztion to not do this search every step
 
-if (!enemyToEngageData || enemyToEngageData.distance > stats.range) {
+if (!enemyToEngageData || enemyToEngageData.distance > stats.getRangeValue()) {
     var distanceToEnemyBase = o_influence_grid_manager.distanceToBase(id, getOpponentOf(player))
-    if (distanceToEnemyBase < stats.blockadeRange) {
+    if (distanceToEnemyBase < stats.getBlockadeRangeValue()) {
         o_pathing_manager.blockade(id)
         participateInBlockade()
     } else {

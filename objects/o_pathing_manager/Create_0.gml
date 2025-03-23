@@ -57,7 +57,7 @@ getClosestEnemyWithinEngageRange = function(unit) {
 }
 
 clippedIntoShipInstance = function(unit) {
-    var closestFriendlyShipData = o_influence_grid_manager.getClosestShipWithin(unit, itemSize / 2, unit.player)
+    var closestFriendlyShipData = o_influence_grid_manager.getClosestShipWithin(unit, itemSize, unit.player)
     return closestFriendlyShipData ? closestFriendlyShipData.instance : false
 }
 
@@ -70,17 +70,16 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
     var unitPos = instancePosition(unit)
     
     var entangledInstance = clippedIntoShipInstance(unit)
+    var unentagleDisplacementVector = { x: 0, y: 0 }
     if (entangledInstance) {
         
         var entangledPos = instancePosition(entangledInstance)    
-        var unentagleDisplacementVector = vectorSubtract(unitPos, entangledInstance)
-        unit.moveTowards(vectorAdd(unitPos, unentagleDisplacementVector), 1)
-        //return;
+        unentagleDisplacementVector = vectorSubtract(unitPos, entangledInstance)
     }
     
     
     if (targetUnit) {
-        unit.moveTowards(instancePosition(targetUnit), 1)
+        unit.moveTowards(vectorAdd(instancePosition(targetUnit), unentagleDisplacementVector), 1)
     } else {
         // navigate towards base along path
         
@@ -156,7 +155,7 @@ moveTowardsShipOrBase = function(unit, targetUnit) {
                 speedFactor = 1.5
             }
             
-            unit.moveTowards(target, speedFactor)
+            unit.moveTowards(vectorAdd(target, unentagleDisplacementVector), speedFactor)
         }
     }
 }

@@ -74,6 +74,8 @@
     {"name":"playerScripts","order":10,"path":"scripts/playerScripts/playerScripts.yy",},
     {"name":"resourceScripts","order":11,"path":"scripts/resourceScripts/resourceScripts.yy",},
     {"name":"ResourceStore","order":6,"path":"scripts/ResourceStore/ResourceStore.yy",},
+    {"name":"shipScripts","order":12,"path":"scripts/shipScripts/shipScripts.yy",},
+    {"name":"ShipStats","order":7,"path":"scripts/ShipStats/ShipStats.yy",},
     {"name":"s_building_beekeeper","order":6,"path":"sprites/s_building_beekeeper/s_building_beekeeper.yy",},
     {"name":"s_building_gold_mine","order":3,"path":"sprites/s_building_gold_mine/s_building_gold_mine.yy",},
     {"name":"s_building_grand_oak","order":4,"path":"sprites/s_building_grand_oak/s_building_grand_oak.yy",},

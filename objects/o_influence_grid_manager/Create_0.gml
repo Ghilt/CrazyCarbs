@@ -264,13 +264,13 @@ distanceToBase = function (pos, player) {
 
 getClosestShipWithin = function(unit, range, owningPlayer) {
     
-    with { unit }
     var seaFilter = function(district, index) { return district.holdsAliveShip(); }
     
     var filteredDistricts = array_filter(influenceGrid[owningPlayer], seaFilter)
     var shipInstances = array_map(filteredDistricts, function(_obj) { return _obj.occupiedBy }) 
+    var filteredSelf = array_filter(shipInstances, equalityFilter(unit))
 
-    return getClosestInstanceWithin(shipInstances, instancePosition(unit), range)
+    return getClosestInstanceWithin(filteredSelf, instancePosition(unit), range)
 }
 
 goToBattle = function(enemyCitySavedData) {

@@ -1,12 +1,10 @@
 if (o_game_phase_manager.isBuildPhase()) {
     o_shop_manager.rerollShop()
 } else {
-    with (o_unit) {
-        if (stats.speed == 30) {
-            stats.speed = 1  
-        } else { 
-            stats.speed = 30
-        }
-        
+    if (global.shipBaseSpeed == 0.2) {
+        global.shipBaseSpeed = 0.01  
+    } else { 
+        global.shipBaseSpeed = 0.2
     }
+        
 }

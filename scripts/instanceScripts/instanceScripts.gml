@@ -27,3 +27,9 @@ function instanceHasTag(instance, tag) {
     var tags = asset_get_tags(instance.object_index, asset_object) 
     return array_contains(tags, tag)
 }
+
+function equalityFilter(instance) {
+    return method({ instance }, function(_obj) {
+        return _obj != instance
+    })
+}

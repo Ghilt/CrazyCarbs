@@ -12,6 +12,10 @@ function vectorEquals(a, b) {
     return a.x == b.x && a.y == b.y
 }
 
+function vectorScale(a, scalar) {
+    return { x: a.x * scalar, y: a.y * scalar }
+}
+
 function crossProduct(a, b) {
     return  a.x * b.y - a.y + b.x
 }
