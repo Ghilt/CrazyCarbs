@@ -121,18 +121,18 @@ compactifyResourceInstances = function() {
         var targetX = o_resource_manager.resourceAreaResourceStartX + column * guiResourceSize
         var targetY = o_resource_manager.resourceAreaResourceStartY + row * guiResourceSize
         
-        // this is janky - doesnt work
-        //if (resourceStruct.instance.timePassed != 0) {
-            //resourceStruct.instance.target.x = targetX
-            //resourceStruct.instance.target.y = targetY  
-        //} else {
-            //resourceStruct.instance.animateScale = true
+         //this is janky
+        if (resourceStruct.instance.timePassed != 0) {
+            resourceStruct.instance.target.x = targetX
+            resourceStruct.instance.target.y = targetY  
+        } else {
+            resourceStruct.instance.animateScale = false
             resourceStruct.instance.origin.x = resourceStruct.instance.target.x 
             resourceStruct.instance.origin.y = resourceStruct.instance.target.y
             resourceStruct.instance.timePassed = 0
             resourceStruct.instance.target.x = targetX
             resourceStruct.instance.target.y = targetY    
-        //}
+        }
 
     })
 }

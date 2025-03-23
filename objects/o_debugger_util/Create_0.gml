@@ -1,4 +1,6 @@
-o_inventory_manager.addItem(Building.GOLD_MINE)
+o_inventory_manager.addItem(Building.LUMBER_MILL)
+o_inventory_manager.addItem(Building.BEEKEEPER)
+o_inventory_manager.addItem(Building.ORCHARD)
 
 showNavigableSeasGrid = false
 
