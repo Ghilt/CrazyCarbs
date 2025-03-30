@@ -17,16 +17,13 @@ furthestCheckpointReached = [0, 0]
 
 var tileMap = layer_tilemap_get_id("Tiles_map")
 
-for (var tX = 0; tX < MAP_W; tX++) {
-    for (var tY = 0; tY < MAP_H; tY++) {
-        var tileMapData = tilemap_get(tileMap, tX, tY)
-        tileMapData = tile_get_index(tileMapData)
+var nonNavigableTiles = o_map_manager.getNonSeaNavigableTiles()
 
-        if (tileMapData != 3) {
-            mp_grid_add_cell(navigableSeasGrid, tX, tY)
-        }
-    }
+for (var i = 0; i < array_length(nonNavigableTiles); i++) {
+    var tile = nonNavigableTiles[i]
+    mp_grid_add_cell(navigableSeasGrid, tile.x, tile.y)    
 }
+
 
 goToBattle = function() { 
     furthestCheckpointReached = [0, 0]

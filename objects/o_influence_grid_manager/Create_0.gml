@@ -15,7 +15,7 @@ areaExpandOrder = getOrderedAreaExpansion(5)
 expandToNewSpot = function(currentSpots, allowedTerrain) {
     var newDistrict = false
     for (var i = 0; i < array_length(areaExpandOrder); i++) {
-        var tile = global.terrainMap[# o_game_phase_manager.tempUsStartPos.x + areaExpandOrder[i].x, o_game_phase_manager.tempUsStartPos.y + areaExpandOrder[i].y]
+        var tile = global.terrainMap[# o_map_manager.playerSpawnTile.x + areaExpandOrder[i].x, o_map_manager.playerSpawnTile.y + areaExpandOrder[i].y]
         var terrain = o_map_manager.convertTileTypeToTerrain(tile)
 
         if (terrain != allowedTerrain) {
@@ -56,8 +56,8 @@ expandToNewSpot = function(currentSpots, allowedTerrain) {
 
 
 relativePosToCityDistrict = function(pos, terrain) {
-    var posX = (pos.x + o_game_phase_manager.tempUsStartPos.x) * TILE_SIZE
-    var posY = (pos.y + o_game_phase_manager.tempUsStartPos.y) * TILE_SIZE
+    var posX = (pos.x + o_map_manager.playerSpawnTile.x) * TILE_SIZE
+    var posY = (pos.y + o_map_manager.playerSpawnTile.y) * TILE_SIZE
     
     return new CityDistrict(pos.x, pos.y, posX, posY, false, terrain)
 }

@@ -1,13 +1,3 @@
-tempUsStartPos = {
-    x: 88,
-    y: 73
-}
-
-tempThemStartPos = {
-    x: 122,
-    y: 63
-}
-
 
 var progressButton = object_get_sprite(o_gui_progress_era_button)
 instance_create_layer(guiWidth - sprite_get_width(progressButton) / 2, guiYBot - sprite_get_height(progressButton) / 2, "Gui", o_gui_progress_era_button)
@@ -66,7 +56,7 @@ goToBattle = function() {
     var districts = array_map(grid, _convert)
     
     o_stability_manager.goToBattle()
-    o_influence_grid_manager.goToBattle(new EnemyCity(tempThemStartPos, districts))
+    o_influence_grid_manager.goToBattle(new EnemyCity(o_map_manager.enemySpawnTiles[irandom(3)], districts))
     o_pathing_manager.goToBattle()
 }
 

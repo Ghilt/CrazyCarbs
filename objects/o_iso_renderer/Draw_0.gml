@@ -22,7 +22,7 @@ for (var tX = 0; tX < MAP_W; tX++) {
     
     
             if (tileIndex != 0) {
-                draw_sprite(s_iso_terrain, tileIndex - 1, roomX, roomY + tileZ)
+                draw_sprite(s_iso_terrain, tileIndex, roomX, roomY + tileZ)
             } 
         }
         

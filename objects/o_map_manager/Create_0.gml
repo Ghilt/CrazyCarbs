@@ -9,39 +9,76 @@ outsideRenderedArea = function(tX, tY) {
     return tY - tX > 74 || tX - tY > 74 || tX + tY < 76 || tX + tY > 273
 }
 
+
+isTileSeaNavigable = function(mapTerrainType) {
+    if (mapTerrainType == MapTerrain.SEA ||
+        mapTerrainType == MapTerrain.PLAYER_SPAWN ||
+        mapTerrainType == MapTerrain.ENEMY_SPAWN) {
+        return true    
+    } else {
+        return false
+    }
+}
+
+nonSeaNavigableTiles = []
+
+playerSpawnTile = false // not loaded yet
+enemySpawnTiles = []
+
 for (var tX = 0; tX < MAP_W; tX++) {
     for (var tY = 0; tY < MAP_H; tY++) {
-        var tileMapData = tilemap_get(tileMap, tX, tY)
-        tileMapData = tile_get_index(tileMapData) // This is step not necessary if the tile map doesnt utilize mirrored or rotated tiles and stuff like that
+        var tileMapIndex = tilemap_get(tileMap, tX, tY)
+        tileMapIndex = tile_get_index(tileMapIndex) // This is step not necessary if the tile map doesnt utilize mirrored or rotated tiles and stuff like that
         
         var thisTile = { 
             pos: {x: tX, y: tY },
-            spriteIndex: tileMapData, 
-            z: (irandom(20) == 1 && tileMapData < 3) ? (irandom(5) > 2 ? -114 : 114 ): 0,
+            spriteIndex: tileMapIndex, // This value maps onto the enum MapTerrain
+            z: (irandom(20) == 1 && tileMapIndex < MapTerrain.SEA) ? (irandom(5) > 2 ? -114 : 114 ): 0,
             mapped: gameSetup_tileToIso(tX, tY)
             
         }
         
         var skipRender = outsideRenderedArea(tX, tY)
         
-        global.terrainMap[# tX, tY] = skipRender ? false : thisTile //# is a short hand accessor thing for ds grids, syntax sugar
+        if (skipRender) {
+            global.terrainMap[# tX, tY] = false
+        } else {
+            if (!isTileSeaNavigable(tileMapIndex)) {
+                array_push(nonSeaNavigableTiles, { x: tX, y: tY })    
+            }
+            
+            if (tileMapIndex == MapTerrain.PLAYER_SPAWN) {
+               playerSpawnTile = { x: tX, y: tY } 
+            } else if (tileMapIndex == MapTerrain.ENEMY_SPAWN) {
+                array_push(enemySpawnTiles, { x: tX, y: tY })
+            }
+            
+            global.terrainMap[# tX, tY] = thisTile
+        }
     }
 }
 
 // Tile type is an int decided by the tilemap used to create the map
+// used for now to epxand building grid
+// TODO data class for the mapterain info
 convertTileTypeToTerrain = function(mapTile){
-    if (mapTile.spriteIndex == 3 || mapTile.spriteIndex == 4 ) {
+    var tileType = mapTile.spriteIndex
+    if (tileType == MapTerrain.SEA || tileType == MapTerrain.SEA_SHALLOW) {
         return Terrain.SEA
     } else {
         return Terrain.GROUND
     }
 }
 
+
 // returns absolute coordinates
 getPlayerPosition = function(player) {
-    var posX = o_game_phase_manager.tempUsStartPos.x * TILE_SIZE
-    var posY = o_game_phase_manager.tempUsStartPos.y * TILE_SIZE
+    var posX = playerSpawnTile.x * TILE_SIZE
+    var posY = playerSpawnTile.y * TILE_SIZE
     return { x: posX, y: posY }
 }
 
+getNonSeaNavigableTiles = function(){
+    return nonSeaNavigableTiles    
+}
 

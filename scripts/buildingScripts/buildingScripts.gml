@@ -18,10 +18,32 @@ enum Building
     LIVESTOCK_RANCH
 };
 
+// Terrain used by the game logic
 enum Terrain
 {
     SEA,
     GROUND
+}
+
+// Fine grained terrain used in map creation visually. Maps onto Terrain enum
+enum MapTerrain
+{
+    NONE,
+    BRUSH,
+    PLAINS,
+    SEA,
+    SEA_SHALLOW,
+    UNK1,
+    SAND,
+    PLAYER_SPAWN,
+    MOUNTAIN,
+    RIVER,
+    SWAMP,
+    FOREST,
+    UNK2,
+    ENEMY_SPAWN,
+    UNK3,
+    UNK4
 }
 
 
