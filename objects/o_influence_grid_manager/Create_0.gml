@@ -59,7 +59,7 @@ relativePosToCityDistrict = function(pos, terrain) {
     var posX = (pos.x + o_map_manager.playerSpawnTile.x) * TILE_SIZE
     var posY = (pos.y + o_map_manager.playerSpawnTile.y) * TILE_SIZE
     
-    return new CityDistrict(pos.x, pos.y, posX, posY, false, terrain)
+    return new CityDistrict(pos.x, pos.y, posX, posY, false, terrain, false)
 }
 
 
@@ -67,11 +67,11 @@ var startPos = o_map_manager.getPlayerPosition(Player.US)
 // represents where structures of your city state can be built
 influenceGrid = [[
     // Here be some temp spaghetti: setting up start position here for player
-    new CityDistrict(0, 0, startPos.x, startPos.y, false, Terrain.SEA)
+    new CityDistrict(0, 0, startPos.x, startPos.y, false, Terrain.SEA, false)
 ], [/*Loaded every battle*/]]
 
 // Type is a type defined in ItemScripts.Building
-buildAt = function(pos, type) { 
+buildAt = function(pos, type, rotated) { 
         
     var buildingParameters = ds_map_find_value(global.buildings, type)
 
@@ -79,7 +79,7 @@ buildAt = function(pos, type) {
     
     with { spots, pos } // https://yal.cc/gamemaker-diy-closures/ I like method(...) more now! 
         
-    var buildingSiteIndex = array_find_index(spots, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y); } )
+    var buildingSiteIndex = array_find_index(spots, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) } )
     
     if (buildingSiteIndex == -1) {
         // This can happen when picking upp multiple placable buildings at once and placing them all at the same time, Bit of a side behavior really
@@ -87,7 +87,7 @@ buildAt = function(pos, type) {
     }
     
     var district = spots[buildingSiteIndex]
-    var footprintCoordinates = footprintToCoordinates(district, buildingParameters.footprint)
+    var footprintCoordinates = footprintToCoordinates(district, rotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint)
     
     // terrain already checked, so it is not strictly required to be checked here
     footprintUnionedWithInfluenceGridIndex(spots, footprintCoordinates, buildingParameters.terrainRequirement)
@@ -110,7 +110,7 @@ buildAt = function(pos, type) {
         district.y, 
         "Ground", 
         buildingParameters.object, 
-        { player: Player.US, origin: { x: district.x, y: district.y } }
+        { player: Player.US, origin: { x: district.x, y: district.y }, rotated }
     )
     
     
@@ -161,7 +161,7 @@ recalculateAdjacency = function(player) {
 
 #region Player setup
 
-buildAt(o_map_manager.getPlayerPosition(Player.US), Building.STARTING_PORT)
+buildAt(o_map_manager.getPlayerPosition(Player.US), Building.STARTING_PORT, false)
 repeat (9) {
     expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
     expandToNewSpot(influenceGrid[Player.US], Terrain.SEA)
@@ -290,7 +290,7 @@ goToBattle = function(enemyCitySavedData) {
             pos.y, 
             "Ground", 
             ds_map_find_value(global.buildings, _savedDistrict.buildingType).object, 
-            { player: Player.THEM, origin: pos }
+            { player: Player.THEM, origin: pos, rotated: _savedDistrict.rotated }
         ) : false
         
         return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, building, _savedDistrict.terrain)

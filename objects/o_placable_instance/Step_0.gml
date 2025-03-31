@@ -84,7 +84,7 @@ if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
     var zoomPercent = o_zoom_manager.getZoomPercentage()
     var cameraViewPortDiff = o_zoom_manager.getViewportCameraSizeDifferenceRatio()
     
-    image_xscale = lerp(image_xscale, zoomPercent * cameraViewPortDiff, smoothScale)
+    image_xscale = lerp(image_xscale, zoomPercent * cameraViewPortDiff  * rotationModifier, smoothScale)
     image_yscale = lerp(image_yscale, zoomPercent * cameraViewPortDiff, smoothScale)
     layer = layer_get_id("GuiStratosphere")
 } else {

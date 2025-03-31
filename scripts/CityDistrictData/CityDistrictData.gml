@@ -6,12 +6,13 @@
 /// @param {Real} _relativeY Which tileY holds this district, relative to the city starting position
 /// @param {Enum.Terrain} _terrain Which terrain this district occupies
 /// @param {Enum.Building | Real} _building Which type of building is built on this spot when loaded in. Can be -1, that indicates no building
-function SavedCityDistrict(_relativeX, _relativeY, _terrain, _building) constructor
+function SavedCityDistrict(_relativeX, _relativeY, _terrain, _building, _rotated) constructor
 {
     relativeX = _relativeX
     relativeY = _relativeY
     terrain = _terrain
     buildingType = _building
+    rotated = _rotated
     
     static hasBuildingType = function() { 
         return buildingType != -1
@@ -28,8 +29,8 @@ function SavedCityDistrict(_relativeX, _relativeY, _terrain, _building) construc
  * @param {Id.Instance | Bool} _occupiedBy Description
  * @param {Enum.Terrain} _terrain Description
  */
-function CityDistrict(_relativeX, _relativeY, _x, _y, _occupiedBy, _terrain) 
-    : SavedCityDistrict(_relativeX, _relativeY, _terrain, -1 /* would like to propagate type here but dont know if i can*/) constructor
+function CityDistrict(_relativeX, _relativeY, _x, _y, _occupiedBy, _terrain, _rotated) 
+    : SavedCityDistrict(_relativeX, _relativeY, _terrain, -1 /* would like to propagate type here but dont know if i can*/, _rotated) constructor
 {
     x = _x
     y = _y

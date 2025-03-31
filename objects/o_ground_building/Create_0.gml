@@ -1,4 +1,4 @@
-ppp("Creating building at", x, y)
+ppp("Creating building at:", x, y, "Rotated:", rotated)
 
 isDefeated = false
 

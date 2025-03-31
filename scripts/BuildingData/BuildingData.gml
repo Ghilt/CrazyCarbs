@@ -5,4 +5,9 @@ function BuildingData(_type, _object, _price, _terrainRequirement, _footprintWid
     price = _price
     terrainRequirement = _terrainRequirement
     object = _object
+    
+    // Utility method - does not mutate 
+    static getRotatedFootprint = function() {
+        return { width: footprint.height, height: footprint.width}    
+    }
 }

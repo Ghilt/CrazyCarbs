@@ -20,7 +20,6 @@ onAbilityActivationEnemy = function (){
 
 onPayoffActivationPlayer = function (){
     o_resource_manager.generateResource(Resource.HONEY, stats.childProductionRate, id)
-    o_resource_manager.generateResource(Resource.ORE, stats.childProductionRate, id)
     
 }
 
@@ -28,5 +27,5 @@ onPayoffActivationEnemy = function (){
     o_resource_manager.generateResource(childResource, stats.childProductionRate, id)
 }
 
-payoff = new PayoffTrigger(id, player, stats.cooldown, onPayoffActivationPlayer, onPayoffActivationEnemy, [{ type: Resource.LUMBER, amount: 3}])
+payoff = new PayoffTrigger(id, player, stats.cooldown, onPayoffActivationPlayer, onPayoffActivationEnemy, [{ type: Resource.LUMBER, amount: 3 }])
 everySecondAtom = new OnceTrigger(id, player, stats.cooldown, onAbilityActivationPlayer, onAbilityActivationEnemy)

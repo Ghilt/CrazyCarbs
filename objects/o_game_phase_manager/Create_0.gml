@@ -50,7 +50,7 @@ goToBattle = function() {
         var terrain = variable_struct_exists(_e, "sea") ? Terrain.SEA : Terrain.GROUND
         var building = variable_struct_exists(_e, "building") ? _e.building : -1
         
-        return new SavedCityDistrict(_e.x, _e.y, terrain, building)
+        return new SavedCityDistrict(_e.x, _e.y, terrain, building, false)
     }
     
     var districts = array_map(grid, _convert)

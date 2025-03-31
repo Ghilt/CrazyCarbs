@@ -20,16 +20,17 @@ pickupFrameThreshold = 8
 buildSnappingRange = itemSize
 originalWidth = sprite_width
 originalHeight = sprite_height
+rotationModifier = 1 // this is used to mirror the sprite, when user rotates building for placement
 
 #endregion
 
-var carriedObject = ds_map_find_value(global.buildings, type)
-sprite_index = object_get_sprite(carriedObject.object)
+carriedBuildingData = ds_map_find_value(global.buildings, type)
+sprite_index = object_get_sprite(carriedBuildingData.object)
 guiScale = 128 / sprite_width // Square sprite assumed
 
 
-terrainRequirement = carriedObject.terrainRequirement
-footprint = carriedObject.footprint
+terrainRequirement = carriedBuildingData.terrainRequirement
+footprint = carriedBuildingData.footprint
 
 layer = layer_get_id("GuiAir")
 
@@ -39,7 +40,7 @@ placeInstance = function(pos) {
     
     var canAfford = !isOwnedByPlayer && o_shop_manager.canAfford(type)
     
-    var success = (canAfford || isOwnedByPlayer) && o_influence_grid_manager.buildAt(pos, type)
+    var success = (canAfford || isOwnedByPlayer) && o_influence_grid_manager.buildAt(pos, type, rotationModifier == -1)
     if (success) {
         // Might be built directly from shop, or from inventory. Owning manager needs to be updated
         owner.removeItem(id)
@@ -77,7 +78,7 @@ returnToOwnerPosition = function () {
     //Only scooch here
     o_gui_manager.uiScooch(id)
     
-    image_xscale = lerp(image_xscale, guiScale, smoothScale * 0.2)
+    image_xscale = lerp(image_xscale, guiScale  * rotationModifier, smoothScale * 0.2)
     image_yscale = lerp(image_yscale, guiScale, smoothScale * 0.2)
 }
 
