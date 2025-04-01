@@ -71,7 +71,7 @@ influenceGrid = [[
 ], [/*Loaded every battle*/]]
 
 // Type is a type defined in ItemScripts.Building
-buildAt = function(pos, type, rotated) { 
+buildAt = function(pos, type, buildingRotated) { 
         
     var buildingParameters = ds_map_find_value(global.buildings, type)
 
@@ -87,7 +87,7 @@ buildAt = function(pos, type, rotated) {
     }
     
     var district = spots[buildingSiteIndex]
-    var footprintCoordinates = footprintToCoordinates(district, rotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint)
+    var footprintCoordinates = footprintToCoordinates(district, buildingRotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint)
     
     // terrain already checked, so it is not strictly required to be checked here
     footprintUnionedWithInfluenceGridIndex(spots, footprintCoordinates, buildingParameters.terrainRequirement)
@@ -110,7 +110,7 @@ buildAt = function(pos, type, rotated) {
         district.y, 
         "Ground", 
         buildingParameters.object, 
-        { player: Player.US, origin: { x: district.x, y: district.y }, rotated }
+        { player: Player.US, origin: { x: district.x, y: district.y }, buildingRotated }
     )
     
     
@@ -290,7 +290,7 @@ goToBattle = function(enemyCitySavedData) {
             pos.y, 
             "Ground", 
             ds_map_find_value(global.buildings, _savedDistrict.buildingType).object, 
-            { player: Player.THEM, origin: pos, rotated: _savedDistrict.rotated }
+            { player: Player.THEM, origin: pos, buildingRotated: _savedDistrict.buildingRotated }
         ) : false
         
         return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, building, _savedDistrict.terrain)

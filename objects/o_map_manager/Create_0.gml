@@ -23,6 +23,10 @@ isTileSeaNavigable = function(mapTerrainType) {
 nonSeaNavigableTiles = []
 
 playerSpawnTile = false // not loaded yet
+
+// Enemy rotation is calculated
+// Requirement on a starting location is that it is adjacent to 1 ocean and 3 land
+// e.g. { x: tX, y: tY, direction: Direction.EAST}
 enemySpawnTiles = []
 
 for (var tX = 0; tX < MAP_W; tX++) {
@@ -33,7 +37,7 @@ for (var tX = 0; tX < MAP_W; tX++) {
         var thisTile = { 
             pos: {x: tX, y: tY },
             spriteIndex: tileMapIndex, // This value maps onto the enum MapTerrain
-            z: (irandom(20) == 1 && tileMapIndex < MapTerrain.SEA) ? (irandom(5) > 2 ? -114 : 114 ): 0,
+            z: (irandom(20) == 1 && tileMapIndex < MapTerrain.SEA) ? (irandom(5) > 2 ? -114 : 114): 0,
             mapped: gameSetup_tileToIso(tX, tY)
             
         }
@@ -50,13 +54,24 @@ for (var tX = 0; tX < MAP_W; tX++) {
             if (tileMapIndex == MapTerrain.PLAYER_SPAWN) {
                playerSpawnTile = { x: tX, y: tY } 
             } else if (tileMapIndex == MapTerrain.ENEMY_SPAWN) {
-                array_push(enemySpawnTiles, { x: tX, y: tY })
+                
+                // calculate direction of this spawn
+                var adjacentSeaTile = array_filter(vectorGetOrthogonal(thisTile.pos), method({ tileMap }, function(_adjacentTile) {
+                    var type = tilemap_get(tileMap, _adjacentTile.x, _adjacentTile.y)
+                    return type == MapTerrain.SEA    
+                }))[0]
+                
+                var seaTileRelative = vectorSubtract(adjacentSeaTile, thisTile.pos)
+                
+                array_push(enemySpawnTiles, { x: tX, y: tY, direction: vectorToDirection(seaTileRelative)})
             }
             
             global.terrainMap[# tX, tY] = thisTile
         }
     }
 }
+
+ppp("Enemy spawn points", enemySpawnTiles)
 
 // Tile type is an int decided by the tilemap used to create the map
 // used for now to epxand building grid

@@ -81,12 +81,14 @@
     {"id":{"name":"o_world_resource_instance","path":"objects/o_world_resource_instance/o_world_resource_instance.yy",},},
     {"id":{"name":"o_zoom_manager","path":"objects/o_zoom_manager/o_zoom_manager.yy",},},
     {"id":{"name":"ps_jiggle","path":"particles/ps_jiggle/ps_jiggle.yy",},},
+    {"id":{"name":"enemyTest","path":"rooms/enemyTest/enemyTest.yy",},},
     {"id":{"name":"worldRoom","path":"rooms/worldRoom/worldRoom.yy",},},
     {"id":{"name":"adjacencyScripts","path":"scripts/adjacencyScripts/adjacencyScripts.yy",},},
     {"id":{"name":"arrayScripts","path":"scripts/arrayScripts/arrayScripts.yy",},},
     {"id":{"name":"BuildingData","path":"scripts/BuildingData/BuildingData.yy",},},
     {"id":{"name":"buildingScripts","path":"scripts/buildingScripts/buildingScripts.yy",},},
     {"id":{"name":"CityDistrictData","path":"scripts/CityDistrictData/CityDistrictData.yy",},},
+    {"id":{"name":"debugEnemyCityLoader","path":"scripts/debugEnemyCityLoader/debugEnemyCityLoader.yy",},},
     {"id":{"name":"debugScripts","path":"scripts/debugScripts/debugScripts.yy",},},
     {"id":{"name":"EnemyCityBuildData","path":"scripts/EnemyCityBuildData/EnemyCityBuildData.yy",},},
     {"id":{"name":"globalValues","path":"scripts/globalValues/globalValues.yy",},},
@@ -166,6 +168,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"worldRoom","path":"rooms/worldRoom/worldRoom.yy",},},
+    {"roomId":{"name":"enemyTest","path":"rooms/enemyTest/enemyTest.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

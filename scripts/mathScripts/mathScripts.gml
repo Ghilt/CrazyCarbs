@@ -35,6 +35,41 @@ function vectorIsOrthogonalDirection(a) {
         || vectorEquals(a, global.directionVector[Direction.WEST])
 }
 
+function vectorGetOrthogonal(a) {
+    return [
+        vectorAdd(a, global.directionVector[Direction.NORTH]), 
+        vectorAdd(a, global.directionVector[Direction.EAST]), 
+        vectorAdd(a, global.directionVector[Direction.SOUTH]), 
+        vectorAdd(a, global.directionVector[Direction.WEST])
+    ]
+}
+
+// directions assumed to be orthogonal NORTH, EAST, SOUTH, WEST
+function vectorRotateAroundOrigin(a, currentDirection, newDirection) {
+
+    // Compute how many 90-degree steps we need to rotate
+    var steps = (newDirection - currentDirection) / 2
+    steps = steps < 0 ? 4 + steps : steps // always rotate clockwise
+    var newX = a.x
+    var newY = a.y
+    repeat (steps) {
+        var tempX = newX
+        var tempY = newY
+        newX = -tempY
+        newY = tempX       
+    }   
+    return { x: newX, y: newY } 
+}
+
+// Take notice, some tech debt here, a is not normalized in anyway and the global direction vector expects normalized vector
+function vectorToDirection(a) {
+    return array_find_index(global.directionVector, method({ a }, function(_ele) { 
+        return a.x == _ele.x && a.y == _ele.y
+    }))
+}
+
+
+
 enum Direction
 {
     NORTH,
@@ -47,7 +82,7 @@ enum Direction
     NORTH_WEST,
 };
 
-global.directionVectorOld = [{ x: 0, y: -1 },{ x: 1, y: 0 },{ x: 0, y: 1 },{ x: -1, y: 0 },]
+global.directionVectorOld = [{ x: 0, y: -1 },{ x: 1, y: 0 },{ x: 0, y: 1 },{ x: -1, y: 0 }]
 global.directionVector = [
     { x: 0, y: -1 },      // NORTH
     { x: 0.707, y: -0.707 },  // NORTHEAST
