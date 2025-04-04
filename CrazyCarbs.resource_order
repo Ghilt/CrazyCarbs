@@ -65,6 +65,7 @@
     {"name":"CityDistrictData","order":1,"path":"scripts/CityDistrictData/CityDistrictData.yy",},
     {"name":"debugEnemyCityLoader","order":13,"path":"scripts/debugEnemyCityLoader/debugEnemyCityLoader.yy",},
     {"name":"debugScripts","order":4,"path":"scripts/debugScripts/debugScripts.yy",},
+    {"name":"districtScripts","order":14,"path":"scripts/districtScripts/districtScripts.yy",},
     {"name":"EnemyCityBuildData","order":3,"path":"scripts/EnemyCityBuildData/EnemyCityBuildData.yy",},
     {"name":"influenceGridHelperScripts","order":9,"path":"scripts/influenceGridHelperScripts/influenceGridHelperScripts.yy",},
     {"name":"instanceScripts","order":6,"path":"scripts/instanceScripts/instanceScripts.yy",},

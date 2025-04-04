@@ -276,25 +276,62 @@ getClosestShipWithin = function(unit, range, owningPlayer) {
 goToBattle = function(enemyCitySavedData) {
     var startPos = enemyCitySavedData.pos
     
-    with { startPos }
-        
-    var loadIntoMap = function (_savedDistrict, _i)
+    // Map to track buildings by their coordinates
+    var buildingMap = ds_map_create()
+    
+    var loadIntoMap = method({ buildingMap, startPos }, function (_savedDistrict, _i)
     {
         var pos = { 
            x: (_savedDistrict.relativeX + startPos.x) * TILE_SIZE, 
            y: (_savedDistrict.relativeY + startPos.y) * TILE_SIZE 
         }
         
-        var building = _savedDistrict.hasBuildingType() ? instance_create_layer(
-            pos.x, 
-            pos.y, 
-            "Ground", 
-            ds_map_find_value(global.buildings, _savedDistrict.buildingType).object, 
-            { player: Player.THEM, origin: pos, buildingRotated: _savedDistrict.buildingRotated }
-        ) : false
+        // Use absolute coordinates for the coordKey
+        var absX = _savedDistrict.relativeX + startPos.x
+        var absY = _savedDistrict.relativeY + startPos.y
+        var coordKey = string(absX) + "," + string(absY)
+        var existingBuilding = buildingMap[? coordKey]
         
-        return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, building, _savedDistrict.terrain)
-    }
+        if (existingBuilding != undefined) {
+            // This coordinate is part of an already created building
+            return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, existingBuilding, _savedDistrict.terrain, _savedDistrict.buildingRotated)
+        }
+        
+        var building = false
+        if (_savedDistrict.hasBuildingType()) {
+            building = instance_create_layer(
+                pos.x, 
+                pos.y, 
+                "Ground", 
+                ds_map_find_value(global.buildings, _savedDistrict.buildingType).object, 
+                { player: Player.THEM, origin: pos, buildingRotated: _savedDistrict.buildingRotated }
+            )
+            
+            // Store building reference for all coordinates it occupies
+            var buildingData = global.buildings[? _savedDistrict.buildingType]
+            var footprint = _savedDistrict.buildingRotated ? buildingData.getRotatedFootprint() : buildingData.footprint
+            
+            // Generate all coordinates for the footprint
+            for (var yy = 0; yy < footprint.height; yy++) {
+                for (var xx = 0; xx < footprint.width; xx++) {
+                    var footprintAbsX = absX + xx
+                    var footprintAbsY = absY + yy
+                    var footprintKey = string(footprintAbsX) + "," + string(footprintAbsY)
+                    buildingMap[? footprintKey] = building
+                }
+            }
+        }
+        
+        return new CityDistrict(_savedDistrict.relativeX, _savedDistrict.relativeY, pos.x, pos.y, building, _savedDistrict.terrain, _savedDistrict.buildingRotated)
+    })
     
-    influenceGrid[Player.THEM] = array_map(enemyCitySavedData.districts, loadIntoMap)
+    // need to order the districts temporarily(remember the (0,0) starting district is promised to be first in the list. Need to restore afterwards
+    orderCityDistrictFromTopLeft(enemyCitySavedData.districts)
+    var loadedIntoMap = array_map(enemyCitySavedData.districts, loadIntoMap) 
+    
+    influenceGrid[Player.THEM] = placeStartingDistrictFirstInList(loadedIntoMap)
+    
+    ds_map_destroy(buildingMap)
+    
+    recalculateAdjacency(Player.THEM)
 }

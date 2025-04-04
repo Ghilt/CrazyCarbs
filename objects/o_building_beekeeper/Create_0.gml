@@ -1,3 +1,4 @@
+type = Building.BEEKEEPER
 
 stats = {
     childProductionRate: 1,

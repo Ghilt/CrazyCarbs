@@ -1,3 +1,4 @@
+type = Building.LUMBER_MILL
 
 stats = {
     childProductionRate: 1,

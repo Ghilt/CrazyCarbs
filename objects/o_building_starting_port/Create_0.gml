@@ -1,3 +1,5 @@
+type = Building.STARTING_PORT
+
 // Inherit the parent event
 event_inherited();
 

@@ -1,3 +1,5 @@
+type = Building.GRAND_OAK
+
 event_inherited();
 
 numberOfAdjacentNatureTag = 0

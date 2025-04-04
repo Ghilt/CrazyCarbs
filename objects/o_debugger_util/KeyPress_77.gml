@@ -21,10 +21,10 @@ show_debug_message("Camera     w/h : " + string(camera_get_view_width(cam)) + "/
 
 var isoToRoomMap = isoToRoom(mouse_x, mouse_y)
 show_debug_message("IsoToRoom     x/y : " + string(isoToRoomMap) )
-show_debug_message("Tile          x/y : " + string(isoToRoomMap.x/TILE_SIZE) + "/" + string(isoToRoomMap.y/TILE_SIZE) )
+show_debug_message("Tile          x/y : " + string(isoToRoomMap.x div TILE_SIZE) + "/" + string(isoToRoomMap.y div TILE_SIZE) )
 
 var camIsoToRoomMap = isoToRoom(camera_get_view_x(cam), camera_get_view_y(cam))
-show_debug_message("Cam topleft Tile          x/y : " + string(camIsoToRoomMap.x/TILE_SIZE) + "/" + string(camIsoToRoomMap.y/TILE_SIZE) )
+show_debug_message("Cam topleft Tile          x/y : " + string(camIsoToRoomMap.x div TILE_SIZE) + "/" + string(camIsoToRoomMap.y div TILE_SIZE) )
 
 show_debug_message("closest buildable spot: " + string(o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y, { width: 1, height: 1})))
 

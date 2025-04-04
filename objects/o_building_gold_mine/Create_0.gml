@@ -1,3 +1,4 @@
+type = Building.GOLD_MINE
 
 stats = {
     childProductionRate: 1,

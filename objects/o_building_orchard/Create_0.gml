@@ -1,3 +1,4 @@
+type = Building.ORCHARD
 
 stats = {
     childProductionRate: 1,
