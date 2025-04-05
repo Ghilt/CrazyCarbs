@@ -109,8 +109,7 @@ goToBuild = function(){
 // cost = [{type, amount}]
 resourcesExist = function(player, cost) {
     // TODO tier system
-    return resources[Player.US].hasResources(cost)
-    
+    return resources[player].hasResources(cost)
 }
 
 compactifyResourceInstances = function() {

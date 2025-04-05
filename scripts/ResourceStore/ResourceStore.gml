@@ -41,9 +41,13 @@ function ResourceStore() constructor
             } 
             
             repeat (cost[i].amount) {
-                var usingResourceInstance = array_pop(resourceStructsOfType).instance
-                action(usingResourceInstance)
-                instance_destroy(usingResourceInstance)    
+                var resourceStruct = array_pop(resourceStructsOfType)
+                if (resourceStruct.instance) {
+                    action(resourceStruct.instance)
+                    instance_destroy(resourceStruct.instance)    
+                } else {
+                    action(false) // Call action with false for non-instance resources
+                }
             }   
         }
     }
