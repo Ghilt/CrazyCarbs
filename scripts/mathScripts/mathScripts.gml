@@ -69,7 +69,6 @@ function vectorToDirection(a) {
 }
 
 
-
 enum Direction
 {
     NORTH,

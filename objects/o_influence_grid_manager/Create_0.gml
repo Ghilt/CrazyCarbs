@@ -2,10 +2,6 @@
 
 debugGrid = true
 
-// Used to
-// limit search for tiles for city when iterating on the whole map
-roughCitySize = 10
-
 
 // Holds the order of expansion for the city in relative terms
 // {x, y, dist}

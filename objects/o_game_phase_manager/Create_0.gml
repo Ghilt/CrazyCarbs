@@ -21,6 +21,9 @@ isBattlePhase = function() {
 }
 
 goToBattle = function() {
+    // Save the build of the player to match it up against other players.
+    saveDistrictsToFile(o_influence_grid_manager.influenceGrid[Player.US], new PlayerData(Direction.EAST, "BlackCalder"), "cc_build")
+    
     state = GameState.BATTLE
 
     

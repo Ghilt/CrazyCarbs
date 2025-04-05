@@ -34,13 +34,12 @@ for (var tX = 0; tX < MAP_W; tX++) {
         var tileMapIndex = tilemap_get(tileMap, tX, tY)
         tileMapIndex = tile_get_index(tileMapIndex) // This is step not necessary if the tile map doesnt utilize mirrored or rotated tiles and stuff like that
         
-        var thisTile = { 
-            pos: {x: tX, y: tY },
-            spriteIndex: tileMapIndex, // This value maps onto the enum MapTerrain
-            z: (irandom(20) == 1 && tileMapIndex < MapTerrain.SEA) ? (irandom(5) > 2 ? -114 : 114): 0,
-            mapped: gameSetup_tileToIso(tX, tY)
-            
-        }
+        var thisTile = new MapTileData(
+            tX,
+            tY,
+            tileMapIndex,
+            (irandom(20) == 1 && tileMapIndex < MapTerrain.SEA) ? (irandom(5) > 2 ? -114 : 114): 0
+        )
         
         var skipRender = outsideRenderedArea(tX, tY)
         
@@ -77,7 +76,7 @@ ppp("Enemy spawn points", enemySpawnTiles)
 // used for now to epxand building grid
 // TODO data class for the mapterain info
 convertTileTypeToTerrain = function(mapTile){
-    var tileType = mapTile.spriteIndex
+    var tileType = mapTile.mapTerrain
     if (tileType == MapTerrain.SEA || tileType == MapTerrain.SEA_SHALLOW) {
         return Terrain.SEA
     } else {

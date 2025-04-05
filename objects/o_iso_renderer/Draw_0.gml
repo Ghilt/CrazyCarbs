@@ -12,7 +12,7 @@ for (var tX = 0; tX < MAP_W; tX++) {
         if (tileData) {
             roomX = tileData.mapped.x
             roomY = tileData.mapped.y
-            tileIndex = tileData.spriteIndex
+            tileIndex = tileData.mapTerrain
             tileZ = tileData.z
             
             // nukes performance a bit
