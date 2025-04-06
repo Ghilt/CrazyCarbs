@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"debugEnemyCityLoader",
+  "%Name":"persistanceScripts",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"debugEnemyCityLoader",
+  "name":"persistanceScripts",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"districtPersistance",
+  "%Name":"enemyCityLoader",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"districtPersistance",
+  "name":"enemyCityLoader",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

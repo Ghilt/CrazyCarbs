@@ -8,8 +8,8 @@
 /// @param {Enum.Building | Real} _building Which type of building is built on this spot when loaded in. Can be -1, that indicates no building
 function SavedCityDistrict(_relativeX, _relativeY, _terrain, _buildingType, _buildingRotated) constructor
 {
-    relativeX = _relativeX
-    relativeY = _relativeY
+    relativeX = floor(_relativeX)
+    relativeY = floor(_relativeY)
     terrain = _terrain
     buildingType = _buildingType
     buildingRotated = _buildingRotated
