@@ -57,7 +57,6 @@ runPayoffTriggers = function(player) {
         if (payoff.triggerCount() == payoffTriggerCounter[player]) {
             allTriggered = false
             if (payoff.isReady() && o_resource_manager.resourcesExist(player, payoff.resourceCost())) {
-                ppp("Atom_Manager: Triggering payoff", payoff ,"it cost: ", payoff.resourceCost())
                 o_resource_manager.instanceUseResources(payoff.instance, payoff.resourceCost())
                 payoff.triggerPayoff()    
             }

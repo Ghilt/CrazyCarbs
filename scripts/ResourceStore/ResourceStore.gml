@@ -53,9 +53,9 @@ function ResourceStore() constructor
     }
     
     addResource = function(type, instance) {
-        var smallDifferentiator = getResourceCount() // This is a bit of jank to differentiate duplicate timetstamps, should probably just keep track of the resource count and not recalculate it  
         // addedAt is used to order the resources when doing things in the ui
-        var newResource = { addedAt: current_time + smallDifferentiator, type, instance } 
+        // getTimer() is micro seconds, i had current_time for millies first but then they collide a lot
+        var newResource = { addedAt: get_timer(), type, instance } 
         var resourceStructsOfType = resources[? type]
         if (is_undefined(resourceStructsOfType)) {
             ds_map_add(resources, type, [newResource])    

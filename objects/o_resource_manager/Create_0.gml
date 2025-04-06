@@ -48,7 +48,6 @@ generateResource = function(type, amount, productionSource) {
             // do nothing for enemy resource instances, the instances are destroyed by themselves when they have finished animating
         }
         
-        
         currentResourceCount = 0
         consumer.overproductionTriggered()
     }
@@ -121,17 +120,19 @@ compactifyResourceInstances = function() {
         var targetY = o_resource_manager.resourceAreaResourceStartY + row * guiResourceSize
         
          //this is janky
-        if (resourceStruct.instance.timePassed != 0) {
-            resourceStruct.instance.target.x = targetX
-            resourceStruct.instance.target.y = targetY  
-        } else {
+        if (resourceStruct.instance.timePassed == resourceStruct.instance.duration) {
+            // resource is at rest. Give it a new origin and a new target
             resourceStruct.instance.animateScale = false
             resourceStruct.instance.origin.x = resourceStruct.instance.target.x 
             resourceStruct.instance.origin.y = resourceStruct.instance.target.y
             resourceStruct.instance.timePassed = 0
             resourceStruct.instance.target.x = targetX
             resourceStruct.instance.target.y = targetY    
-        }
+        } else {
+            // resource is in motion, just change its target
+            resourceStruct.instance.target.x = targetX
+            resourceStruct.instance.target.y = targetY
+        } 
 
     })
 }
