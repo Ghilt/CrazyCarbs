@@ -10,15 +10,30 @@ inventory = []
 inventoryX = guiXMid - (guiWidth * 0.25)
 inventoryY = guiYBot - inventoryHeight + 64
 
-
-addItem = function(type) {
+// creationPosition is optional 
+addItem = function(type, creationPosition = false) {
     var buildPos = { x: inventoryX + array_length(inventory) * itemSize, y: inventoryY }
     var battlePos = { x : buildPos.x, y: buildPos.y + itemSize }
     
     var guiState = new GuiState(buildPos.x, buildPos.y, battlePos.x, battlePos.y)
     
-    var inst = instance_create_layer(buildPos.x, buildPos.y, "Gui", o_placable_instance, { type: type, owner: id, guiState }) 
+    var initData = creationPosition ? { 
+        type: type, 
+        owner: id, 
+        guiState, 
+        x: creationPosition.x, 
+        y: creationPosition.y,
+        carry: Carry.ClickCarry,
+        action: Action.Build
+    } : {
+        type: type, 
+        owner: id, 
+        guiState 
+    }
+    
+    var inst = instance_create_layer(buildPos.x, buildPos.y, "Gui", o_placable_instance, initData) 
     array_push(inventory, inst)
+    return inst
 }
 
 removeItem = function(item) {

@@ -11,11 +11,10 @@ enum Action {
 }
 
 #region Logistical variables - Helps managing the movement of the item in the gui
-action = Action.None
-carry = Carry.None
+action = variable_instance_exists(id, "action") ? action : Action.None
+carry = variable_instance_exists(id, "carry") ? carry : Carry.None
 smoothCarry = 0.4
 smoothScale = 0.4
-time = 0
 pickupFrameThreshold = 8
 buildSnappingRange = itemSize
 originalWidth = sprite_width
@@ -33,6 +32,12 @@ terrainRequirement = carriedBuildingData.terrainRequirement
 footprint = carriedBuildingData.footprint
 
 layer = layer_get_id("GuiAir")
+var zoomPercent = o_zoom_manager.getZoomPercentage()
+var cameraViewPortDiff = o_zoom_manager.getViewportCameraSizeDifferenceRatio()
+
+// 
+image_xscale = zoomPercent * cameraViewPortDiff  * rotationModifier
+image_yscale = zoomPercent * cameraViewPortDiff
 
 isOwnedByPlayer = owner.object_index == o_inventory_manager
 
@@ -86,4 +91,40 @@ resetMovStruct = function(){
     guiState.mov.originX = x
     guiState.mov.originY = y
     guiState.mov.timePassed = 0
+}
+
+// mousePressCounter == 0, only hover
+// mousePressCounter > 0, mouse button pressed
+// mousePressCounter = -1, mouse button just released
+onDelegatedMouse = function(pos, mousePressCounter) {
+    switch (carry) {
+        case Carry.None:
+            if (position_meeting(mouseGuiX, mouseGuiY, id) && mousePressCounter == 1) {
+                // Carry initiation
+                o_placable_instance.carry = Carry.None
+                carry = Carry.ClickCarry
+            }
+        break;
+        case Carry.ClickCarry:
+            if (mousePressCounter > pickupFrameThreshold){
+                o_placable_instance.carry = Carry.None
+                carry = Carry.HoldCarry
+            }
+        
+            if (mousePressCounter == 1) {
+                carry = Carry.None
+                resetMovStruct()
+            }
+    
+        break;
+    
+        case Carry.HoldCarry:
+            if (mousePressCounter == -1) {
+                carry = Carry.None
+                resetMovStruct()
+            }
+        break;
+    }
+    
+    return carry == Carry.ClickCarry || carry == Carry.HoldCarry
 }

@@ -51,11 +51,11 @@ expandToNewSpot = function(currentSpots, allowedTerrain) {
 }
 
 
-relativePosToCityDistrict = function(pos, terrain) {
-    var posX = (pos.x + o_map_manager.playerSpawnTile.x) * TILE_SIZE
-    var posY = (pos.y + o_map_manager.playerSpawnTile.y) * TILE_SIZE
+relativePosToCityDistrict = function(tile, terrain) {
+    var posX = (tile.x + o_map_manager.playerSpawnTile.x) * TILE_SIZE
+    var posY = (tile.y + o_map_manager.playerSpawnTile.y) * TILE_SIZE
     
-    return new CityDistrict(pos.x, pos.y, posX, posY, false, terrain, false)
+    return new CityDistrict(tile.x, tile.y, posX, posY, false, terrain, false)
 }
 
 
@@ -115,6 +115,43 @@ buildAt = function(pos, type, buildingRotated) {
     }
     recalculateAdjacencyOnNewBuilding(district)
     return true
+}
+
+removeBuildingAt = function(pos) {
+    var spots = influenceGrid[Player.US]
+    var buildingSiteIndex = array_find_index(spots, method( { pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
+    
+    if (buildingSiteIndex == -1) {
+        return false
+    }
+    
+    var district = spots[buildingSiteIndex]
+    if (!district.occupiedBy) {
+        return false
+    }
+    
+    var building = district.occupiedBy
+    var footprintCoordinates = []
+    for (var i = 0; i < array_length(spots); i++) {
+        if (spots[i].occupiedBy == building) {
+            array_push(footprintCoordinates, { influenceGridIndex: i })
+        }
+    }
+    // Clear occupiedBy references
+    for (var i = 0; i < array_length(footprintCoordinates); i++) {
+        spots[footprintCoordinates[i].influenceGridIndex].occupiedBy = false
+    }
+    
+    recalculateAdjacencyOnNewBuilding(district)
+    
+    var destroyedBuildingInfo = {
+        type: building.type,
+        x: building.x,
+        y: building.y
+    }
+
+    instance_destroy(building)
+    return destroyedBuildingInfo
 }
 
 updateAdjacencyForDistrict = function(district) {
@@ -212,8 +249,6 @@ getClosestBuildableSpot = function(pX, pY, footprint, terrain = Terrain.GROUND) 
         }
         
         var isoMappedMouse = isoToRoom(pX, pY)
-        var isoMapped = roomToIso(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)
-        var roomt = isoToRoom(influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y) 
         
         var distance = point_distance(isoMappedMouse.x, isoMappedMouse.y, influenceGrid[Player.US][i].x, influenceGrid[Player.US][i].y)
         

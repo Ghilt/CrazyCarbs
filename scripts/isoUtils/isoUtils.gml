@@ -14,3 +14,8 @@ function isoMouse() {
     var isoSpace = isoToRoom(mouse_x, mouse_y)
     return { x: isoSpace.x, y: isoSpace.y }
 }
+
+function isoMouseTile() {
+    var isoSpace = isoToRoom(mouse_x, mouse_y)
+    return { x: isoSpace.x div TILE_SIZE, y: isoSpace.y div TILE_SIZE }
+}

@@ -3,27 +3,11 @@ if (!o_game_phase_manager.isBuildPhase()) {
     return;
 }
 
-if (device_mouse_check_button(0, mb_left) ) {
-    time = max(time, 0)
-    time++;
-}
-else if (time > 0) {
-    // Mouse just released, -1 means this speficially in the below logic
-    time = -1;
-}
-else {
-    time = 0;
-}
-
 var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y, footprint, terrainRequirement)
 
 switch (carry) {
     case Carry.None:
-        if (position_meeting(mouseGuiX, mouseGuiY, id) && time == 1) {
-            // Carry initiation
-            o_placable_instance.carry = Carry.None
-            carry = Carry.ClickCarry
-        } else if (action == Action.Sell) {
+        if (action == Action.Sell) {
             sellInstance()
         } else if (action == Action.Buy) {
             buyInstance()
@@ -32,25 +16,6 @@ switch (carry) {
         } else {
             // return to inventory or shop
             returnToOwnerPosition()
-        }
-    break;
-    case Carry.ClickCarry:
-        if (time > pickupFrameThreshold){
-            o_placable_instance.carry = Carry.None
-            carry = Carry.HoldCarry
-        }
-    
-        if (time == 1) {
-            carry = Carry.None
-            resetMovStruct()
-        }
-
-    break;
-
-    case Carry.HoldCarry:
-        if (time == -1) {
-            carry = Carry.None
-            resetMovStruct()
         }
     break;
 }
