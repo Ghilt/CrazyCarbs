@@ -94,9 +94,18 @@ buildAt = function(pos, type, buildingRotated) {
             // the spot required isn't even on grid, this was called from debug function that is a bit lax
             return false    
         } else if (spots[footprintCoordinates[i].influenceGridIndex].occupiedBy) {
-            // Cant build here, already occupied
-            // TODO will change this so that building is allowed and it ejects the current occupant
-            return false      
+            var building = spots[footprintCoordinates[i].influenceGridIndex].occupiedBy
+            var buildingRemovedInfo = removeBuildingAt({ x: building.x, y: building.y })
+            if (buildingRemovedInfo) {
+                var isoSpace = roomToIso(buildingRemovedInfo.x, buildingRemovedInfo.y)
+                var newItemInInventoryInitData = o_zoom_manager.convertToGuiSpace(isoSpace.x, isoSpace.y)
+                // TODO whats up here: flickery
+                newItemInInventoryInitData.carry = Carry.None
+                newItemInInventoryInitData.action = Action.None
+                //newItemInInventoryInitData.carry = Carry.ClickCarry
+                //newItemInInventoryInitData.action = Action.Build
+                o_inventory_manager.addItem(buildingRemovedInfo.type, newItemInInventoryInitData)
+            }
         }
     }
     

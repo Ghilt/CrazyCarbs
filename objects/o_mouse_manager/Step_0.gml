@@ -11,6 +11,9 @@ if (device_mouse_check_button(0, mb_left) ) {
 
 var uiPos = { x: mouseGuiX, y: mouseGuiY }
 
+// E.g if rerolling the shop when holding one of its items
+carriedInstance = instance_exists(carriedInstance) ? carriedInstance : false
+
 if (carriedInstance) {
     currentMousePressConsumed = mousePressedCounter > 0
     var isNowCarried = carriedInstance.onDelegatedMouse(uiPos, mousePressedCounter) 
@@ -46,10 +49,12 @@ if (carriedInstance) {
         var roomPos = { x: tile.x * TILE_SIZE, y: tile.y * TILE_SIZE }
         var buildingRemovedInfo = o_influence_grid_manager.removeBuildingAt(roomPos)
         
-        var isoSpace = roomToIso(buildingRemovedInfo.x, buildingRemovedInfo.y)
-        var translatedToUi = o_zoom_manager.convertToGuiSpace(isoSpace.x, isoSpace.y)
         if (buildingRemovedInfo) {
-            carriedInstance = o_inventory_manager.addItem(buildingRemovedInfo.type, translatedToUi)
+            var isoSpace = roomToIso(buildingRemovedInfo.x, buildingRemovedInfo.y)
+            var newItemInInventoryInitData = o_zoom_manager.convertToGuiSpace(isoSpace.x, isoSpace.y)
+            newItemInInventoryInitData.carry = Carry.ClickCarry
+            newItemInInventoryInitData.action = Action.Build
+            carriedInstance = o_inventory_manager.addItem(buildingRemovedInfo.type, newItemInInventoryInitData)
         }
     }
     

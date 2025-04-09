@@ -10,21 +10,21 @@ inventory = []
 inventoryX = guiXMid - (guiWidth * 0.25)
 inventoryY = guiYBot - inventoryHeight + 64
 
-// creationPosition is optional 
-addItem = function(type, creationPosition = false) {
+// creationData is optional , {x, y, carry, action} 
+addItem = function(type, creationData = false) {
     var buildPos = { x: inventoryX + array_length(inventory) * itemSize, y: inventoryY }
     var battlePos = { x : buildPos.x, y: buildPos.y + itemSize }
     
     var guiState = new GuiState(buildPos.x, buildPos.y, battlePos.x, battlePos.y)
     
-    var initData = creationPosition ? { 
+    var initData = creationData ? { 
         type: type, 
         owner: id, 
         guiState, 
-        x: creationPosition.x, 
-        y: creationPosition.y,
-        carry: Carry.ClickCarry,
-        action: Action.Build
+        x: creationData.x, 
+        y: creationData.y,
+        carry: creationData.carry,
+        action: creationData.action
     } : {
         type: type, 
         owner: id, 

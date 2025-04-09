@@ -53,7 +53,6 @@ placeInstance = function(pos) {
         // TODO this is a bit of a mess
         action = Action.None
         carry = Carry.None
-        time = 0
         resetMovStruct()
     }
 }
@@ -73,7 +72,6 @@ buyInstance = function() {
     } else {
         action = Action.None
         carry = Carry.None
-        time = 0
         resetMovStruct() 
     }
 }

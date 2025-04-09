@@ -1,4 +1,5 @@
 if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
-    footprint = carriedBuildingData.getRotatedFootprint()
-    rotationModifier *= -1    
+    rotationModifier *= -1  
+    footprint = rotationModifier == 1 ? carriedBuildingData.footprint : carriedBuildingData.getRotatedFootprint()
+      
 }

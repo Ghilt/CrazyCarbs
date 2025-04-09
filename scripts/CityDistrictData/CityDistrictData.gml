@@ -24,8 +24,8 @@ function SavedCityDistrict(_relativeX, _relativeY, _terrain, _buildingType, _bui
  * Function Description
  * @param {Real} _relativeX Which tileX holds this district, relative to the city starting position
  * @param {Real} _relativeY Which tileY holds this district, relative to the city starting position
- * @param {Real} _x Description
- * @param {Real} _y Description
+ * @param {Real} _x the actual x coordinate in the room
+ * @param {Real} _y the actual y coordinate in the room
  * @param {Id.Instance | Bool} _occupiedBy Description
  * @param {Enum.Terrain} _terrain Description
  */
