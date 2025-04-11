@@ -1,4 +1,4 @@
-ppp("Creating building at:", x, y, "Rotated:", buildingRotated)
+ppp(id, "Creating building at:", x, y, "Rotated:", buildingRotated, type)
 
 isDefeated = false
 

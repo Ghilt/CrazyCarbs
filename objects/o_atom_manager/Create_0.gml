@@ -37,12 +37,22 @@ registerForStepPayoff = function(instance, atomStep, atomIsReady, atomResourceCo
 }
 
 cleanUpInstance = function(instance) {
-    var equalityFilter = method({ instance }, function(_obj) {
+    
+    // Why is this var prefixed wit ha underscore?
+    // This is a monument to a bug and a realization about how things may go down in game maker
+    // in another script there is a function called 'equalityFilter', that function was used instead of this one when their name collided
+    // but even within this method i could get the code to call both equality functions at the same time, wild
+    var _equalityFilter = method({ instance }, function(_obj) {
+        ppp(23423, "sdfsdf", _obj.instance, instance)
         return _obj.instance != instance
     })
-    stepAtoms = array_filter(stepAtoms, equalityFilter)
-    payoffTriggers[instance.player] = array_filter(payoffTriggers[instance.player], equalityFilter)
-    resetAfterBattleAtoms = array_filter(resetAfterBattleAtoms, equalityFilter)
+    
+    
+    stepAtoms = array_filter(stepAtoms, _equalityFilter)
+    payoffTriggers[instance.player] = array_filter(payoffTriggers[instance.player], _equalityFilter)
+    resetAfterBattleAtoms = array_filter(resetAfterBattleAtoms, _equalityFilter)
+    
+    ppp("cleanup", array_length(stepAtoms), stepAtoms)
 }
 
 runPayoffTriggers = function(player) {
