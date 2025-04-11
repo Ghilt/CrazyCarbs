@@ -12,7 +12,7 @@ if (device_mouse_check_button(0, mb_left) ) {
 var uiPos = { x: mouseGuiX, y: mouseGuiY }
 
 // E.g if rerolling the shop when holding one of its items
-carriedInstance = instance_exists(carriedInstance) ? carriedInstance : false
+//carriedInstance = instance_exists(carriedInstance) ? carriedInstance : false
 
 if (carriedInstance) {
     currentMousePressConsumed = mousePressedCounter > 0

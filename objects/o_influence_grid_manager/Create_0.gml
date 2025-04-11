@@ -128,7 +128,7 @@ buildAt = function(pos, type, buildingRotated) {
 
 removeBuildingAt = function(pos) {
     var spots = influenceGrid[Player.US]
-    var buildingSiteIndex = array_find_index(spots, method( { pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
+    var buildingSiteIndex = array_find_index(spots, method({ pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
     
     if (buildingSiteIndex == -1) {
         return false
@@ -140,6 +140,11 @@ removeBuildingAt = function(pos) {
     }
     
     var building = district.occupiedBy
+    
+    if (building.type == Building.STARTING_PORT) {
+        return false
+    }
+    
     var footprintCoordinates = []
     for (var i = 0; i < array_length(spots); i++) {
         if (spots[i].occupiedBy == building) {
