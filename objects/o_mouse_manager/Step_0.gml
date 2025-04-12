@@ -5,11 +5,14 @@ if (device_mouse_check_button(0, mb_left) ) {
     // Mouse just released, -1 means this speficially in the below logic
     mousePressedCounter = -1;
     currentMousePressConsumed = false
+    
+    o_effects_manager.mouseClickFeedbackAt(mousePos)
+    
 } else {
     mousePressedCounter = 0;
 }
 
-var uiPos = { x: mouseGuiX, y: mouseGuiY }
+var uiPos = mouseGuiPos
 
 // E.g if rerolling the shop when holding one of its items
 //carriedInstance = instance_exists(carriedInstance) ? carriedInstance : false

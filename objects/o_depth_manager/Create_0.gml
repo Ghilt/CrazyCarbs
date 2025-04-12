@@ -1,5 +1,6 @@
 particleSystems = []
 
+// pose is {x, y} in ordinary space
 registerParticlesForDepthSorting = function(particleSystem, pos) {
     array_push(particleSystems, { particleSystem, pos })
 }

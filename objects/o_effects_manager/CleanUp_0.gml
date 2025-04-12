@@ -1,0 +1,2 @@
+cleanupAllParticleSystems()
+ds_map_destroy(particleSystems)

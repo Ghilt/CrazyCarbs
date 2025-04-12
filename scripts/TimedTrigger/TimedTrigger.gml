@@ -7,7 +7,6 @@
 /// @param {Real} _times How many times this can trigger in asingle battle round. -1 means infinite
 function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activationCallbackPlayer, _activationCallbackEnemy, _times = -1) constructor
 {
-    //instance = _instance
     player = _player
     current_frame = 0
     cooldownNumberOrFunction = _cooldownNumberOrFunction
@@ -21,10 +20,6 @@ function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activation
             return;
         }
         
-        // Check if instance still exists
-        //if (!instance_exists(_instance)) {
-        //    return;
-        //}
         
         //This allows for children to either have their cooldown as a simple variable or a function
         // Interesting GMS legacy note: is_callable(...) returns true if testing a number

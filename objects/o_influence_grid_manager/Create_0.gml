@@ -109,14 +109,16 @@ buildAt = function(pos, type, buildingRotated) {
         }
     }
     
-    
+    var _origin = { x: district.x, y: district.y }
     var newBuilding = instance_create_layer(
         district.x, 
         district.y, 
         "Ground", 
         buildingParameters.object, 
-        { player: Player.US, origin: { x: district.x, y: district.y }, buildingRotated }
+        { player: Player.US, origin: _origin, buildingRotated }
     )
+    
+    o_effects_manager.buildItemEffectAt(_origin)
     
     
     for (var i = 0; i < array_length(footprintCoordinates); i++) {

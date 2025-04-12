@@ -1,5 +1,7 @@
 #macro mouseGuiX device_mouse_x_to_gui(0) 
 #macro mouseGuiY device_mouse_y_to_gui(0) 
+#macro mousePos { x: mouse_x, y: mouse_y }
+#macro mouseGuiPos { x: device_mouse_x_to_gui(0), y: device_mouse_y_to_gui(0) }
 
 #macro guiWidth view_get_wport(view_current)
 #macro guiHeight view_get_hport(view_current)

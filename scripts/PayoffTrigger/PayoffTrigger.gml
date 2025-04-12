@@ -24,11 +24,6 @@ function PayoffTrigger(_instance, _player, _cooldownNumberOrFunction, _activatio
             return;
         }
         
-        // Check if instance still exists
-        //if (!instance_exists(_instance)) {
-            //return;
-        //}
-        
         //This allows for children to either have their cooldown as a simple variable or a function
         // Interesting GMS legacy note: is_callable(...) returns true if testing a number
         var childDefinedCooldown = is_method(cooldownNumberOrFunction) ? cooldownNumberOrFunction() : cooldownNumberOrFunction
