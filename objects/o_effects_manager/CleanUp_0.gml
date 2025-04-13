@@ -1,2 +1,3 @@
 cleanupAllParticleSystems()
 ds_map_destroy(particleSystems)
+ds_map_destroy(buildingDustParticleBursts)

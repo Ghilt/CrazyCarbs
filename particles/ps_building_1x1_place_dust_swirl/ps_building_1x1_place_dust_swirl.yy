@@ -1,0 +1,27 @@
+{
+  "$GMParticleSystem":"",
+  "%Name":"ps_building_1x1_place_dust_swirl",
+  "backdropHeight":768,
+  "backdropImageOpacity":0.5,
+  "backdropImagePath":"",
+  "backdropWidth":1366,
+  "backdropXOffset":0.0,
+  "backdropYOffset":0.0,
+  "drawOrder":0,
+  "emitters":[
+    {"$GMPSEmitter":"","%Name":"left","additiveBlend":false,"directionIncrease":1.0,"directionMax":150.0,"directionMin":110.0,"directionWiggle":1.0,"distribution":0,"editorColour":1090519039,"editorDrawShape":true,"emitCount":32,"emitDelayMax":0.0,"emitDelayMin":0.0,"emitDelayUnits":1,"emitIntervalMax":0.0,"emitIntervalMin":0.0,"emitIntervalUnits":0,"enabled":true,"endColour":4288205311,"GMPresetName":null,"gravityDirection":270.0,"gravityForce":0.1,"headPosition":0.0,"lifetimeMax":40.0,"lifetimeMin":20.0,"linkedEmitter":null,"locked":false,"midColour":4288265471,"mode":1,"name":"left","orientationIncrease":0.0,"orientationMax":0.0,"orientationMin":0.0,"orientationRelative":false,"orientationWiggle":0.0,"regionH":256.0,"regionW":341.0,"regionX":-173.0,"regionY":247.0,"resourceType":"GMPSEmitter","resourceVersion":"2.0","scaleX":0.6,"scaleY":0.6,"shape":3,"sizeIncrease":0.0,"sizeMax":1.0,"sizeMin":3.0,"sizeWiggle":0.0,"spawnOnDeathCount":1,"spawnOnDeathGMPreset":null,"spawnOnDeathId":null,"spawnOnUpdateCount":1,"spawnOnUpdateGMPreset":null,"spawnOnUpdateId":null,"speedIncrease":0.0,"speedMax":6.0,"speedMin":4.0,"speedWiggle":1.0,"spriteAnimate":false,"spriteId":null,"spriteRandom":false,"spriteStretch":true,"startColour":4282216345,"texture":11,},
+    {"$GMPSEmitter":"","%Name":"right_1_1","additiveBlend":false,"directionIncrease":1.0,"directionMax":100.0,"directionMin":9.0,"directionWiggle":1.0,"distribution":0,"editorColour":1090519039,"editorDrawShape":true,"emitCount":10,"emitDelayMax":0.0,"emitDelayMin":0.0,"emitDelayUnits":1,"emitIntervalMax":0.0,"emitIntervalMin":0.0,"emitIntervalUnits":0,"enabled":true,"endColour":4286228428,"GMPresetName":null,"gravityDirection":270.0,"gravityForce":0.1,"headPosition":0.0,"lifetimeMax":45.0,"lifetimeMin":20.0,"linkedEmitter":null,"locked":false,"midColour":4288265471,"mode":1,"name":"right_1_1","orientationIncrease":0.0,"orientationMax":0.0,"orientationMin":0.0,"orientationRelative":false,"orientationWiggle":0.0,"regionH":41.365845,"regionW":48.316895,"regionX":211.0,"regionY":198.0,"resourceType":"GMPSEmitter","resourceVersion":"2.0","scaleX":0.6,"scaleY":0.6,"shape":2,"sizeIncrease":0.0,"sizeMax":1.0,"sizeMin":3.0,"sizeWiggle":0.0,"spawnOnDeathCount":1,"spawnOnDeathGMPreset":null,"spawnOnDeathId":null,"spawnOnUpdateCount":1,"spawnOnUpdateGMPreset":null,"spawnOnUpdateId":null,"speedIncrease":0.0,"speedMax":6.0,"speedMin":4.0,"speedWiggle":1.0,"spriteAnimate":false,"spriteId":null,"spriteRandom":false,"spriteStretch":true,"startColour":4282216345,"texture":11,},
+    {"$GMPSEmitter":"","%Name":"right_1","additiveBlend":false,"directionIncrease":1.0,"directionMax":100.0,"directionMin":9.0,"directionWiggle":1.0,"distribution":0,"editorColour":1090519039,"editorDrawShape":true,"emitCount":10,"emitDelayMax":0.0,"emitDelayMin":0.0,"emitDelayUnits":1,"emitIntervalMax":0.0,"emitIntervalMin":0.0,"emitIntervalUnits":0,"enabled":true,"endColour":4286228428,"GMPresetName":null,"gravityDirection":270.0,"gravityForce":0.1,"headPosition":0.0,"lifetimeMax":40.0,"lifetimeMin":20.0,"linkedEmitter":null,"locked":false,"midColour":4288265471,"mode":1,"name":"right_1","orientationIncrease":0.0,"orientationMax":0.0,"orientationMin":0.0,"orientationRelative":false,"orientationWiggle":0.0,"regionH":41.365845,"regionW":48.316895,"regionX":114.0,"regionY":285.0,"resourceType":"GMPSEmitter","resourceVersion":"2.0","scaleX":0.6,"scaleY":0.6,"shape":2,"sizeIncrease":0.0,"sizeMax":1.0,"sizeMin":3.0,"sizeWiggle":0.0,"spawnOnDeathCount":1,"spawnOnDeathGMPreset":null,"spawnOnDeathId":null,"spawnOnUpdateCount":1,"spawnOnUpdateGMPreset":null,"spawnOnUpdateId":null,"speedIncrease":0.0,"speedMax":6.0,"speedMin":4.0,"speedWiggle":1.0,"spriteAnimate":false,"spriteId":null,"spriteRandom":false,"spriteStretch":true,"startColour":4282216345,"texture":11,},
+  ],
+  "name":"ps_building_1x1_place_dust_swirl",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Effects.yy",
+  },
+  "resourceType":"GMParticleSystem",
+  "resourceVersion":"2.0",
+  "showBackdrop":true,
+  "showBackdropImage":false,
+  "xorigin":0,
+  "yorigin":0,
+}

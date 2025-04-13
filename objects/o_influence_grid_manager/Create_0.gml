@@ -83,7 +83,8 @@ buildAt = function(pos, type, buildingRotated) {
     }
     
     var district = spots[buildingSiteIndex]
-    var footprintCoordinates = footprintToCoordinates(district, buildingRotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint)
+    var footprint = buildingRotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint
+    var footprintCoordinates = footprintToCoordinates(district, footprint)
     
     // terrain already checked, so it is not strictly required to be checked here
     footprintUnionedWithInfluenceGridIndex(spots, footprintCoordinates, buildingParameters.terrainRequirement)
@@ -118,7 +119,7 @@ buildAt = function(pos, type, buildingRotated) {
         { player: Player.US, origin: _origin, buildingRotated }
     )
     
-    o_effects_manager.buildItemEffectAt(_origin)
+    o_effects_manager.buildItemEffectAt(_origin, footprint)
     
     
     for (var i = 0; i < array_length(footprintCoordinates); i++) {
