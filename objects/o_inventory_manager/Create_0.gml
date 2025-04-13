@@ -15,14 +15,20 @@ addItem = function(type, creationData = false) {
     var buildPos = { x: inventoryX + array_length(inventory) * itemSize, y: inventoryY }
     var battlePos = { x : buildPos.x, y: buildPos.y + itemSize }
     
-    var guiState = new GuiState(buildPos.x, buildPos.y, battlePos.x, battlePos.y)
+    var origin = creationData ? {
+        x: creationData.x,
+        y: creationData.y
+    } : {        
+        x: buildPos.x,
+        y: buildPos.y
+    }
+    
+    var guiState = new GuiStateDynamic(origin.x, origin.y, buildPos.x, buildPos.y, battlePos.x, battlePos.y)
     
     var initData = creationData ? { 
         type: type, 
         owner: id, 
         guiState, 
-        x: creationData.x, 
-        y: creationData.y,
         carry: creationData.carry,
         action: creationData.action
     } : {
@@ -31,7 +37,7 @@ addItem = function(type, creationData = false) {
         guiState 
     }
     
-    var inst = instance_create_layer(buildPos.x, buildPos.y, "Gui", o_placable_instance, initData) 
+    var inst = instance_create_layer(origin.x, origin.y, "Gui", o_placable_instance, initData) 
     array_push(inventory, inst)
     return inst
 }
