@@ -6,7 +6,8 @@ numberOfAdjacentNatureTag = 0
 
 stats = {
     healingPower: 8,
-    baseCooldown: 5 * one_second
+    baseCooldown: 5 * one_second,
+    adjacencyCooldownReductionBonus: 0.1
 }
 
 particleSystem = part_system_create()
@@ -15,7 +16,7 @@ particlePos = { x, y } // with respect to depth sorting we always go with 'real'
 o_depth_manager.registerParticlesForDepthSorting(particleSystem, particlePos)
 
 adjecencyBoosted = function() {
-    return stats.baseCooldown * (1 - numberOfAdjacentNatureTag * 0.1)
+    return stats.baseCooldown * (1 - numberOfAdjacentNatureTag * stats.adjacencyCooldownReductionBonus)
 }
 
 onAbilityActivationPlayer = function (){
@@ -35,4 +36,12 @@ everySecondAtom = new TimedTrigger(id, player, adjecencyBoosted, onAbilityActiva
 
 adjacencyUpdate = function(adjacentDistricts) {
     numberOfAdjacentNatureTag = countBuildingTags(adjacentDistricts, TAG_NATURE)
+}
+
+getBuildingDescription = function(){
+     return "Every second gain " 
+            + string(stats.healingPower) 
+            + "stability. This cooldowns is reduced by " 
+            + string(stats.adjacencyCooldownReductionBonus)
+            + "per adjacent nature building"
 }

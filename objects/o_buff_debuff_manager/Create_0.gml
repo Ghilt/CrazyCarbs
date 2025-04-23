@@ -41,7 +41,7 @@ getMoraleDamageBoost = function(damage, player) {
     return damage + modifierList[player][Modifier.MORALE]
 }
 
-getProsperityAndFaminModifiedCooldown = function(cooldown, player) {
+getProsperityAndFamineModifiedCooldown = function(cooldown, player) {
     var prosperityPercent = modifierList[player][Modifier.PROSPERITY] / 100
     var faminePercent = modifierList[player][Modifier.FAMINE] / 100
     

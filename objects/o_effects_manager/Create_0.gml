@@ -1,6 +1,21 @@
 // Manages  effects of differents kinds
 // heres a sound site: https://opengameart.org/content/jump-landing-sound
 
+
+
+//// THE below text is from the pixelated pope about not using emitters:
+//I design the actual particle in the particle editor, then manually create my part system and manually create instances of the particle I designed using part_particles_burst
+//All you would need to do is a use a bit of code to find a point on either line to create the particle
+//Which shouldn't be difficult
+//Something like this:
+//var _angle = choose(45, 135)
+//var _length = random(600);
+//var _x = v_center_x + lengthdir_x(_length, _angle)
+//var _y = v_center_y + lengthdir_y(_length, _angle)
+//part_particles_burst(<Your particle asset>, _x, _y, <your part system>)
+ //
+//v_center being where you want that bottom point of the V to be
+
 mouseFeedBackParticleSystem = part_system_create()
 o_depth_manager.registerParticlesForDepthSorting(mouseFeedBackParticleSystem, { x: room_width, y: room_height })
 particleSystems = ds_map_create()
@@ -14,6 +29,10 @@ buildingDustParticleBursts[? "2x2"] = ps_building_2x2_place_dust_swirl
 mouseClickFeedbackAt = function(pos) {
     audio_play_sound(snd_click, 0, false, 0.1, 0, random_range(0.6, 0.9))
     part_particles_burst(mouseFeedBackParticleSystem, pos.x, pos.y, ps_mouse_feedback)
+}
+
+buildInfoHoverFeedback = function() {
+    audio_play_sound(snd_click, 0, false, 0.1, 0, random_range(0.6, 0.9))
 }
 
 // pos = { x, y } in room space

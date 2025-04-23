@@ -11,7 +11,7 @@ inventoryX = guiXMid - (guiWidth * 0.25)
 inventoryY = guiYBot - inventoryHeight + 64
 
 // creationData is optional , {x, y, carry, action} 
-addItem = function(type, creationData = false) {
+addItem = function(typeOrInstance, creationData = false) {
     var buildPos = { x: inventoryX + array_length(inventory) * itemSize, y: inventoryY }
     var battlePos = { x : buildPos.x, y: buildPos.y + itemSize }
     
@@ -26,16 +26,16 @@ addItem = function(type, creationData = false) {
     var guiState = new GuiStateDynamic(origin.x, origin.y, buildPos.x, buildPos.y, battlePos.x, battlePos.y)
     
     var initData = creationData ? { 
-        type: type, 
         owner: id, 
         guiState, 
         carry: creationData.carry,
         action: creationData.action
     } : {
-        type: type, 
         owner: id, 
         guiState 
     }
+    
+    struct_set(initData, is_handle(typeOrInstance) ? "initByInstance" : "initByType", typeOrInstance)
     
     var inst = instance_create_layer(origin.x, origin.y, "Gui", o_placable_instance, initData) 
     array_push(inventory, inst)

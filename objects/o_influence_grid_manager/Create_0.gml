@@ -67,7 +67,10 @@ influenceGrid = [[
 ], [/*Loaded every battle*/]]
 
 // Type is a type defined in ItemScripts.Building
-buildAt = function(pos, type, buildingRotated) { 
+buildAt = function(pos, typeOrInstance, buildingRotated) { 
+    var useExistingInstance = is_handle(typeOrInstance)
+    
+    var type = useExistingInstance ? typeOrInstance.type : typeOrInstance
         
     var buildingParameters = ds_map_find_value(global.buildings, type)
 
@@ -96,39 +99,48 @@ buildAt = function(pos, type, buildingRotated) {
             return false    
         } else if (spots[footprintCoordinates[i].influenceGridIndex].occupiedBy) {
             var building = spots[footprintCoordinates[i].influenceGridIndex].occupiedBy
-            var buildingRemovedInfo = removeBuildingAt({ x: building.x, y: building.y })
-            if (buildingRemovedInfo) {
-                var isoSpace = roomToIso(buildingRemovedInfo.x, buildingRemovedInfo.y)
+            var buildingRemovedDeactivatedInstance = removeBuildingAt({ x: building.x, y: building.y })
+            if (buildingRemovedDeactivatedInstance) {
+                var isoSpace = roomToIso(buildingRemovedDeactivatedInstance.x, buildingRemovedDeactivatedInstance.y)
                 var newItemInInventoryInitData = o_zoom_manager.convertToGuiSpace(isoSpace.x, isoSpace.y)
-                // TODO whats up here: flickery
                 newItemInInventoryInitData.carry = Carry.None
                 newItemInInventoryInitData.action = Action.None
-                //newItemInInventoryInitData.carry = Carry.ClickCarry
-                //newItemInInventoryInitData.action = Action.Build
-                o_inventory_manager.addItem(buildingRemovedInfo.type, newItemInInventoryInitData)
+                o_inventory_manager.addItem(buildingRemovedDeactivatedInstance, newItemInInventoryInitData)
             }
         }
     }
     
     var _origin = { x: district.x, y: district.y }
-    var newBuilding = instance_create_layer(
-        district.x, 
-        district.y, 
-        "Ground", 
-        buildingParameters.object, 
-        { player: Player.US, origin: _origin, buildingRotated }
-    )
+    
+    var newlyPlacedBuilding;
+    if (useExistingInstance) {
+        typeOrInstance.x = district.x
+        typeOrInstance.y = district.y
+        typeOrInstance.buildingRotated = buildingRotated
+        instance_activate_object(typeOrInstance)
+        newlyPlacedBuilding = typeOrInstance
+    } else {
+        newlyPlacedBuilding = instance_create_layer(
+            district.x, 
+            district.y, 
+            "Ground", 
+            buildingParameters.object, 
+            { player: Player.US, origin: _origin, buildingRotated }
+        )
+    }
+    
+    for (var i = 0; i < array_length(footprintCoordinates); i++) {
+        spots[footprintCoordinates[i].influenceGridIndex].occupiedBy = newlyPlacedBuilding
+    }
+    
     
     o_effects_manager.buildItemEffectAt(_origin, footprint)
     
-    
-    for (var i = 0; i < array_length(footprintCoordinates); i++) {
-        spots[footprintCoordinates[i].influenceGridIndex].occupiedBy = newBuilding
-    }
     recalculateAdjacencyOnNewBuilding(district)
     return true
 }
 
+// This function just deactivates the instance and returns it, and purges it from the influence managers knowledge
 removeBuildingAt = function(pos) {
     var spots = influenceGrid[Player.US]
     var buildingSiteIndex = array_find_index(spots, method({ pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
@@ -161,14 +173,16 @@ removeBuildingAt = function(pos) {
     
     recalculateAdjacencyOnNewBuilding(district)
     
-    var destroyedBuildingInfo = {
-        type: building.type,
-        x: building.x,
-        y: building.y
-    }
+    // TODO remove
+    //var destroyedBuildingInfo = {
+        //type: building.type,
+        //x: building.x,
+        //y: building.y,
+        //deactivatedInstance: building
+    //}
 
-    instance_destroy(building)
-    return destroyedBuildingInfo
+    instance_deactivate_object(building)
+    return building
 }
 
 updateAdjacencyForDistrict = function(district) {

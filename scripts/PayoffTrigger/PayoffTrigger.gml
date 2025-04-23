@@ -28,7 +28,7 @@ function PayoffTrigger(_instance, _player, _cooldownNumberOrFunction, _activatio
         // Interesting GMS legacy note: is_callable(...) returns true if testing a number
         var childDefinedCooldown = is_method(cooldownNumberOrFunction) ? cooldownNumberOrFunction() : cooldownNumberOrFunction
         
-        var buffDebuffedCooldown = o_buff_debuff_manager.getProsperityAndFaminModifiedCooldown(childDefinedCooldown, player)
+        var buffDebuffedCooldown = o_buff_debuff_manager.getProsperityAndFamineModifiedCooldown(childDefinedCooldown, player)
         if (current_frame == buffDebuffedCooldown) {
             current_frame += 1;
             cooldownPassed = true

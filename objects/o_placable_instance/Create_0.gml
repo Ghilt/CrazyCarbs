@@ -1,4 +1,14 @@
-// Required field: type - which building this is
+
+// Carried instance may be undefined, if the placable_instance just contains a type, then it will be creting a new instance when placing
+carriedInstance = undefined
+if (variable_instance_exists(id, "initByType")) {
+    type = initByType
+} else if (variable_instance_exists(id, "initByInstance")){
+    type = initByInstance.type
+    carriedInstance = initByInstance
+} else {
+    throw "initData was missing info"
+}
 
 // These instances live in the inventory in the GUI layer.
 
@@ -45,7 +55,9 @@ placeInstance = function(pos) {
     
     var canAfford = !isOwnedByPlayer && o_shop_manager.canAfford(type)
     
-    var success = (canAfford || isOwnedByPlayer) && o_influence_grid_manager.buildAt(pos, type, rotationModifier == -1)
+    var thingWeAreBuilding = is_undefined(carriedInstance) ? type : carriedInstance
+    
+    var success = (canAfford || isOwnedByPlayer) && o_influence_grid_manager.buildAt(pos, thingWeAreBuilding, rotationModifier == -1)
     if (success) {
         // Might be built directly from shop, or from inventory. Owning manager needs to be updated
         owner.removeItem(id)
@@ -59,6 +71,9 @@ placeInstance = function(pos) {
 
 sellInstance = function() {
     // owner is garanteed to be the o_inventory_manager here
+    if (!is_undefined(carriedInstance)) {
+        instance_destroy(carriedInstance)
+    }
     o_shop_manager.sellItem(type)
     owner.removeItem(id)
 }
@@ -125,4 +140,15 @@ onDelegatedMouse = function(pos, mousePressCounter) {
     }
     
     return carry == Carry.ClickCarry || carry == Carry.HoldCarry
+}
+
+getBuildingDescription = function(){
+    //i think we really do wanna rethink what this item carries; if it carries an actual instance, it could remember things about this instance such as slotted stuff
+    //and we could also get and updated description with eg slotted buffs visible
+    
+    if (is_undefined(carriedInstance)) {
+        return type
+    } else {
+        return carriedInstance.getBuildingDescription()
+    }
 }

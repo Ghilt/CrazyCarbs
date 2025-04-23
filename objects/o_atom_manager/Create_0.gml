@@ -58,15 +58,19 @@ runPayoffTriggers = function(player) {
     var allTriggered = true
     for (var i = 0; i < triggerLength; i++) {
         var payoff = payoffTriggers[player][i]
-        payoff.step()
+        // Instances become inactive when in the ui layer, this checks for that
+        if (instance_exists(payoff.instance)) {
+            payoff.step()
         
-        if (payoff.triggerCount() == payoffTriggerCounter[player]) {
-            allTriggered = false
-            if (payoff.isReady() && o_resource_manager.resourcesExist(player, payoff.resourceCost())) {
-                o_resource_manager.instanceUseResources(payoff.instance, payoff.resourceCost())
-                payoff.triggerPayoff()    
-            }
+            if (payoff.triggerCount() == payoffTriggerCounter[player]) {
+                allTriggered = false
+                if (payoff.isReady() && o_resource_manager.resourcesExist(player, payoff.resourceCost())) {
+                    o_resource_manager.instanceUseResources(payoff.instance, payoff.resourceCost())
+                    payoff.triggerPayoff()    
+                }
+            }    
         }
+
     }
     
     if (allTriggered ) {

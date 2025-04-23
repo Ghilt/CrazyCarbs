@@ -12,4 +12,8 @@ hitByProjectile = function(damage) {
 
 adjacencyUpdate = function(adjacentDistricts) {
     // Implemented in children    
+} 
+
+getBuildingDescription = function(){
+     return "todo " + string(id)
 }

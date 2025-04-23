@@ -20,12 +20,7 @@ function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activation
             return;
         }
         
-        
-        //This allows for children to either have their cooldown as a simple variable or a function
-        // Interesting GMS legacy note: is_callable(...) returns true if testing a number
-        var childDefinedCooldown = is_method(cooldownNumberOrFunction) ? cooldownNumberOrFunction() : cooldownNumberOrFunction
-        var buffDebuffedCooldown = o_buff_debuff_manager.getProsperityAndFaminModifiedCooldown(childDefinedCooldown, player)
-        if (current_frame == buffDebuffedCooldown) {
+        if (current_frame == getCurrentCooldown()) {
             current_frame = 0; 
             triggerTimes += 1
             if (player == Player.US) {
@@ -42,6 +37,13 @@ function TimedTrigger(_instance, _player, _cooldownNumberOrFunction, _activation
     resetAfterBattle = function() { 
         current_frame = 0
         triggerTimes = 0
+    }
+    
+    getCurrentCooldown = function() {
+        //This allows for children to either have their cooldown as a simple variable or a function
+        // Interesting GMS legacy note: is_callable(...) returns true if testing a number
+        var childDefinedCooldown = is_method(cooldownNumberOrFunction) ? cooldownNumberOrFunction() : cooldownNumberOrFunction
+        return o_buff_debuff_manager.getProsperityAndFamineModifiedCooldown(childDefinedCooldown, player)
     }
     
     o_atom_manager.registerForResetAfterBattle(_instance, resetAfterBattle)
