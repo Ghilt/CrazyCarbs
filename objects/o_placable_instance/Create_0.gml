@@ -147,7 +147,7 @@ getBuildingDescription = function(){
     //and we could also get and updated description with eg slotted buffs visible
     
     if (is_undefined(carriedInstance)) {
-        return type
+        return global.buildings[? type].getBaseDescription()
     } else {
         return carriedInstance.getBuildingDescription()
     }

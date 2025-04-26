@@ -1,6 +1,7 @@
 o_inventory_manager.addItem(Building.LUMBER_MILL)
 o_inventory_manager.addItem(Building.BEEKEEPER)
 o_inventory_manager.addItem(Building.ORCHARD)
+o_inventory_manager.addItem(Building.GRAND_OAK)
 
 showNavigableSeasGrid = false
 

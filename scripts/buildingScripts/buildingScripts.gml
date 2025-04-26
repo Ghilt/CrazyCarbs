@@ -47,15 +47,53 @@ enum MapTerrain
 }
 
 
+/*
+ * Enum, asset
+ * price, terrain, footprint_width, footprint_height
+ * stats
+ * name, descriptionGenerator 
+*/
+
 var buildingData = [
-    new BuildingData(Building.STARTING_PORT, o_building_starting_port, 0, Terrain.SEA, 1, 1),
-    new BuildingData(Building.GOLD_MINE, o_building_gold_mine, 4, Terrain.GROUND, 1, 1),
-    new BuildingData(Building.LUMBER_MILL, o_building_lumber_mill, 3, Terrain.GROUND, 1, 1),
-    new BuildingData(Building.GRAND_OAK, o_building_grand_oak, 2, Terrain.GROUND, 1, 1),
-    new BuildingData(Building.ORCHARD, o_building_orchard, 1, Terrain.GROUND, 2, 2),
-    new BuildingData(Building.BEEKEEPER, o_building_beekeeper, 1, Terrain.GROUND, 2, 1),
+    new BuildingData(Building.STARTING_PORT, o_building_starting_port, 
+        0, Terrain.SEA, 1, 1,
+        { overproductionHealingPower: 10 }, 
+        "Port", getDescriptionGenerator("Overproduction trigger: Consume all resources and gain |overproductionHealingPower| stability.")),
+    new BuildingData(Building.GOLD_MINE, o_building_gold_mine, 
+        4, Terrain.GROUND, 1, 1,
+        { childProductionRate: 1, cooldown: 3 * one_second }, 
+        "Ore Mine", getDescriptionGenerator("Every |cooldown| ms: Generate |childProductionRate| ore.")),
+    new BuildingData(Building.LUMBER_MILL, o_building_lumber_mill, 
+        3, Terrain.GROUND, 1, 1,
+        { childProductionRate: 1, cooldown: 1 * one_second }, 
+        "Lumber mill", getDescriptionGenerator("Every |cooldown| ms: Generate |childProductionRate| lumber.")),
+    new BuildingData(Building.GRAND_OAK, o_building_grand_oak, 
+        2, Terrain.GROUND, 1, 1,
+        {
+            healingPower: 8,
+            baseCooldown: 5 * one_second,
+            adjacencyCooldownReductionBonus: 0.1
+        }, 
+        "Grand Oak", getDescriptionGenerator("Every |baseCooldown| ms: Gain |healingPower|. Gets reduced by mult_percent(|adjacencyCooldownReductionBonus|) for every adjacent nature building.")),
+    new BuildingData(Building.ORCHARD, o_building_orchard, 
+        1, Terrain.GROUND, 2, 2,
+        { overproductionHealingPower: 10 }, 
+        "Orchard", getDescriptionGenerator("Does nothing but has a 2x2 footprint atm")),
+    new BuildingData(Building.BEEKEEPER, o_building_beekeeper, 
+        1, Terrain.GROUND, 2, 1,
+        {
+            productionRate: 1,
+            cooldown: 3 * one_second,
+            payoffRequirementAmount: 3,
+            payoffRequirementType: Resource.LUMBER,
+            producesResource: Resource.HONEY
+        }, 
+        "Port", getDescriptionGenerator("Every |cooldown| ms: Do stuff. Payoff |cooldown| ms: convert 3 |payoffRequirementType| into 1 |producesResource|")),
     // Ships
-    new BuildingData(Building.SHIP_SLOOP, o_unit_sloop, 3, Terrain.SEA, 1, 1)
+    new BuildingData(Building.SHIP_SLOOP, o_unit_sloop, 
+        3, Terrain.SEA, 1, 1,
+        { todo: 100000 }, 
+        "Port", getDescriptionGenerator("Todo, Im a ship!")),
 ]
 
 
@@ -83,5 +121,30 @@ function footprintToCoordinates(anchorDistrict, footprint) {
         }
     }
     return coordinates
+}
+
+
+/**
+ * Function Returns a function that is a generator of descriptions with the escape '|variableName|'. 
+ * Example: 'Every |cooldown| seconds gain 5 health.'
+ */
+function getDescriptionGenerator(textTemplate) {
+    // splitting and assuming that every other split is text and other templated value
+    var splitIt = string_split(textTemplate, "|")
+    
+    return method({ splitIt }, function(stats) {
+        
+        var _str = ""
+        var subStringsLength = array_length(splitIt)
+        for (var i = 0; i < subStringsLength; i++)
+        {
+            if (i % 2 == 0) {
+               _str += splitIt[i] 
+            } else {
+                _str += string(struct_get(stats, splitIt[i]))
+            }
+        }
+        return _str
+    })
 }
 
