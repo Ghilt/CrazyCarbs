@@ -5,6 +5,7 @@ debugGrid = true
 
 // Holds the order of expansion for the city in relative terms
 // {x, y, dist}
+// going from -5 to 5 in this case, TODO This is just a static ordering, it should probably be much larger than 10 x 10 as it becomes with 5 as a value here
 areaExpandOrder = getOrderedAreaExpansion(5)
 
 
@@ -172,16 +173,31 @@ removeBuildingAt = function(pos) {
     }
     
     recalculateAdjacencyOnNewBuilding(district)
-    
-    // TODO remove
-    //var destroyedBuildingInfo = {
-        //type: building.type,
-        //x: building.x,
-        //y: building.y,
-        //deactivatedInstance: building
-    //}
 
     instance_deactivate_object(building)
+    return building
+}
+
+getBuildingAt = function(pos) {
+    var player = Player.US
+    var buildingSiteIndex = array_find_index(influenceGrid[player], method({ pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
+    
+    if (buildingSiteIndex == -1) {
+        player = Player.THEM
+        buildingSiteIndex = array_find_index(influenceGrid[player], method({ pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
+    }
+    
+    if (buildingSiteIndex == -1) {
+        return false
+    }
+    
+    var district = influenceGrid[player][buildingSiteIndex]
+    if (!district.occupiedBy) {
+        return false
+    }
+    
+    var building = district.occupiedBy
+    
     return building
 }
 

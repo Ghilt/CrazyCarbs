@@ -22,9 +22,15 @@ for (var tX = 0; tX < MAP_W; tX++) {
     
     
             if (tileIndex != 0) {
-                draw_sprite(s_iso_terrain, tileIndex, roomX, roomY + tileZ)
+                
+                // TEMP test terrain variety
+                if (tileIndex == MapTerrain.PLAINS) {
+                    draw_sprite(s_iso_terrain_plain, tileData.weightedSubTerrainValue, roomX, roomY + tileZ)
+                } else {
+                    draw_sprite(s_iso_terrain, tileIndex, roomX, roomY + tileZ)
+                }
+
             } 
         }
-        
     }
 }

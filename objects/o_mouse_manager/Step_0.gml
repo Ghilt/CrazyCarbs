@@ -29,7 +29,6 @@ if (carriedInstance) {
     // There is also handy list version of these collision methods if I don't just wanna take a random one from all collisions
     var instanceHit = instance_position(uiPos.x, uiPos.y, o_placable_instance)
 
-
     if (instanceHit != noone) {
         currentMousePressConsumed = mousePressedCounter > 0
         var isNowCarried = instanceHit.onDelegatedMouse(uiPos, mousePressedCounter) 
@@ -43,6 +42,10 @@ if (carriedInstance) {
         return
     }
     
+    
+    var tile = isoMouseTile()
+    var roomPos = { x: tile.x * TILE_SIZE, y: tile.y * TILE_SIZE }
+    
     if (mousePressedCounter > 0 && !currentMousePressConsumed) {
         currentMousePressConsumed = true
         
@@ -50,9 +53,6 @@ if (carriedInstance) {
             return
         }
         
-        var tile = isoMouseTile()
-        
-        var roomPos = { x: tile.x * TILE_SIZE, y: tile.y * TILE_SIZE }
         var deactivatedBuilding = o_influence_grid_manager.removeBuildingAt(roomPos)
         
         if (deactivatedBuilding) {
@@ -61,6 +61,13 @@ if (carriedInstance) {
             newItemInInventoryInitData.carry = Carry.ClickCarry
             newItemInInventoryInitData.action = Action.Build
             carriedInstance = o_inventory_manager.addItem(deactivatedBuilding, newItemInInventoryInitData)
+        }
+    } else {
+        var buildingAt = o_influence_grid_manager.getBuildingAt(roomPos)
+        if (buildingAt) {
+            resolvedToHover = true
+            o_building_info_manager.hover(buildingAt)  
+            return
         }
     }
 }

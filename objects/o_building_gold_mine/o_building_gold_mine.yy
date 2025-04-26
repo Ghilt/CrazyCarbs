@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"s_building_gold_mine",
-    "path":"sprites/s_building_gold_mine/s_building_gold_mine.yy",
+    "name":"Sprite57",
+    "path":"sprites/Sprite57/Sprite57.yy",
   },
   "spriteMaskId":null,
   "visible":true,
