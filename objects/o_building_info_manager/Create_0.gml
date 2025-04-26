@@ -10,7 +10,7 @@ hoverData = {
 }
 
 // Accepts placeable instance
-// Todo accepts building
+// TODO accepts building
 hover = function(instance, tile = false){
     if (!hovering){
         o_effects_manager.buildInfoHoverFeedback()

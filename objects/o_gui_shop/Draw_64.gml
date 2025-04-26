@@ -4,6 +4,8 @@ event_inherited();
 
 // 'other' brings you out of the re scope that you get with 'with'
 with (o_shop_manager) {
+    draw_set_font(f_shop_info)
+
     draw_text(other.x, other.y, "Money: " + string(currentMoney))
     
     for (var i = 0; i < array_length(shopPosition); i++) {

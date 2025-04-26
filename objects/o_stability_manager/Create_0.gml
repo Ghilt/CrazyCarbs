@@ -1,4 +1,5 @@
 stability = [0, 0]
+maxStability = [0, 0]
 
 fatigueDamage = 0
 fatigueRate = one_second
@@ -35,9 +36,19 @@ goToBuild = function(){
     fatigueDamage = 0    
 }
 
+getCurrentStability = function(player) {
+    return stability[player]
+}
+
+getMaxStability = function(player) {
+    return maxStability[player]
+}
+
 goToBattle = function(){
     stability[Player.US] = stabilityProgression(Player.US)
     stability[Player.THEM] = stabilityProgression(Player.THEM)
+    maxStability[Player.US] = stabilityProgression(Player.US)
+    maxStability[Player.THEM] = stabilityProgression(Player.THEM)
 }
 
 stabilize = function(stabilizeBy, player) {
