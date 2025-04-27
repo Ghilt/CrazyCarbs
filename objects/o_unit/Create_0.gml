@@ -71,3 +71,7 @@ runWeaponHitCalculator = function(enemyInstance) {
     var evasion = o_buff_debuff_manager.getWeatherEvasionBoost(enemyInstance.stats.evasion, enemyInstance.player)
     return coinToss > evasion
 }
+
+getBuildingDescription = function(){
+     return global.buildings[? type].getBaseDescription()
+}

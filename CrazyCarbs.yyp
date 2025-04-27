@@ -81,7 +81,6 @@
     {"id":{"name":"o_mouse_manager","path":"objects/o_mouse_manager/o_mouse_manager.yy",},},
     {"id":{"name":"o_pathing_manager","path":"objects/o_pathing_manager/o_pathing_manager.yy",},},
     {"id":{"name":"o_placable_instance","path":"objects/o_placable_instance/o_placable_instance.yy",},},
-    {"id":{"name":"o_production_building_parent","path":"objects/o_production_building_parent/o_production_building_parent.yy",},},
     {"id":{"name":"o_projectile_cannon_ball","path":"objects/o_projectile_cannon_ball/o_projectile_cannon_ball.yy",},},
     {"id":{"name":"o_resource_manager","path":"objects/o_resource_manager/o_resource_manager.yy",},},
     {"id":{"name":"o_shop_manager","path":"objects/o_shop_manager/o_shop_manager.yy",},},

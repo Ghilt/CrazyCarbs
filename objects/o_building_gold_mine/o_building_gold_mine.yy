@@ -12,8 +12,8 @@
     "path":"folders/Objects/buildings.yy",
   },
   "parentObjectId":{
-    "name":"o_production_building_parent",
-    "path":"objects/o_production_building_parent/o_production_building_parent.yy",
+    "name":"o_ground_building",
+    "path":"objects/o_ground_building/o_ground_building.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"Sprite57",
-    "path":"sprites/Sprite57/Sprite57.yy",
+    "name":"s_building_gold_mine",
+    "path":"sprites/s_building_gold_mine/s_building_gold_mine.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -1,10 +1,16 @@
 type = Building.LUMBER_MILL
 
-stats = {
-    childProductionRate: 1,
-    cooldown: 1 * one_second
+event_inherited()
+
+
+onAbilityActivationPlayer = function(){
+    // generate resource in ui layer
+    o_resource_manager.generateResource(stats.resource, stats.productionAmount, id)
 }
 
-childResource = Resource.LUMBER
+onAbilityActivationEnemy = function(){
+    // generate resource in world layer
+    o_resource_manager.generateResource(stats.resource, stats.productionAmount, id)
+}
 
-event_inherited()
+everySecondAtom = new TimedTrigger(id, player, stats.cooldown, onAbilityActivationPlayer, onAbilityActivationEnemy)

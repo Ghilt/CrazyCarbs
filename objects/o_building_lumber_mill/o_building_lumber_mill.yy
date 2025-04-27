@@ -12,8 +12,8 @@
     "path":"folders/Objects/buildings.yy",
   },
   "parentObjectId":{
-    "name":"o_production_building_parent",
-    "path":"objects/o_production_building_parent/o_production_building_parent.yy",
+    "name":"o_ground_building",
+    "path":"objects/o_ground_building/o_ground_building.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

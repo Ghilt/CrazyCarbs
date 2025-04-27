@@ -61,12 +61,12 @@ var buildingData = [
         "Port", getDescriptionGenerator("Overproduction trigger: Consume all resources and gain |overproductionHealingPower| stability.")),
     new BuildingData(Building.GOLD_MINE, o_building_gold_mine, 
         4, Terrain.GROUND, 1, 1,
-        { childProductionRate: 1, cooldown: 3 * one_second }, 
-        "Ore Mine", getDescriptionGenerator("Every |cooldown| ms: Generate |childProductionRate| ore.")),
+        { productionAmount: 1, cooldown: 3 * one_second, resource: Resource.ORE }, 
+        "Ore Mine", getDescriptionGenerator("Every |cooldown| ms: Generate |productionAmount| ore.")),
     new BuildingData(Building.LUMBER_MILL, o_building_lumber_mill, 
         3, Terrain.GROUND, 1, 1,
-        { childProductionRate: 1, cooldown: 1 * one_second }, 
-        "Lumber mill", getDescriptionGenerator("Every |cooldown| ms: Generate |childProductionRate| lumber.")),
+        { productionAmount: 1, cooldown: 1 * one_second, resource: Resource.LUMBER }, 
+        "Lumber mill", getDescriptionGenerator("Every |cooldown| ms: Generate |productionAmount| |resource|.")),
     new BuildingData(Building.GRAND_OAK, o_building_grand_oak, 
         2, Terrain.GROUND, 1, 1,
         {
@@ -77,23 +77,23 @@ var buildingData = [
         "Grand Oak", getDescriptionGenerator("Every |baseCooldown| ms: Gain |healingPower|. Gets reduced by mult_percent(|adjacencyCooldownReductionBonus|) for every adjacent nature building.")),
     new BuildingData(Building.ORCHARD, o_building_orchard, 
         1, Terrain.GROUND, 2, 2,
-        { overproductionHealingPower: 10 }, 
+        { productionAmount: 1, cooldown: 7 * one_second, resource: Resource.ORE }, 
         "Orchard", getDescriptionGenerator("Does nothing but has a 2x2 footprint atm")),
     new BuildingData(Building.BEEKEEPER, o_building_beekeeper, 
         1, Terrain.GROUND, 2, 1,
         {
-            productionRate: 1,
+            productionAmount: 1,
             cooldown: 3 * one_second,
             payoffRequirementAmount: 3,
             payoffRequirementType: Resource.LUMBER,
             producesResource: Resource.HONEY
         }, 
-        "Port", getDescriptionGenerator("Every |cooldown| ms: Do stuff. Payoff |cooldown| ms: convert 3 |payoffRequirementType| into 1 |producesResource|")),
+        "Beekeeper", getDescriptionGenerator("Every |cooldown| ms: Do stuff. Payoff |cooldown| ms: convert 3 |payoffRequirementType| into 1 |producesResource|")),
     // Ships
     new BuildingData(Building.SHIP_SLOOP, o_unit_sloop, 
         3, Terrain.SEA, 1, 1,
         { todo: 100000 }, 
-        "Port", getDescriptionGenerator("Todo, Im a ship!")),
+        "Sloop", getDescriptionGenerator("Todo, Im a ship!")),
 ]
 
 

@@ -4,11 +4,6 @@ event_inherited();
 
 numberOfAdjacentNatureTag = 0
 
-stats = {
-    healingPower: 8,
-    baseCooldown: 5 * one_second,
-    adjacencyCooldownReductionBonus: 0.1
-}
 
 particleSystem = part_system_create()
 
@@ -36,12 +31,4 @@ everySecondAtom = new TimedTrigger(id, player, adjecencyBoosted, onAbilityActiva
 
 adjacencyUpdate = function(adjacentDistricts) {
     numberOfAdjacentNatureTag = countBuildingTags(adjacentDistricts, TAG_NATURE)
-}
-
-getBuildingDescription = function(){
-     return "Every second gain " 
-            + string(stats.healingPower) 
-            + "stability. This cooldowns is reduced by " 
-            + string(stats.adjacencyCooldownReductionBonus)
-            + "per adjacent nature building"
 }
