@@ -282,10 +282,10 @@ getClosestBuildableSpot = function(pX, pY, footprint, terrain = Terrain.GROUND) 
     
     for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
         
-        if (influenceGrid[Player.US][i].occupiedBy) {
-            // TODO just skip this check and make sure to unbuild the occupying structure and send it to inventory
-            continue;
-        }
+        //if (influenceGrid[Player.US][i].occupiedBy) {
+            //// TODO just skip this check and make sure to unbuild the occupying structure and send it to inventory
+            //continue;
+        //}
         
         if (influenceGrid[Player.US][i].terrain != terrain) {
             continue;
