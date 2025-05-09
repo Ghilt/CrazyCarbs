@@ -77,7 +77,7 @@ var buildingData = [
         "Grand Oak", getDescriptionGenerator("Every |baseCooldown| ms: Gain |healingPower|. Gets reduced by mult_percent(|adjacencyCooldownReductionBonus|) for every adjacent nature building.")),
     new BuildingData(Building.ORCHARD, o_building_orchard, 
         1, Terrain.GROUND, 2, 2,
-        { productionAmount: 1, cooldown: 7 * one_second, resource: Resource.ORE }, 
+        { productionAmount: 1, cooldown: 1 * one_second, buff: Modifier.PEACE }, 
         "Orchard", getDescriptionGenerator("Does nothing but has a 2x2 footprint atm")),
     new BuildingData(Building.BEEKEEPER, o_building_beekeeper, 
         1, Terrain.GROUND, 2, 1,

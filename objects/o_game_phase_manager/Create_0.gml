@@ -45,6 +45,7 @@ goToBuild = function() {
     o_shop_manager.goToNextRound()
     o_resource_manager.goToBuild()
     o_influence_grid_manager.resetAfterBattle()
+    o_buff_debuff_manager.resetAfterBattle()
     o_atom_manager.resetAfterBattle()
     o_stability_manager.goToBuild()
 }

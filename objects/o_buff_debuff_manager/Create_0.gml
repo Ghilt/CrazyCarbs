@@ -1,3 +1,5 @@
+
+
 peaceRate = 2 * one_second
 dreadRate = 2 * one_second
 
@@ -8,11 +10,12 @@ get = function(modifier, player){
 }
 
 gain = function(number, modifier, player){
-    return modifierList[player][modifier] = modifierList[player][modifier] + number
+    var newAmount = modifierList[player][modifier] + number
+    modifierList[player][modifier] = newAmount
 }
 
 lose = function(number, modifier, player){
-    return modifierList[player][modifier] = modifierList[player][modifier] - number
+    modifierList[player][modifier] = modifierList[player][modifier] - number
 }
 
 triggerPatriotism = function(damage, player) {
@@ -60,3 +63,16 @@ triggerMysticism = function(player) {
     // TODO tie it to number of spiritual buildings 
     o_stability_manager.destabilize(modifierList[player][Modifier.MYSTICISM] * 1 , opponent)
 }
+
+resetAfterBattle = function() {
+    modifierList = [array_create(10, 0), array_create(10, 0)]
+}
+
+#region Setup ui display of buff debuffs
+
+var inventory_sprite = object_get_sprite(o_gui_buff_debuff_info)
+instance_create_layer(0 - sprite_get_width(inventory_sprite), guiYBot, "Gui", o_gui_buff_debuff_info, { player: Player.US})
+
+instance_create_layer(guiWidth, guiYBot, "Gui", o_gui_buff_debuff_info, { player: Player.THEM})
+
+#endregion

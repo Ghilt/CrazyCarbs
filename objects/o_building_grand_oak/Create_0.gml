@@ -4,7 +4,6 @@ event_inherited();
 
 numberOfAdjacentNatureTag = 0
 
-
 particleSystem = part_system_create()
 
 particlePos = { x, y } // with respect to depth sorting we always go with 'real' position

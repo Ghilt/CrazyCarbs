@@ -1,8 +1,6 @@
 type = Building.GOLD_MINE
 
 
-childResource = Resource.ORE
-
 event_inherited()
 
 

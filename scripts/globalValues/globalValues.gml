@@ -34,6 +34,7 @@
 #macro TAG_SHIP "ship"
 #macro TAG_INDUSTRY "industry"
 
+// Order of this enum matters; didn't bother with a map when initializing counters in o_gui_buff_debuff_info
 enum Modifier
 {
     PATRIOTISM, // buffs

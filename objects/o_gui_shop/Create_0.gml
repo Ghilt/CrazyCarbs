@@ -4,7 +4,7 @@ image_alpha = 0.8
 
 
 // acts as anchor for related ui components
-guiState = new GuiState(x, y, x, guiYBot - 60)
+guiState = new GuiState(x, y, x, guiYBot)
 
 priceUiPosition = function(buildXOfOffer, buildYOfOffer) {
     return { x: buildXOfOffer + x, y: buildYOfOffer + y }
