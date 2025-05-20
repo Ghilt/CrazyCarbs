@@ -91,6 +91,7 @@ buildAt = function(pos, typeOrInstance, buildingRotated) {
     var footprintCoordinates = footprintToCoordinates(district, footprint)
     
     // terrain already checked, so it is not strictly required to be checked here
+    
     footprintUnionedWithInfluenceGridIndex(spots, footprintCoordinates, buildingParameters.terrainRequirement)
     
     // Check that all spots are unoccupied (and in the grid when called by debug function)
@@ -137,7 +138,7 @@ buildAt = function(pos, typeOrInstance, buildingRotated) {
     
     o_effects_manager.buildItemEffectAt(_origin, footprint)
     
-    recalculateAdjacencyOnNewBuilding(district)
+    recalculateAdjacencyOnDistrictChange(district)
     return true
 }
 
@@ -172,7 +173,7 @@ removeBuildingAt = function(pos) {
         spots[footprintCoordinates[i].influenceGridIndex].occupiedBy = false
     }
     
-    recalculateAdjacencyOnNewBuilding(district)
+    recalculateAdjacencyOnDistrictChange(district)
 
     instance_deactivate_object(building)
     return building
@@ -204,11 +205,18 @@ getBuildingAt = function(pos) {
 updateAdjacencyForDistrict = function(district) {
     // Lets try have this 'variable_instance_exists' here for a bit. It feels yucky, but maybe we are in rome.
     if (district.occupiedBy && variable_instance_exists(district.occupiedBy, "adjacencyUpdate")) {
-        district.occupiedBy.adjacencyUpdate(arrayFilterOnIndexes(influenceGrid[Player.US], district.adjacentDistricts))    
+        
+        // required calculation for buildings which covers multiple districts
+        // take note that the buildings will get an adjacency update per size of their footprint. (unnecessary but thould be fine)
+        var adjacentDistrictsOfWholeBuilding = getAdjacentDistrictIndexesOfBuilding(district)
+        
+        district.occupiedBy.adjacencyUpdate(arrayFilterOnIndexes(influenceGrid[Player.US], adjacentDistrictsOfWholeBuilding))    
     }
 }
 
-recalculateAdjacencyOnNewBuilding = function(cityDistrict) {
+// when building is removed or added
+// The districts themselves have their <up to> 4 orthogonal district neighbors stored, these districts may or may not contains buildings
+recalculateAdjacencyOnDistrictChange = function(cityDistrict) {
     ppp("Recalculating adjacency for", cityDistrict.relativeX, cityDistrict.relativeY, "as", cityDistrict.adjacentDistricts)
     updateAdjacencyForDistrict(cityDistrict)
     for (var i = 0; i < array_length(cityDistrict.adjacentDistricts); i++) {
@@ -216,6 +224,8 @@ recalculateAdjacencyOnNewBuilding = function(cityDistrict) {
         ppp("Recalculating adjacency for", district.relativeX, district.relativeY, "as", district.adjacentDistricts)
         updateAdjacencyForDistrict(district)
     }
+    
+    o_building_upgrade_manager.recalculateRecipeFullfillment()
 }
 
 // This method completely updates the adjacency information. Required when expanding the grid itself.
@@ -243,6 +253,7 @@ recalculateAdjacency = function(player) {
 
 buildAt(o_map_manager.getPlayerPosition(Player.US), Building.STARTING_PORT, false)
 repeat (9) {
+    expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
     expandToNewSpot(influenceGrid[Player.US], Terrain.GROUND)
     expandToNewSpot(influenceGrid[Player.US], Terrain.SEA)
 }
@@ -281,12 +292,7 @@ getClosestBuildableSpot = function(pX, pY, footprint, terrain = Terrain.GROUND) 
     var bestY = 0
     
     for (var i = 0; i < array_length(influenceGrid[Player.US]); i++) {
-        
-        //if (influenceGrid[Player.US][i].occupiedBy) {
-            //// TODO just skip this check and make sure to unbuild the occupying structure and send it to inventory
-            //continue;
-        //}
-        
+         
         if (influenceGrid[Player.US][i].terrain != terrain) {
             continue;
         }

@@ -113,6 +113,7 @@ function randomBuilding(terrain) {
     }
 }
 
+// anchor district needs to be the top left of the footprint
 function footprintToCoordinates(anchorDistrict, footprint) {
     var coordinates = array_create(footprint.width * footprint.height)
     for (var yy = 0; yy < footprint.height; yy++) {

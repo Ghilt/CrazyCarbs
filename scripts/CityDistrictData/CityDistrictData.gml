@@ -35,14 +35,15 @@ function CityDistrict(_relativeX, _relativeY, _x, _y, _occupiedBy, _terrain, _bu
     x = _x
     y = _y
     occupiedBy = _occupiedBy 
-    adjacentDistricts = []
+    adjacentDistricts = [] // this is a list of indexes 'applicable' to the influenceGrid list
     
     static resetAfterBattle = function() { 
         if (occupiedBy && instance_exists(occupiedBy)) {
             occupiedBy.resetAfterBattle()
         }
     }
-        
+     
+    // TODO this needs to go! refactor ship battle away from using this! its crazy spaghetti   
     static holdsAliveShip = function() { 
         if (occupiedBy && instance_exists(occupiedBy)) {
             return instanceHasTag(occupiedBy, TAG_SHIP) && !occupiedBy.isDefeated

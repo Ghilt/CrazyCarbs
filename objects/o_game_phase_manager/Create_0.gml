@@ -48,6 +48,7 @@ goToBuild = function() {
     o_buff_debuff_manager.resetAfterBattle()
     o_atom_manager.resetAfterBattle()
     o_stability_manager.goToBuild()
+    o_building_upgrade_manager.goToBuild()
 }
 
 goToEndOfRoundScreen = function(victory) {
