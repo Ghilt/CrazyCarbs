@@ -21,7 +21,6 @@ isRecipeFulfilled = function(recipe, adjacentDistrictIndexes) {
             continue
         }
         
-        
         if (!is_undefined(currentlyFulfillingRecipes[? availableDistrictToCombine.occupiedBy])) {
             continue 
         }
@@ -48,7 +47,8 @@ isRecipeFulfilled = function(recipe, adjacentDistrictIndexes) {
     }
 }
 
-recalculateRecipeFullfillment = function() {
+// city district just had a building added or removed
+recalculateRecipeFullfillment = function(cityDistrict) {
     ds_map_clear(currentlyFulfillingRecipes)
     currentlyFulfillingRecipesMainNodeList = []
     
@@ -71,10 +71,23 @@ recalculateRecipeFullfillment = function() {
                     var fullfillmentData = isRecipeFulfilled(recipiesForType[recipeIterator], adjacentDistrictsOfWholeBuilding)
                 	if (is_array(fullfillmentData)) {
                         
+                        var allPositions = [] // will be a list of lists before being flattened
                         currentlyFulfillingRecipes[? district.occupiedBy] = fullfillmentData
-                        array_push(currentlyFulfillingRecipesMainNodeList, district.occupiedBy)
+                        array_push(allPositions, getPositionsOfAllDistrictsOfBuilding(district.occupiedBy))
+                        
                         for (var fullfillmentDataIndex = 0; fullfillmentDataIndex < array_length(fullfillmentData); fullfillmentDataIndex++) {
                             currentlyFulfillingRecipes[? fullfillmentData[fullfillmentDataIndex].building] = fullfillmentData	
+                            array_push(allPositions, getPositionsOfAllDistrictsOfBuilding(fullfillmentData[fullfillmentDataIndex].building))
+                        }
+                        
+                        allPositions = arrayFlatten(allPositions)
+                        
+                        array_push(currentlyFulfillingRecipesMainNodeList, { mainNode: district, positions: allPositions })
+                        
+                        // the district triggering the recalculation is part of this recipe
+                        var samePosPredicate = method({ cityDistrict }, function(pos) { return pos.x == cityDistrict.x && pos.y = cityDistrict.y })
+                        if (cityDistrict.occupiedBy && array_any(allPositions, samePosPredicate)) {
+                            o_effects_manager.recipeActiveEffectAt(allPositions) 
                         }
                     }
                 }

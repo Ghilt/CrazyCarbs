@@ -225,7 +225,7 @@ recalculateAdjacencyOnDistrictChange = function(cityDistrict) {
         updateAdjacencyForDistrict(district)
     }
     
-    o_building_upgrade_manager.recalculateRecipeFullfillment()
+    o_building_upgrade_manager.recalculateRecipeFullfillment(cityDistrict)
 }
 
 // This method completely updates the adjacency information. Required when expanding the grid itself.

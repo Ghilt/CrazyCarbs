@@ -46,6 +46,21 @@ buildItemEffectAt = function(pos, footprint) {
     part_particles_burst(system, isoPos.x, isoPos.y, buildingDustParticleBursts[? key])
 }
 
+// pos = { x, y } in room space
+// effect cover exactly 1 tile
+recipeActiveEffectAt = function(listOfPos) {
+    audio_play_sound(snd_recipe_fulfilled, 0, false, 0.3, 0, random_range(0.8, 1.2))
+
+    var arrayLength = array_length(listOfPos)
+    for (var i = 0; i < arrayLength; i++) {
+        var pos = listOfPos[i]
+        var system = particleSystemAt(pos)
+        var isoPos = roomToIso(pos.x, pos.y)
+        part_particles_burst(system, isoPos.x, isoPos.y, ps_recipe_fulfilled)
+    }
+    
+}
+
 particleSystemAt = function(pos) {
     
     if (ds_map_exists(particleSystems, pos)) {

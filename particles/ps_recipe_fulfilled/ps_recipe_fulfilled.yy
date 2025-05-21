@@ -1,0 +1,25 @@
+{
+  "$GMParticleSystem":"",
+  "%Name":"ps_recipe_fulfilled",
+  "backdropHeight":768,
+  "backdropImageOpacity":0.5,
+  "backdropImagePath":"",
+  "backdropWidth":1366,
+  "backdropXOffset":0.0,
+  "backdropYOffset":0.0,
+  "drawOrder":0,
+  "emitters":[
+    {"$GMPSEmitter":"","%Name":"left","additiveBlend":true,"directionIncrease":0.0,"directionMax":90.0,"directionMin":90.0,"directionWiggle":1.0,"distribution":0,"editorColour":1090519039,"editorDrawShape":true,"emitCount":60,"emitDelayMax":33.0,"emitDelayMin":33.0,"emitDelayUnits":1,"emitIntervalMax":0.0,"emitIntervalMin":0.0,"emitIntervalUnits":0,"enabled":true,"endColour":4294914595,"GMPresetName":null,"gravityDirection":90.0,"gravityForce":0.1,"headPosition":0.0,"lifetimeMax":40.0,"lifetimeMin":20.0,"linkedEmitter":null,"locked":false,"midColour":4278245631,"mode":1,"name":"left","orientationIncrease":0.0,"orientationMax":0.0,"orientationMin":90.0,"orientationRelative":false,"orientationWiggle":0.0,"regionH":519.7051,"regionW":766.1992,"regionX":1.0,"regionY":259.0,"resourceType":"GMPSEmitter","resourceVersion":"2.0","scaleX":0.6,"scaleY":0.6,"shape":2,"sizeIncrease":-0.1,"sizeMax":3.0,"sizeMin":3.0,"sizeWiggle":0.2,"spawnOnDeathCount":1,"spawnOnDeathGMPreset":null,"spawnOnDeathId":null,"spawnOnUpdateCount":1,"spawnOnUpdateGMPreset":null,"spawnOnUpdateId":null,"speedIncrease":-0.5,"speedMax":18.0,"speedMin":14.0,"speedWiggle":1.0,"spriteAnimate":false,"spriteId":null,"spriteRandom":false,"spriteStretch":true,"startColour":4278190301,"texture":3,},
+  ],
+  "name":"ps_recipe_fulfilled",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Effects.yy",
+  },
+  "resourceType":"GMParticleSystem",
+  "resourceVersion":"2.0",
+  "showBackdrop":true,
+  "showBackdropImage":false,
+  "xorigin":0,
+  "yorigin":0,
+}

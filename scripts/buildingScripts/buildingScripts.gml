@@ -113,12 +113,29 @@ function randomBuilding(terrain) {
     }
 }
 
+
+// anchor district needs to be the top left of the footprint
+function getPositionsOfAllDistrictsOfBuilding(building) {
+    var buildingParameters = ds_map_find_value(global.buildings, building.type)
+    var footprint = building.buildingRotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint
+    
+    var coordinates = array_create(footprint.width * footprint.height)
+    for (var yy = 0; yy < footprint.height; yy++) {
+        for (var xx = 0; xx < footprint.width; xx++) {
+            coordinates[xx + footprint.width * yy] = { x: building.x + xx * TILE_SIZE , y: building.y + yy * TILE_SIZE }    
+        }
+    }
+    return coordinates
+}
+
+
 // anchor district needs to be the top left of the footprint
 function footprintToCoordinates(anchorDistrict, footprint) {
     var coordinates = array_create(footprint.width * footprint.height)
     for (var yy = 0; yy < footprint.height; yy++) {
         for (var xx = 0; xx < footprint.width; xx++) {
-            coordinates[xx + footprint.width * yy] = { x: anchorDistrict.relativeX + xx, y: anchorDistrict.relativeY + yy }    
+            // The array is created with the correct size, using e.g array push here would not work
+            coordinates[xx + footprint.width * yy] = { x: anchorDistrict.relativeX + xx, y: anchorDistrict.relativeY + yy }
         }
     }
     return coordinates
