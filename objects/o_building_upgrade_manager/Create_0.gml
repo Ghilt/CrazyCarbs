@@ -1,4 +1,4 @@
-// we dont need to check recipe fullfillment every step seems excessive
+// frequency of effect burst for fulfilling recipies
 counter = 0
 checkRecipeEvery = 0.5 * one_second
 

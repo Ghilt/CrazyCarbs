@@ -2,6 +2,9 @@
 // heres a sound site: https://opengameart.org/content/jump-landing-sound
 
 
+// Pope says to never use ds_ structure, just use strucs
+// As soon as you think "Ah, I'll use a data structure" just don't
+
 
 //// THE below text is from the pixelated pope about not using emitters:
 //I design the actual particle in the particle editor, then manually create my part system and manually create instances of the particle I designed using part_particles_burst
@@ -16,6 +19,8 @@
  //
 //v_center being where you want that bottom point of the V to be
 
+groundParticleSystem = part_system_create() // hugs the ground
+o_depth_manager.registerParticlesForDepthSorting(groundParticleSystem, { x: -1000, y: -1000 })
 mouseFeedBackParticleSystem = part_system_create()
 o_depth_manager.registerParticlesForDepthSorting(mouseFeedBackParticleSystem, { x: room_width, y: room_height })
 particleSystems = ds_map_create()
@@ -60,6 +65,17 @@ recipeActiveEffectAt = function(listOfPos) {
     }
     
 }
+
+recipeActiveEffectAt2 = function(listOfPos) {
+    var arrayLength = array_length(listOfPos)
+    for (var i = 0; i < arrayLength; i++) {
+        var pos = listOfPos[i]
+        var system = groundParticleSystem
+        var isoPos = roomToIso(pos.x, pos.y)
+        part_particles_burst(system, isoPos.x, isoPos.y, ps_recipe_active_district)
+    }
+}
+
 
 particleSystemAt = function(pos) {
     
