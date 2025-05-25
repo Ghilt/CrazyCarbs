@@ -3,7 +3,6 @@ if (!o_game_phase_manager.isBuildPhase()) {
     return;
 }
 
-var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y, footprint, terrainRequirement)
 
 switch (carry) {
     case Carry.None:
@@ -12,6 +11,7 @@ switch (carry) {
         } else if (action == Action.Buy) {
             buyInstance()
         } else if (action == Action.Build) {
+            var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y, footprint, terrainRequirement)
             placeInstance(closestPos) // Allow slight graphical inconsistency here for now; if you click before it has lerped all the way to the building site. It will still work
         } else {
             // return to inventory or shop
@@ -24,6 +24,7 @@ var sellIntent = isOwnedByPlayer ? o_shop_manager.getSellIntent(mouseGuiX, mouse
 var buyIntent = !isOwnedByPlayer ? o_inventory_manager.getBuyIntent(mouseGuiX, mouseGuiY) : { buyIt: false }
 
 if (carry == Carry.ClickCarry || carry == Carry.HoldCarry) {
+    var closestPos = o_influence_grid_manager.getClosestBuildableSpot(mouse_x, mouse_y, footprint, terrainRequirement)
     if (buyIntent.buyIt) {
         x = lerp(x, buyIntent.x, smoothCarry)
         y = lerp(y, buyIntent.y, smoothCarry)
