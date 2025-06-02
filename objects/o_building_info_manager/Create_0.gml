@@ -1,7 +1,7 @@
 infoBackground = instance_create_layer(0, 0, "Gui", o_gui_building_info)
 infoBackground.depth = -1000
-infoBackground.image_xscale = 10
-infoBackground.image_yscale = 8
+infoBackground.image_xscale = 6
+infoBackground.image_yscale = 4
 
 hovering = false
 
@@ -15,6 +15,21 @@ hover = function(instance, tile = false){
     if (!hovering){
         o_effects_manager.buildInfoHoverFeedback()
     }
+    
+    var xPos = mouseGuiX - infoBackground.sprite_width - 220 * o_zoom_manager.getZoomPercentage()
+    if (xPos < 0) {
+        xPos = mouseGuiX + 220 * o_zoom_manager.getZoomPercentage()
+    }
+    
+    var yPos = clamp(mouseGuiY - infoBackground.sprite_height / 2, 0, guiHeight - infoBackground.sprite_height)
+    
+    //if (yPos > guiHeight - infoBackground.sprite_height / 2 ) {
+        //yPos = mouseGuiY - infoBackground.sprite_height
+    //}
+    ppp(yPos , "dsfs")
+    infoBackground.x = xPos
+    infoBackground.y = yPos
+    
     hoverData.effectDescription = instance.getBuildingDescription()
     hovering = true
 }
@@ -26,3 +41,4 @@ resetHover = function(){
 getEffectDescription = function () {
     return hoverData.effectDescription
 }
+
