@@ -23,10 +23,7 @@ hover = function(instance, tile = false){
     
     var yPos = clamp(mouseGuiY - infoBackground.sprite_height / 2, 0, guiHeight - infoBackground.sprite_height)
     
-    //if (yPos > guiHeight - infoBackground.sprite_height / 2 ) {
-        //yPos = mouseGuiY - infoBackground.sprite_height
-    //}
-    ppp(yPos , "dsfs")
+
     infoBackground.x = xPos
     infoBackground.y = yPos
     

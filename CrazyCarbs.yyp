@@ -205,7 +205,6 @@
     {"id":{"name":"s_ui_resource_placeholder","path":"sprites/s_ui_resource_placeholder/s_ui_resource_placeholder.yy",},},
     {"id":{"name":"s_unit_obstacle","path":"sprites/s_unit_obstacle/s_unit_obstacle.yy",},},
     {"id":{"name":"s_unit_sloop","path":"sprites/s_unit_sloop/s_unit_sloop.yy",},},
-    {"id":{"name":"Sprite57","path":"sprites/Sprite57/Sprite57.yy",},},
     {"id":{"name":"test_space_ship_1","path":"sprites/test_space_ship_1/test_space_ship_1.yy",},},
     {"id":{"name":"test_space_ship","path":"sprites/test_space_ship/test_space_ship.yy",},},
     {"id":{"name":"TempTileSet","path":"tilesets/TempTileSet/TempTileSet.yy",},},

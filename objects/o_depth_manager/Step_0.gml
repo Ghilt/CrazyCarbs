@@ -9,8 +9,8 @@ var objectsInAir = tag_get_asset_ids("depth_sorted_air", asset_object)
 var ctx = { shallowest: 0 }
 array_foreach(objectsOnGround, method(ctx, function(_obj){
     with(_obj) {
-        depth = -bbox_bottom
-        other.shallowest = min(-bbox_bottom, other.shallowest)
+        depth = -y * 100 - x // TODO experimenting here; 
+        other.shallowest = min(-y, other.shallowest)
     }
 }))
 

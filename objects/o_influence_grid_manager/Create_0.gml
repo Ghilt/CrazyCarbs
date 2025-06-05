@@ -139,6 +139,7 @@ buildAt = function(pos, typeOrInstance, buildingRotated) {
     o_effects_manager.buildItemEffectAt(_origin, footprint)
     
     recalculateAdjacencyOnDistrictChange(district)
+    ppp("Placed building at:", district.x, district.y, "Tile:", district.x / TILE_SIZE, district.y / TILE_SIZE)
     return true
 }
 
@@ -217,11 +218,11 @@ updateAdjacencyForDistrict = function(district) {
 // when building is removed or added
 // The districts themselves have their <up to> 4 orthogonal district neighbors stored, these districts may or may not contains buildings
 recalculateAdjacencyOnDistrictChange = function(cityDistrict) {
-    ppp("Recalculating adjacency for", cityDistrict.relativeX, cityDistrict.relativeY, "as", cityDistrict.adjacentDistricts)
+    // ppp("Recalculating adjacency for", cityDistrict.relativeX, cityDistrict.relativeY, "as", cityDistrict.adjacentDistricts)
     updateAdjacencyForDistrict(cityDistrict)
     for (var i = 0; i < array_length(cityDistrict.adjacentDistricts); i++) {
         var district = influenceGrid[Player.US][cityDistrict.adjacentDistricts[i]] 
-        ppp("Recalculating adjacency for", district.relativeX, district.relativeY, "as", district.adjacentDistricts)
+        // ppp("Recalculating adjacency for", district.relativeX, district.relativeY, "as", district.adjacentDistricts)
         updateAdjacencyForDistrict(district)
     }
     

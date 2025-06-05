@@ -114,7 +114,6 @@ function randomBuilding(terrain) {
 }
 
 
-// anchor district needs to be the top left of the footprint
 function getPositionsOfAllDistrictsOfBuilding(building) {
     var buildingParameters = ds_map_find_value(global.buildings, building.type)
     var footprint = building.buildingRotated ? buildingParameters.getRotatedFootprint() : buildingParameters.footprint
