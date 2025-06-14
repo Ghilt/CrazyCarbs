@@ -102,7 +102,7 @@ buildAt = function(pos, typeOrInstance, buildingRotated) {
         } else if (spots[footprintCoordinates[i].influenceGridIndex].occupiedBy) {
             var building = spots[footprintCoordinates[i].influenceGridIndex].occupiedBy
             var buildingRemovedDeactivatedInstance = removeBuildingAt({ x: building.x, y: building.y })
-            if (buildingRemovedDeactivatedInstance) {
+            if (buildingRemovedDeactivatedInstance != noone) {
                 var isoSpace = roomToIso(buildingRemovedDeactivatedInstance.x, buildingRemovedDeactivatedInstance.y)
                 var newItemInInventoryInitData = o_zoom_manager.convertToGuiSpace(isoSpace.x, isoSpace.y)
                 newItemInInventoryInitData.carry = Carry.None
@@ -149,18 +149,18 @@ removeBuildingAt = function(pos) {
     var buildingSiteIndex = array_find_index(spots, method({ pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
     
     if (buildingSiteIndex == -1) {
-        return false
+        return noone
     }
     
     var district = spots[buildingSiteIndex]
     if (!district.occupiedBy) {
-        return false
+        return noone
     }
     
     var building = district.occupiedBy
     
     if (building.type == Building.STARTING_PORT) {
-        return false
+        return noone
     }
     
     var footprintCoordinates = []
@@ -180,6 +180,7 @@ removeBuildingAt = function(pos) {
     return building
 }
 
+
 getBuildingAt = function(pos) {
     var player = Player.US
     var buildingSiteIndex = array_find_index(influenceGrid[player], method({ pos }, function(_e, _i) { return (_e.x == pos.x && _e.y == pos.y) }))
@@ -190,12 +191,12 @@ getBuildingAt = function(pos) {
     }
     
     if (buildingSiteIndex == -1) {
-        return false
+        return noone
     }
     
     var district = influenceGrid[player][buildingSiteIndex]
     if (!district.occupiedBy) {
-        return false
+        return noone
     }
     
     var building = district.occupiedBy

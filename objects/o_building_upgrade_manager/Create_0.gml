@@ -24,7 +24,6 @@ isRecipeFulfilled = function(recipe, adjacentDistrictIndexes) {
         if (!is_undefined(currentlyFulfillingRecipes[? availableDistrictToCombine.occupiedBy])) {
             continue 
         }
-        
 
         var typeFoundAndNowSatisfied = arrayRemoveFirst(requiredComponentBuildingTypes, method({ typeFound : availableDistrictToCombine.occupiedBy.type }, function(requiredBuildingType) {
             return requiredBuildingType == typeFound
@@ -37,7 +36,6 @@ isRecipeFulfilled = function(recipe, adjacentDistrictIndexes) {
                 type: typeFoundAndNowSatisfied.removedItem 
             })
         }
-
     }
     
     if (array_length(requiredComponentBuildingTypes) == 0) {
@@ -82,7 +80,7 @@ recalculateRecipeFullfillment = function(cityDistrict) {
                         
                         allPositions = arrayFlatten(allPositions)
                         
-                        array_push(currentlyFulfillingRecipesMainNodeList, { mainNode: district, positions: allPositions })
+                        array_push(currentlyFulfillingRecipesMainNodeList, { mainNode: district, positions: allPositions, recipe: recipiesForType[recipeIterator] })
                         
                         // the district triggering the recalculation is part of this recipe
                         var samePosPredicate = method({ cityDistrict }, function(pos) { return pos.x == cityDistrict.x && pos.y = cityDistrict.y })
@@ -98,9 +96,22 @@ recalculateRecipeFullfillment = function(cityDistrict) {
 }
 
 goToBuild = function() {
+    // we need to copy the array here since the removal code updates the adjacency and modifies the original array
     var size = array_length(currentlyFulfillingRecipesMainNodeList)
+    var copyOfMainNodes = array_create(size)
+    array_copy(copyOfMainNodes, 0, currentlyFulfillingRecipesMainNodeList, 0, size)
+
+    
     for (var i = 0; i < size; i++;)
     {
-        ppp("Time to upgrade combine!", currentlyFulfillingRecipesMainNodeList[i] ) // TODO
+        
+        array_foreach(copyOfMainNodes[i].positions, function(obj){
+            var deactivatedInstance = o_influence_grid_manager.removeBuildingAt(obj) 
+            instance_destroy(deactivatedInstance)
+        })
+        
+        ppp("Time to upgrade combine!", copyOfMainNodes[i]) // TODO ---> Make reward spawn on map instead of in inventory
+        o_inventory_manager.addItem(copyOfMainNodes[i].recipe.result)
+        
     }
 }

@@ -20,7 +20,7 @@
 //v_center being where you want that bottom point of the V to be
 
 groundParticleSystem = part_system_create() // hugs the ground
-o_depth_manager.registerParticlesForDepthSorting(groundParticleSystem, { x: -1000, y: -1000 })
+o_depth_manager.registerParticlesForDepthSorting(groundParticleSystem, { x: -10000, y: -10000 })
 mouseFeedBackParticleSystem = part_system_create()
 o_depth_manager.registerParticlesForDepthSorting(mouseFeedBackParticleSystem, { x: room_width, y: room_height })
 particleSystems = ds_map_create()

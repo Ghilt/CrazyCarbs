@@ -1,1 +1,1 @@
-o_atom_manager.cleanUpInstance(id)
+o_atom_manager.cleanUpInstance(id);

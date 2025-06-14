@@ -37,6 +37,7 @@ registerForStepPayoff = function(instance, atomStep, atomIsReady, atomResourceCo
 }
 
 cleanUpInstance = function(instance) {
+    ppp("cleaning up instance's atoms")
     
     // Why is this var prefixed with an underscore?
     // This is a monument to a bug and a realization about how things may go down in game maker

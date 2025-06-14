@@ -55,7 +55,7 @@ if (carriedInstance) {
         
         var deactivatedBuilding = o_influence_grid_manager.removeBuildingAt(roomPos)
         
-        if (deactivatedBuilding) {
+        if (deactivatedBuilding != noone) {
             var isoSpace = roomToIso(deactivatedBuilding.x, deactivatedBuilding.y)
             var newItemInInventoryInitData = o_zoom_manager.convertToGuiSpace(isoSpace.x, isoSpace.y)
             newItemInInventoryInitData.carry = Carry.ClickCarry
@@ -64,7 +64,7 @@ if (carriedInstance) {
         }
     } else {
         var buildingAt = o_influence_grid_manager.getBuildingAt(roomPos)
-        if (buildingAt) {
+        if (buildingAt != noone) {
             resolvedToHover = true
             o_building_info_manager.hover(buildingAt)  
             return
