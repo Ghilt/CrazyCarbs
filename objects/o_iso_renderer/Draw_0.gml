@@ -26,6 +26,8 @@ for (var tX = 0; tX < MAP_W; tX++) {
                 // TEMP test terrain variety
                 if (tileIndex == MapTerrain.PLAINS) {
                     draw_sprite(s_iso_terrain_plain, tileData.weightedSubTerrainValue, roomX, roomY + tileZ)
+                } else if (tileIndex == MapTerrain.FOREST) {
+                    draw_sprite(s_iso_terrain_forest, 0, roomX, roomY + tileZ)
                 } else {
                     draw_sprite(s_iso_terrain, tileIndex, roomX, roomY + tileZ)
                 }

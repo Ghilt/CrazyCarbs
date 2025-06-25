@@ -22,7 +22,8 @@ enum Building
 enum Terrain
 {
     SEA,
-    GROUND
+    GROUND,
+    FOREST
 }
 
 // Fine grained terrain used in map creation visually. Maps onto Terrain enum

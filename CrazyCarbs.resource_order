@@ -141,6 +141,7 @@
     {"name":"s_iso_grass","order":8,"path":"sprites/s_iso_grass/s_iso_grass.yy",},
     {"name":"s_iso_ocean","order":6,"path":"sprites/s_iso_ocean/s_iso_ocean.yy",},
     {"name":"s_iso_terrain_backup","order":18,"path":"sprites/s_iso_terrain_backup/s_iso_terrain_backup.yy",},
+    {"name":"s_iso_terrain_forest","order":23,"path":"sprites/s_iso_terrain_forest/s_iso_terrain_forest.yy",},
     {"name":"s_iso_terrain_ocean","order":20,"path":"sprites/s_iso_terrain_ocean/s_iso_terrain_ocean.yy",},
     {"name":"s_iso_terrain_plain","order":19,"path":"sprites/s_iso_terrain_plain/s_iso_terrain_plain.yy",},
     {"name":"s_iso_terrain","order":11,"path":"sprites/s_iso_terrain/s_iso_terrain.yy",},

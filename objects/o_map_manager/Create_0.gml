@@ -79,6 +79,8 @@ convertTileTypeToTerrain = function(mapTile){
     var tileType = mapTile.mapTerrain
     if (tileType == MapTerrain.SEA || tileType == MapTerrain.SEA_SHALLOW) {
         return Terrain.SEA
+    } else if (tileType == MapTerrain.FOREST) {
+        return Terrain.FOREST
     } else {
         return Terrain.GROUND
     }
